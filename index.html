@@ -4,511 +4,653 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Loyal Partners — Financial Solution</title>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Syne:wght@400;500;600;700;800&family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root {
   --purple: #7674F5;
   --purple-light: rgba(118,116,245,0.08);
-  --purple-border: rgba(118,116,245,0.2);
+  --purple-border: rgba(118,116,245,0.15);
+  --purple-glow: rgba(118,116,245,0.35);
   --green: #3EFD9B;
   --green-light: rgba(62,253,155,0.1);
   --green-border: rgba(62,253,155,0.25);
   --black: #000000;
-  --dark: #1a1a2e;
+  --dark: #0D0D1A;
   --bg: #F4F4F4;
   --white: #FFFFFF;
   --text: #2D2D3A;
-  --text-2: #5A5A6E;
+  --text-body: #4A4A5A;
   --muted: #8E8E9E;
   --border: rgba(0,0,0,0.08);
-  --border-2: rgba(0,0,0,0.04);
-  --shadow: 0 2px 20px rgba(0,0,0,0.06);
-  --shadow-hover: 0 8px 32px rgba(118,116,245,0.12);
-}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-html{scroll-behavior:smooth;}
-body{
-  font-family:'Plus Jakarta Sans','Montserrat',Helvetica,Arial,sans-serif;
-  background:var(--bg);
-  color:var(--text);
-  line-height:1.7;
-  overflow-x:hidden;
+  --border-light: rgba(0,0,0,0.04);
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.06);
+  --shadow-md: 0 4px 16px rgba(0,0,0,0.06);
+  --shadow-lg: 0 12px 40px rgba(0,0,0,0.1);
+  --radius-card: 16px;
+  --radius-btn: 12px;
+  --radius-pill: 100px;
 }
 
-/* SCROLLBAR */
-::-webkit-scrollbar{width:4px;}
-::-webkit-scrollbar-track{background:var(--bg);}
-::-webkit-scrollbar-thumb{background:var(--purple);border-radius:2px;}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
 
-/* CURSOR */
-*{cursor:default;}
-a,button{cursor:pointer;}
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--bg);
+  color: var(--text-body);
+  font-size: 1rem;
+  line-height: 1.75;
+  font-weight: 400;
+  overflow-x: hidden;
+}
+
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--purple); border-radius: 2px; }
+
+* { cursor: default; }
+a, button { cursor: pointer; }
 
 /* TYPOGRAPHY */
-h1,h2,h3,h4{font-family:'Syne','Montserrat',Helvetica,sans-serif;line-height:1.15;letter-spacing:-0.03em;color:var(--black);}
-h1{font-size:clamp(2.4rem,5vw,4.2rem);font-weight:800;}
-h2{font-size:clamp(1.8rem,3.2vw,2.8rem);font-weight:700;}
-h3{font-size:clamp(1rem,1.6vw,1.25rem);font-weight:600;}
-p{font-size:1rem;font-weight:400;color:var(--text-2);}
-a{text-decoration:none;color:inherit;}
+h1, h2, h3, h4 {
+  font-family: 'DM Sans', 'Inter', sans-serif;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  color: var(--black);
+}
+h1 { font-size: clamp(2.8rem, 5.5vw, 4.5rem); font-weight: 700; }
+h2 { font-size: clamp(2rem, 3.5vw, 3rem); font-weight: 700; }
+h3 { font-size: clamp(1rem, 1.6vw, 1.25rem); font-weight: 600; }
+p { font-size: 1rem; font-weight: 400; color: var(--text-body); max-width: 640px; }
+a { text-decoration: none; color: inherit; }
 
 /* UTILITY */
-.container{max-width:1200px;margin:0 auto;padding:0 2rem;}
-.section{padding:6rem 0;}
-.purple{color:var(--purple);}
-.green{color:var(--green);}
+.container { max-width: 1280px; margin: 0 auto; padding: 0 2rem; }
+.section { padding: 7rem 0; }
+.purple { color: var(--purple); }
+.green { color: var(--green); }
 
 /* SECTION TAG */
-.tag{
-  display:inline-flex;align-items:center;gap:0.5rem;
-  font-family:'Montserrat',sans-serif;font-size:0.72rem;font-weight:600;
-  letter-spacing:0.12em;text-transform:uppercase;color:var(--purple);
-  margin-bottom:1rem;
-  padding:0.35rem 0.85rem;
-  background:var(--purple-light);
-  border-radius:100px;
+.tag {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  font-family: 'DM Sans', sans-serif; font-size: 0.72rem; font-weight: 600;
+  letter-spacing: 0.12em; text-transform: uppercase; color: var(--purple);
+  margin-bottom: 1rem;
+  padding: 0.4rem 0.9rem;
+  background: var(--purple-light);
+  border-radius: var(--radius-pill);
 }
 
-/* GLOW DIVIDER */
-.accent-line{
-  width:48px;height:3px;
-  background:linear-gradient(90deg,var(--purple),var(--green));
-  border-radius:2px;
-  margin:1.25rem 0;
+/* ACCENT LINE */
+.accent-line {
+  width: 48px; height: 3px;
+  background: linear-gradient(90deg, var(--purple), var(--green));
+  border-radius: 2px;
+  margin: 1.25rem 0;
 }
 
+/* SECTION HEADER */
+.section-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+.section-header p {
+  max-width: 600px;
+  margin: 1rem auto 0;
+}
 
 /* BUTTONS */
-.btn{
-  display:inline-flex;align-items:center;gap:0.6rem;
-  padding:0.85rem 1.75rem;
-  font-family:'Montserrat',Helvetica,sans-serif;font-size:0.875rem;font-weight:600;
-  letter-spacing:0.02em;border:none;border-radius:6px;
-  transition:all 0.3s ease;cursor:pointer;
+.btn {
+  display: inline-flex; align-items: center; gap: 0.6rem;
+  padding: 0.9rem 1.85rem;
+  font-family: 'DM Sans', sans-serif; font-size: 0.875rem; font-weight: 600;
+  letter-spacing: 0.02em; border: none; border-radius: var(--radius-btn);
+  transition: all 0.3s ease; cursor: pointer;
 }
-.btn-purple{background:var(--purple);color:#fff;}
-.btn-purple:hover{background:#5f5de0;box-shadow:0 4px 20px rgba(118,116,245,0.35);}
-.btn-green{background:var(--green);color:var(--black);}
-.btn-green:hover{background:#2de88a;box-shadow:0 4px 20px rgba(62,253,155,0.35);}
-.btn-outline{
-  background:transparent;color:var(--text);
-  border:1.5px solid var(--border);
+.btn-purple { background: var(--purple); color: #fff; }
+.btn-purple:hover { background: #5f5de0; box-shadow: 0 6px 24px var(--purple-glow); transform: translateY(-1px); }
+.btn-green { background: var(--green); color: var(--black); }
+.btn-green:hover { background: #2de88a; box-shadow: 0 6px 24px rgba(62,253,155,0.35); transform: translateY(-1px); }
+.btn-outline {
+  background: transparent; color: var(--text);
+  border: 1.5px solid var(--border);
 }
-.btn-outline:hover{border-color:var(--purple);color:var(--purple);}
-.btn svg{width:16px;height:16px;flex-shrink:0;}
+.btn-outline:hover { border-color: var(--purple); color: var(--purple); }
+.btn-white { background: var(--white); color: var(--purple); font-weight: 700; }
+.btn-white:hover { background: #f0f0ff; transform: translateY(-1px); box-shadow: 0 6px 24px rgba(255,255,255,0.25); }
+.btn svg { width: 16px; height: 16px; flex-shrink: 0; }
 
-/* ══════════════════════ NAV ══════════════════════ */
-nav{
-  position:fixed;top:0;left:0;right:0;z-index:100;
-  padding:1.25rem 0;
-  background:rgba(244,244,244,0.85);
-  backdrop-filter:blur(20px);
-  transition:all 0.3s ease;
+/* ============================== NAV ============================== */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  padding: 1.1rem 0;
+  background: rgba(255,255,255,0.8);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  transition: all 0.3s ease;
 }
-nav.scrolled{
-  box-shadow:0 1px 12px rgba(0,0,0,0.06);
-  padding:0.85rem 0;
+nav.scrolled {
+  background: rgba(255,255,255,0.95);
+  box-shadow: 0 1px 12px rgba(0,0,0,0.06);
+  padding: 0.75rem 0;
 }
-.nav-inner{display:flex;align-items:center;justify-content:space-between;gap:2rem;}
-.logo{display:flex;align-items:center;text-decoration:none;}
-.logo-img{height:58px;width:auto;display:block;}
-.nav-links{display:flex;align-items:center;gap:2rem;list-style:none;}
-.nav-links a{
-  font-size:0.85rem;font-weight:500;color:var(--text-2);
-  transition:color 0.2s;
+.nav-inner { display: flex; align-items: center; justify-content: space-between; gap: 2rem; }
+.logo { display: flex; align-items: center; text-decoration: none; }
+.logo-img { height: 54px; width: auto; display: block; }
+.nav-links { display: flex; align-items: center; gap: 2rem; list-style: none; }
+.nav-links a {
+  font-size: 0.875rem; font-weight: 500; color: var(--text-body);
+  transition: color 0.2s;
 }
-.nav-links a:hover{color:var(--purple);}
+.nav-links a:hover { color: var(--purple); }
 
 /* LANG TOGGLE */
-.lang-toggle{
-  display:flex;align-items:center;gap:0;
-  border:1.5px solid var(--border);border-radius:6px;overflow:hidden;
+.lang-toggle {
+  display: flex; align-items: center; gap: 0;
+  border: 1.5px solid var(--border); border-radius: 8px; overflow: hidden;
 }
-.lang-btn{
-  padding:0.4rem 0.65rem;
-  font-family:'Montserrat',sans-serif;font-size:0.7rem;font-weight:600;
-  color:var(--muted);background:transparent;border:none;
-  cursor:pointer;transition:all 0.2s;letter-spacing:0.05em;
+.lang-btn {
+  padding: 0.4rem 0.7rem;
+  font-family: 'DM Sans', sans-serif; font-size: 0.7rem; font-weight: 600;
+  color: var(--muted); background: transparent; border: none;
+  cursor: pointer; transition: all 0.2s; letter-spacing: 0.05em;
 }
-.lang-btn.active{background:var(--purple);color:#fff;}
-.lang-btn:hover:not(.active){color:var(--text);}
+.lang-btn.active { background: var(--purple); color: #fff; }
+.lang-btn:hover:not(.active) { color: var(--text); }
 
-.nav-right{display:flex;align-items:center;gap:1rem;}
+.nav-right { display: flex; align-items: center; gap: 1rem; }
 
 /* HAMBURGER */
-.menu-toggle{display:none;background:none;border:none;padding:0.5rem;}
-.menu-toggle span{display:block;width:22px;height:2px;background:var(--black);margin:5px 0;transition:0.3s;}
+.menu-toggle { display: none; background: none; border: none; padding: 0.5rem; }
+.menu-toggle span { display: block; width: 22px; height: 2px; background: var(--black); margin: 5px 0; transition: 0.3s; }
 
-/* ══════════════════════ HERO ══════════════════════ */
-#home{
-  min-height:100vh;
-  position:relative;
-  display:flex;align-items:center;
-  background:var(--white);
-  overflow:hidden;
-}
-.hero-gradient{
-  position:absolute;top:-30%;right:-15%;
-  width:700px;height:700px;border-radius:50%;
-  background:radial-gradient(circle,rgba(62,253,155,0.15) 0%,rgba(118,116,245,0.08) 50%,transparent 70%);
-  pointer-events:none;
-}
-.hero-gradient-2{
-  position:absolute;bottom:-20%;left:-10%;
-  width:500px;height:500px;border-radius:50%;
-  background:radial-gradient(circle,rgba(118,116,245,0.08) 0%,transparent 60%);
-  pointer-events:none;
-}
-.hero-content{
-  position:relative;z-index:2;
-  max-width:680px;
-  animation:heroReveal 0.8s cubic-bezier(0.16,1,0.3,1) both;
-}
-.hero-badge{
-  display:inline-flex;align-items:center;gap:0.6rem;
-  padding:0.4rem 0.85rem;
-  border:1.5px solid var(--green-border);border-radius:100px;
-  font-size:0.72rem;font-weight:600;
-  letter-spacing:0.06em;color:var(--text-2);
-  margin-bottom:2rem;background:var(--green-light);
-}
-.badge-dot{
-  width:7px;height:7px;border-radius:50%;background:var(--green);
-  animation:pulse 2s ease-in-out infinite;
-}
-.hero-title{margin-bottom:1.5rem;}
-.hero-title .line{display:block;overflow:hidden;}
-.hero-title .line span{
-  display:block;
-  animation:slideUp 0.7s cubic-bezier(0.16,1,0.3,1) both;
-}
-.hero-title .line:nth-child(1) span{animation-delay:0.1s;}
-.hero-title .line:nth-child(2) span{animation-delay:0.2s;}
-.hero-title .line:nth-child(3) span{animation-delay:0.3s;}
-.hero-desc{
-  font-size:1.05rem;line-height:1.8;
-  color:var(--text-2);max-width:520px;
-  margin-bottom:2.5rem;
-  animation:fadeIn 0.8s 0.5s both;
-}
-.hero-actions{
-  display:flex;gap:1rem;flex-wrap:wrap;
-  animation:fadeIn 0.8s 0.6s both;
-}
-.hero-metrics{
-  position:absolute;right:0;top:50%;transform:translateY(-50%);
-  display:flex;flex-direction:column;gap:0.75rem;z-index:2;
-  animation:fadeIn 0.8s 0.7s both;
-}
-.metric-item{
-  display:flex;flex-direction:column;
-  padding:1.25rem 1.75rem;
-  background:var(--white);
-  border:1px solid var(--border);
-  border-radius:8px;
-  border-left:3px solid var(--purple);
-  transition:box-shadow 0.3s;
-  min-width:180px;
-}
-.metric-item:hover{box-shadow:var(--shadow);}
-.metric-num{
-  font-family:Helvetica,'Montserrat',sans-serif;
-  font-size:2rem;font-weight:800;color:var(--purple);
-  line-height:1;
-}
-.metric-label{
-  font-size:0.72rem;letter-spacing:0.04em;
-  color:var(--muted);text-transform:uppercase;
-  margin-top:0.35rem;font-weight:600;
+/* MOBILE NAV */
+.nav-links.show {
+  display: flex !important;
+  flex-direction: column;
+  position: absolute;
+  top: 100%;
+  left: 0; right: 0;
+  background: var(--white);
+  padding: 1.5rem 2rem;
+  box-shadow: var(--shadow-md);
+  gap: 1rem;
 }
 
-/* ══════════════════════ SERVICES ══════════════════════ */
-#services{background:var(--bg);}
-.section-header{margin-bottom:3.5rem;}
-.services-grid{
-  display:grid;grid-template-columns:repeat(3,1fr);
-  gap:1.25rem;
+/* ============================== HERO ============================== */
+#home {
+  min-height: 100vh;
+  position: relative;
+  display: flex; align-items: center;
+  background: var(--white);
+  overflow: hidden;
 }
-.svc-card{
-  background:var(--white);
-  border:1px solid var(--border-2);
-  border-radius:10px;
-  padding:2rem;position:relative;overflow:hidden;
-  transition:box-shadow 0.3s,transform 0.3s;
+.hero-gradient {
+  position: absolute; top: -30%; right: -15%;
+  width: 700px; height: 700px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(62,253,155,0.12) 0%, rgba(118,116,245,0.06) 50%, transparent 70%);
+  pointer-events: none;
 }
-.svc-card:hover{box-shadow:var(--shadow-hover);transform:translateY(-4px);}
-.svc-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:1.5rem;}
-.svc-icon{
-  width:48px;height:48px;
-  background:var(--purple-light);
-  border-radius:10px;
-  display:flex;align-items:center;justify-content:center;
-  color:var(--purple);transition:background 0.3s;
+.hero-gradient-2 {
+  position: absolute; bottom: -20%; left: -10%;
+  width: 500px; height: 500px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(118,116,245,0.06) 0%, transparent 60%);
+  pointer-events: none;
 }
-.svc-card:hover .svc-icon{background:var(--purple);color:#fff;}
-.svc-icon svg{width:22px;height:22px;}
-.svc-idx{
-  font-size:0.7rem;font-weight:700;
-  color:var(--muted);letter-spacing:0.05em;
+.hero-layout {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 3rem; width: 100%; position: relative; z-index: 2;
 }
-.svc-title{font-size:1.1rem;margin-bottom:0.6rem;transition:color 0.3s;}
-.svc-desc{font-size:0.88rem;line-height:1.7;color:var(--text-2);}
-.svc-features{
-  margin-top:1.25rem;list-style:none;
-  display:flex;flex-direction:column;gap:0.4rem;
+.hero-content {
+  flex: 0 1 60%;
+  animation: heroReveal 0.8s cubic-bezier(0.16,1,0.3,1) both;
 }
-.svc-features li{
-  font-size:0.8rem;color:var(--text-2);
-  display:flex;align-items:center;gap:0.6rem;
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 0.6rem;
+  padding: 0.45rem 0.9rem;
+  border: 1.5px solid var(--green-border); border-radius: var(--radius-pill);
+  font-size: 0.72rem; font-weight: 600;
+  letter-spacing: 0.06em; color: var(--text-body);
+  margin-bottom: 2rem; background: var(--green-light);
 }
-.svc-features li::before{
-  content:'';flex-shrink:0;
-  width:5px;height:5px;border-radius:50%;
-  background:var(--green);
+.badge-dot {
+  width: 7px; height: 7px; border-radius: 50%; background: var(--green);
+  animation: pulse 2s ease-in-out infinite;
+}
+.hero-title { margin-bottom: 1.5rem; }
+.hero-title .line { display: block; overflow: hidden; }
+.hero-title .line span {
+  display: block;
+  animation: slideUp 0.7s cubic-bezier(0.16,1,0.3,1) both;
+}
+.hero-title .line:nth-child(1) span { animation-delay: 0.1s; }
+.hero-title .line:nth-child(2) span { animation-delay: 0.2s; }
+.hero-title .line:nth-child(3) span { animation-delay: 0.3s; }
+.hero-desc {
+  font-size: 1.05rem; line-height: 1.8;
+  color: var(--text-body); max-width: 540px;
+  margin-bottom: 2.5rem;
+  animation: fadeIn 0.8s 0.5s both;
+}
+.hero-actions {
+  display: flex; gap: 1rem; flex-wrap: wrap;
+  animation: fadeIn 0.8s 0.6s both;
+}
+.hero-metrics {
+  flex: 0 0 auto;
+  display: flex; flex-direction: column; gap: 0.85rem;
+  animation: fadeIn 0.8s 0.7s both;
+}
+.metric-item {
+  display: flex; flex-direction: column;
+  padding: 1.35rem 1.85rem;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-card);
+  border-left: 3px solid var(--purple);
+  transition: box-shadow 0.3s;
+  min-width: 200px;
+}
+.metric-item:hover { box-shadow: var(--shadow-md); }
+.metric-num {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 2.2rem; font-weight: 700; color: var(--purple);
+  line-height: 1;
+}
+.metric-label {
+  font-size: 0.72rem; letter-spacing: 0.04em;
+  color: var(--muted); text-transform: uppercase;
+  margin-top: 0.4rem; font-weight: 600;
 }
 
-/* ══════════════════════ ABOUT ══════════════════════ */
-#about{background:var(--white);}
-.about-grid{
-  display:grid;grid-template-columns:1fr 1fr;
-  gap:5rem;align-items:center;
+/* TRUST BAR */
+.trust-bar {
+  background: var(--bg);
+  padding: 1.5rem 0;
+  border-top: 1px solid var(--border);
 }
-.about-visual{position:relative;}
-.about-card-main{
-  background:var(--black);
-  border-radius:14px;
-  padding:2.5rem;
-  position:relative;
-  overflow:hidden;
+.trust-bar-inner {
+  display: flex; align-items: center; justify-content: center;
+  gap: 3rem; flex-wrap: wrap;
 }
-.about-card-main::before{
-  content:'';position:absolute;top:0;right:0;
-  width:200px;height:200px;
-  background:radial-gradient(circle,rgba(62,253,155,0.2) 0%,rgba(118,116,245,0.15) 50%,transparent 70%);
-  pointer-events:none;
+.trust-badge {
+  display: flex; align-items: center; gap: 0.5rem;
+  font-size: 0.78rem; font-weight: 600; color: var(--muted);
+  letter-spacing: 0.04em;
 }
-.about-card-main h3{color:var(--white);font-size:1.6rem;margin-bottom:0.5rem;}
-.about-card-main p{color:rgba(255,255,255,0.6);font-size:0.9rem;}
-.about-stats{
-  display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;
-  margin-top:2rem;
+.trust-badge-icon {
+  width: 32px; height: 32px;
+  background: var(--purple-light);
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--purple);
 }
-.about-stat{
-  background:rgba(255,255,255,0.06);
-  border:1px solid rgba(255,255,255,0.08);
-  border-radius:8px;padding:1rem;
-}
-.about-stat-num{font-size:1.6rem;font-weight:800;color:var(--green);}
-.about-stat-label{font-size:0.72rem;color:rgba(255,255,255,0.5);text-transform:uppercase;letter-spacing:0.05em;font-weight:600;}
+.trust-badge-icon svg { width: 16px; height: 16px; }
 
-.values-list{list-style:none;display:flex;flex-direction:column;gap:1rem;margin-top:1.75rem;}
-.val-item{display:flex;align-items:flex-start;gap:1rem;}
-.val-check{
-  width:22px;height:22px;flex-shrink:0;
-  background:var(--green-light);border-radius:6px;
-  display:flex;align-items:center;justify-content:center;
-  margin-top:0.1rem;
+/* ============================== SERVICES ============================== */
+#services { background: var(--bg); }
+.services-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
 }
-.val-check svg{width:12px;height:12px;color:var(--green);}
-.val-item h4{font-size:0.9rem;margin-bottom:0.15rem;}
-.val-item p{font-size:0.83rem;color:var(--text-2);line-height:1.6;}
+.svc-card {
+  background: var(--white);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-card);
+  padding: 2.25rem; position: relative; overflow: hidden;
+  transition: box-shadow 0.3s, transform 0.3s;
+  border-top: 3px solid transparent;
+}
+.svc-card:hover {
+  box-shadow: 0 12px 40px rgba(118,116,245,0.12);
+  transform: translateY(-6px);
+  border-top-color: var(--purple);
+}
+.svc-top { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 1.5rem; }
+.svc-icon {
+  width: 52px; height: 52px;
+  background: var(--purple-light);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--purple); transition: all 0.3s;
+}
+.svc-card:hover .svc-icon { background: var(--purple); color: #fff; }
+.svc-icon svg { width: 22px; height: 22px; }
+.svc-idx {
+  font-size: 0.7rem; font-weight: 700;
+  color: var(--muted); letter-spacing: 0.05em;
+}
+.svc-title { font-size: 1.1rem; margin-bottom: 0.6rem; transition: color 0.3s; }
+.svc-desc { font-size: 0.88rem; line-height: 1.7; color: var(--text-body); max-width: none; }
+.svc-features {
+  margin-top: 1.25rem; list-style: none;
+  display: flex; flex-direction: column; gap: 0.45rem;
+}
+.svc-features li {
+  font-size: 0.8rem; color: var(--text-body);
+  display: flex; align-items: center; gap: 0.6rem;
+}
+.svc-features li::before {
+  content: ''; flex-shrink: 0;
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--green);
+}
 
-/* ══════════════════════ NUMBERS ══════════════════════ */
-#numbers{background:var(--bg);}
-.numbers-grid{
-  display:grid;grid-template-columns:repeat(4,1fr);
-  gap:1.25rem;
-  margin-top:3rem;
+/* ============================== WHY US ============================== */
+#why-us { background: var(--white); }
+.why-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
 }
-.num-card{
-  background:var(--white);
-  border:1px solid var(--border-2);
-  border-radius:10px;padding:2rem 1.5rem;
-  text-align:center;
-  transition:box-shadow 0.3s,transform 0.3s;
+.why-item {
+  display: flex; align-items: flex-start; gap: 1rem;
+  padding: 1.5rem;
+  border-radius: var(--radius-card);
+  transition: background 0.3s;
 }
-.num-card:hover{box-shadow:var(--shadow);transform:translateY(-3px);}
-.num-val{
-  font-family:Helvetica,'Montserrat',sans-serif;
-  font-size:2.8rem;font-weight:800;
-  color:var(--purple);line-height:1;
-  display:block;margin-bottom:0.6rem;
+.why-item:hover { background: var(--bg); }
+.why-icon {
+  width: 48px; height: 48px; flex-shrink: 0;
+  background: var(--purple-light);
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--purple);
 }
-.num-title{font-size:0.9rem;margin-bottom:0.3rem;}
-.num-desc{font-size:0.8rem;color:var(--muted);line-height:1.6;}
+.why-icon svg { width: 22px; height: 22px; }
+.why-item h3 { font-size: 0.95rem; margin-bottom: 0.35rem; }
+.why-item p { font-size: 0.85rem; color: var(--text-body); line-height: 1.65; max-width: none; }
 
-/* ══════════════════════ PROCESS ══════════════════════ */
-#process{background:var(--white);}
-.process-steps{
-  display:grid;grid-template-columns:repeat(4,1fr);
-  gap:1.25rem;
-  margin-top:3rem;
+/* ============================== ABOUT ============================== */
+#about { background: var(--white); }
+.about-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 5rem; align-items: center;
 }
-.step{
-  background:var(--bg);
-  border:1px solid var(--border-2);
-  border-radius:10px;padding:2rem 1.5rem;
-  position:relative;transition:box-shadow 0.3s,transform 0.3s;
+.about-visual { position: relative; }
+.about-card-main {
+  background: var(--black);
+  border-radius: var(--radius-card);
+  padding: 2.75rem;
+  position: relative; overflow: hidden;
 }
-.step:hover{box-shadow:var(--shadow);transform:translateY(-3px);}
-.step-num{
-  font-size:0.68rem;font-weight:700;
-  color:var(--purple);letter-spacing:0.1em;
-  margin-bottom:1rem;display:block;
+.about-card-main::before {
+  content: ''; position: absolute; top: 0; right: 0;
+  width: 200px; height: 200px;
+  background: radial-gradient(circle, rgba(62,253,155,0.2) 0%, rgba(118,116,245,0.15) 50%, transparent 70%);
+  pointer-events: none;
 }
-.step-icon{
-  width:44px;height:44px;
-  background:var(--purple-light);border-radius:10px;
-  display:flex;align-items:center;justify-content:center;
-  color:var(--purple);margin-bottom:1rem;
-  transition:all 0.3s;
+.about-card-main h3 { color: var(--white); font-size: 1.6rem; margin-bottom: 0.5rem; }
+.about-card-main p { color: rgba(255,255,255,0.6); font-size: 0.9rem; max-width: none; }
+.about-stats {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 0.85rem;
+  margin-top: 2rem;
 }
-.step:hover .step-icon{background:var(--purple);color:#fff;}
-.step-icon svg{width:20px;height:20px;}
-.step h3{font-size:0.95rem;margin-bottom:0.4rem;}
-.step p{font-size:0.82rem;color:var(--text-2);line-height:1.65;}
+.about-stat {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 12px; padding: 1.15rem;
+}
+.about-stat-num { font-size: 1.6rem; font-weight: 700; color: var(--green); font-family: 'DM Sans', sans-serif; }
+.about-stat-label { font-size: 0.72rem; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600; }
 
-/* ══════════════════════ TESTIMONIALS ══════════════════════ */
-#testimonials{background:var(--bg);}
-.testi-grid{
-  display:grid;grid-template-columns:repeat(3,1fr);
-  gap:1.25rem;margin-top:3rem;
+.values-list { list-style: none; display: flex; flex-direction: column; gap: 1rem; margin-top: 1.75rem; }
+.val-item { display: flex; align-items: flex-start; gap: 1rem; }
+.val-check {
+  width: 24px; height: 24px; flex-shrink: 0;
+  background: var(--green-light); border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  margin-top: 0.1rem;
 }
-.testi-card{
-  background:var(--white);
-  border:1px solid var(--border-2);border-radius:10px;
-  padding:2rem;transition:box-shadow 0.3s,transform 0.3s;
-}
-.testi-card:hover{box-shadow:var(--shadow);transform:translateY(-3px);}
-.testi-rating{
-  display:flex;gap:3px;margin-bottom:1rem;
-}
-.testi-rating svg{width:14px;height:14px;fill:var(--green);color:var(--green);}
-.testi-quote{
-  font-size:0.88rem;line-height:1.8;color:var(--text-2);
-  margin-bottom:1.5rem;font-style:italic;
-  border-left:3px solid var(--green);padding-left:1rem;
-}
-.testi-author{display:flex;align-items:center;gap:0.75rem;}
-.testi-avatar{
-  width:40px;height:40px;border-radius:10px;
-  background:var(--purple-light);
-  display:flex;align-items:center;justify-content:center;
-  font-size:0.75rem;font-weight:700;
-  color:var(--purple);
-}
-.testi-name{font-size:0.85rem;font-weight:600;color:var(--black);}
-.testi-role{font-size:0.72rem;color:var(--muted);}
+.val-check svg { width: 12px; height: 12px; color: var(--green); }
+.val-item h4 { font-size: 0.92rem; margin-bottom: 0.15rem; }
+.val-item p { font-size: 0.85rem; color: var(--text-body); line-height: 1.6; }
 
-/* ══════════════════════ TEAM ══════════════════════ */
-#team{background:var(--white);}
-.team-grid{
-  display:grid;grid-template-columns:repeat(4,1fr);
-  gap:1.25rem;margin-top:3rem;
+/* ============================== NUMBERS ============================== */
+#numbers {
+  background: var(--dark);
+  padding: 5rem 0;
 }
-.team-card{
-  background:var(--bg);
-  border:1px solid var(--border-2);border-radius:10px;overflow:hidden;
-  transition:box-shadow 0.3s,transform 0.3s;
+.numbers-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
 }
-.team-card:hover{box-shadow:var(--shadow);transform:translateY(-4px);}
-.team-photo{
-  height:220px;
-  background:linear-gradient(135deg,rgba(118,116,245,0.1),rgba(62,253,155,0.08));
-  display:flex;align-items:center;justify-content:center;
+.num-card {
+  text-align: center;
+  padding: 2rem 1.5rem;
 }
-.team-photo img{width:100%;height:100%;object-fit:cover;}
-.team-initials{
-  font-family:Helvetica,'Montserrat',sans-serif;font-size:2.2rem;font-weight:800;
-  color:var(--purple);opacity:0.3;
+.num-val {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 3.5rem; font-weight: 700;
+  color: var(--white); line-height: 1;
+  display: block; margin-bottom: 0.75rem;
 }
-.team-info{padding:1.25rem;}
-.team-name{font-size:0.95rem;margin-bottom:0.15rem;}
-.team-role{
-  font-size:0.68rem;font-weight:700;
-  color:var(--purple);letter-spacing:0.05em;text-transform:uppercase;
-}
-.team-bio{font-size:0.78rem;color:var(--text-2);line-height:1.55;margin-top:0.4rem;}
+.num-val .green { color: var(--green); }
+.num-title { font-size: 0.95rem; margin-bottom: 0.3rem; color: var(--white); }
+.num-desc { font-size: 0.82rem; color: rgba(255,255,255,0.45); line-height: 1.6; max-width: none; }
 
-/* ══════════════════════ CONTACT ══════════════════════ */
-#contact{background:var(--bg);}
-.contact-grid{
-  display:grid;grid-template-columns:1fr 1fr;
-  gap:3rem;align-items:start;
+/* ============================== PROCESS ============================== */
+#process { background: var(--white); }
+.process-steps {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  margin-top: 3rem;
+  position: relative;
 }
-.contact-item{display:flex;gap:1rem;margin-bottom:1.75rem;}
-.contact-icon{
-  width:44px;height:44px;flex-shrink:0;
-  background:var(--purple-light);border-radius:10px;
-  display:flex;align-items:center;justify-content:center;
-  color:var(--purple);
+.process-steps::before {
+  content: '';
+  position: absolute;
+  top: 52px; left: 12.5%; right: 12.5%;
+  height: 2px;
+  background: linear-gradient(90deg, var(--purple-light), var(--purple), var(--green), var(--green-light));
+  z-index: 0;
 }
-.contact-icon svg{width:18px;height:18px;}
-.contact-item h4{
-  font-size:0.68rem;font-weight:700;
-  text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);
-  margin-bottom:0.2rem;
+.step {
+  background: var(--bg);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-card); padding: 2rem 1.5rem;
+  position: relative; z-index: 1;
+  transition: box-shadow 0.3s, transform 0.3s;
+  text-align: center;
 }
-.contact-item p{font-size:0.9rem;color:var(--text);}
+.step:hover { box-shadow: var(--shadow-md); transform: translateY(-4px); }
+.step-num-circle {
+  width: 44px; height: 44px;
+  background: var(--purple);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'DM Sans', sans-serif; font-size: 0.85rem; font-weight: 700;
+  color: #fff;
+  margin: 0 auto 1.25rem;
+}
+.step-icon {
+  width: 44px; height: 44px;
+  background: var(--purple-light); border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--purple); margin: 0 auto 1rem;
+  transition: all 0.3s;
+}
+.step:hover .step-icon { background: var(--purple); color: #fff; }
+.step-icon svg { width: 20px; height: 20px; }
+.step h3 { font-size: 0.95rem; margin-bottom: 0.4rem; }
+.step p { font-size: 0.82rem; color: var(--text-body); line-height: 1.65; max-width: none; }
 
-/* ══════════════════════ FOOTER ══════════════════════ */
-footer{
-  background:var(--black);
-  color:rgba(255,255,255,0.6);
-  padding:4rem 0 2rem;
+/* ============================== TESTIMONIALS ============================== */
+#testimonials { background: var(--bg); }
+.testi-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem; margin-top: 3rem;
 }
-.footer-grid{
-  display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;
-  gap:3rem;margin-bottom:3rem;
+.testi-card {
+  background: var(--white);
+  border: 1px solid var(--border-light); border-radius: var(--radius-card);
+  padding: 2.25rem; transition: box-shadow 0.3s, transform 0.3s;
 }
-.footer-brand p{
-  font-size:0.85rem;color:rgba(255,255,255,0.4);
-  line-height:1.7;margin-top:1rem;
+.testi-card:hover { box-shadow: var(--shadow-md); transform: translateY(-4px); }
+.testi-rating {
+  display: flex; gap: 3px; margin-bottom: 1.25rem;
 }
-.footer-col h4{
-  font-size:0.68rem;font-weight:700;
-  letter-spacing:0.12em;text-transform:uppercase;color:var(--green);
-  margin-bottom:1.25rem;
+.testi-rating svg { width: 16px; height: 16px; fill: var(--green); color: var(--green); }
+.testi-quote {
+  font-size: 1rem; line-height: 1.8; color: var(--text-body);
+  margin-bottom: 1.75rem; font-style: italic;
+  border-left: 3px solid var(--green); padding-left: 1.25rem;
+  max-width: none;
 }
-.footer-links{list-style:none;display:flex;flex-direction:column;gap:0.55rem;}
-.footer-links a{font-size:0.83rem;color:rgba(255,255,255,0.45);transition:color 0.2s;}
-.footer-links a:hover{color:var(--white);}
-.footer-bottom{
-  border-top:1px solid rgba(255,255,255,0.08);
-  padding-top:1.5rem;
-  display:flex;justify-content:space-between;align-items:center;
+.testi-author { display: flex; align-items: center; gap: 0.85rem; }
+.testi-avatar {
+  width: 44px; height: 44px; border-radius: 12px;
+  background: var(--purple-light);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.78rem; font-weight: 700;
+  color: var(--purple);
 }
-.footer-bottom p{font-size:0.75rem;color:rgba(255,255,255,0.3);}
-.footer-logo .logo-img{height:50px;}
+.testi-name { font-size: 0.88rem; font-weight: 600; color: var(--black); }
+.testi-role { font-size: 0.72rem; color: var(--muted); }
 
-/* ══════════════════════ ANIMATIONS ══════════════════════ */
-@keyframes heroReveal{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
-@keyframes slideUp{from{transform:translateY(100%);}to{transform:translateY(0);}}
-@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
-@keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:0.5;transform:scale(0.85);}}
-
-.reveal{opacity:0;transform:translateY(20px);transition:opacity 0.6s ease,transform 0.6s ease;}
-.reveal.visible{opacity:1;transform:translateY(0);}
-
-/* ══════════════════════ RESPONSIVE ══════════════════════ */
-@media(max-width:1024px){
-  .services-grid{grid-template-columns:repeat(2,1fr);}
-  .numbers-grid{grid-template-columns:repeat(2,1fr);}
-  .process-steps{grid-template-columns:repeat(2,1fr);}
-  .team-grid{grid-template-columns:repeat(2,1fr);}
-  .footer-grid{grid-template-columns:1fr 1fr;}
-  .hero-metrics{display:none;}
+/* ============================== CTA BANNER ============================== */
+#cta-banner {
+  background: linear-gradient(135deg, #7674F5 0%, #5856d6 100%);
+  padding: 6rem 0;
+  text-align: center;
 }
-@media(max-width:768px){
-  .nav-links{display:none;}
-  nav .btn{display:none;}
-  .menu-toggle{display:block;}
-  .about-grid,.contact-grid{grid-template-columns:1fr;}
-  .about-visual{display:none;}
-  .services-grid,.testi-grid,.team-grid{grid-template-columns:1fr;}
-  .process-steps{grid-template-columns:1fr;}
-  .numbers-grid{grid-template-columns:1fr 1fr;}
-  .footer-grid{grid-template-columns:1fr;}
+#cta-banner h2 {
+  color: var(--white);
+  max-width: 700px;
+  margin: 0 auto 2rem;
+}
+#cta-banner p {
+  color: rgba(255,255,255,0.75);
+  max-width: 500px;
+  margin: 0 auto 2.5rem;
+}
+
+/* ============================== TEAM ============================== */
+#team { background: var(--white); }
+.team-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr);
+  gap: 2rem; margin-top: 3rem;
+  max-width: 700px;
+  margin-left: auto; margin-right: auto;
+}
+.team-card {
+  background: var(--bg);
+  border: 1px solid var(--border-light); border-radius: var(--radius-card); overflow: hidden;
+  transition: box-shadow 0.3s, transform 0.3s;
+}
+.team-card:hover { box-shadow: var(--shadow-md); transform: translateY(-4px); }
+.team-photo {
+  height: 280px;
+  background: linear-gradient(135deg, rgba(118,116,245,0.1), rgba(62,253,155,0.08));
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden;
+}
+.team-photo img { width: 100%; height: 100%; object-fit: cover; }
+.team-info { padding: 1.5rem; }
+.team-name { font-size: 1rem; margin-bottom: 0.2rem; }
+.team-role {
+  font-size: 0.7rem; font-weight: 700;
+  color: var(--purple); letter-spacing: 0.05em; text-transform: uppercase;
+}
+.team-bio { font-size: 0.82rem; color: var(--text-body); line-height: 1.6; margin-top: 0.5rem; max-width: none; }
+
+/* ============================== CONTACT ============================== */
+#contact { background: var(--bg); }
+.contact-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 3rem; align-items: start;
+}
+.contact-item { display: flex; gap: 1rem; margin-bottom: 1.75rem; }
+.contact-icon {
+  width: 48px; height: 48px; flex-shrink: 0;
+  background: var(--purple-light); border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--purple);
+}
+.contact-icon svg { width: 20px; height: 20px; }
+.contact-item h4 {
+  font-size: 0.7rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted);
+  margin-bottom: 0.25rem;
+}
+.contact-item p { font-size: 0.92rem; color: var(--text); max-width: none; }
+
+.contact-cta-card {
+  background: var(--black);
+  border-radius: var(--radius-card);
+  padding: 2.75rem;
+  color: #fff;
+}
+.contact-cta-card h3 { margin-bottom: 0.5rem; color: #fff; }
+.contact-cta-card > p { color: rgba(255,255,255,0.5); margin-bottom: 2rem; font-size: 0.9rem; max-width: none; }
+
+/* ============================== FOOTER ============================== */
+footer {
+  background: var(--black);
+  color: rgba(255,255,255,0.6);
+  padding: 4.5rem 0 2rem;
+}
+.footer-grid {
+  display: grid; grid-template-columns: 1.6fr 1fr 1fr 1fr;
+  gap: 3rem; margin-bottom: 3rem;
+}
+.footer-brand p {
+  font-size: 0.85rem; color: rgba(255,255,255,0.4);
+  line-height: 1.7; margin-top: 1rem; max-width: none;
+}
+.footer-col h4 {
+  font-size: 0.68rem; font-weight: 700;
+  letter-spacing: 0.12em; text-transform: uppercase; color: var(--green);
+  margin-bottom: 1.25rem;
+}
+.footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+.footer-links a { font-size: 0.83rem; color: rgba(255,255,255,0.45); transition: color 0.2s; }
+.footer-links a:hover { color: var(--white); }
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.08);
+  padding-top: 1.5rem;
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 1rem;
+}
+.footer-bottom p { font-size: 0.75rem; color: rgba(255,255,255,0.3); max-width: none; }
+.footer-bottom-links { display: flex; gap: 1.5rem; }
+.footer-bottom-links a { font-size: 0.72rem; color: rgba(255,255,255,0.25); transition: color 0.2s; }
+.footer-bottom-links a:hover { color: rgba(255,255,255,0.6); }
+.footer-logo .logo-img { height: 48px; }
+
+/* ============================== ANIMATIONS ============================== */
+@keyframes heroReveal { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(0.85); } }
+
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* ============================== RESPONSIVE ============================== */
+@media (max-width: 1024px) {
+  .services-grid { grid-template-columns: repeat(2, 1fr); }
+  .numbers-grid { grid-template-columns: repeat(2, 1fr); }
+  .process-steps { grid-template-columns: repeat(2, 1fr); }
+  .process-steps::before { display: none; }
+  .why-grid { grid-template-columns: repeat(2, 1fr); }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+  .hero-metrics { display: none; }
+  .hero-content { flex: 1; }
+}
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  nav .btn { display: none; }
+  .menu-toggle { display: block; }
+  .about-grid, .contact-grid { grid-template-columns: 1fr; }
+  .about-visual { display: none; }
+  .services-grid, .testi-grid { grid-template-columns: 1fr; }
+  .team-grid { grid-template-columns: 1fr; max-width: 400px; }
+  .process-steps { grid-template-columns: 1fr; }
+  .numbers-grid { grid-template-columns: 1fr 1fr; }
+  .why-grid { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr; }
+  .section { padding: 5rem 0; }
+  .trust-bar-inner { gap: 1.5rem; }
 }
 </style>
 </head>
@@ -526,6 +668,7 @@ footer{
         <li><a href="#about" onclick="scrollTo('about')"><span data-ka="კომპანიაზე" data-en="About">კომპანიაზე</span></a></li>
         <li><a href="#process" onclick="scrollTo('process')"><span data-ka="პროცესი" data-en="Process">პროცესი</span></a></li>
         <li><a href="#team" onclick="scrollTo('team')"><span data-ka="გუნდი" data-en="Team">გუნდი</span></a></li>
+        <li><a href="#contact" onclick="scrollTo('contact')"><span data-ka="კონტაქტი" data-en="Contact">კონტაქტი</span></a></li>
       </ul>
       <div class="nav-right">
         <div class="lang-toggle">
@@ -533,7 +676,7 @@ footer{
           <button class="lang-btn" onclick="setLang('en')">EN</button>
         </div>
         <a href="#contact" class="btn btn-purple" onclick="scrollTo('contact')">
-          <span data-ka="კონტაქტი" data-en="Contact">კონტაქტი</span>
+          <span data-ka="კონსულტაცია" data-en="Book Consultation">კონსულტაცია</span>
           <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
         </a>
         <button class="menu-toggle" onclick="document.querySelector('.nav-links').classList.toggle('show')">
@@ -550,46 +693,80 @@ footer{
   <div class="hero-gradient-2"></div>
 
   <div class="container" style="position:relative;z-index:2;width:100%;">
-    <div class="hero-content">
-      <div class="hero-badge">
-        <span class="badge-dot"></span>
-        <span data-ka="Tbilisi, Georgia · Est. 2014" data-en="Tbilisi, Georgia · Est. 2014">Tbilisi, Georgia · Est. 2014</span>
+    <div class="hero-layout">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <span class="badge-dot"></span>
+          <span data-ka="Tbilisi, Georgia · Est. 2014" data-en="Tbilisi, Georgia · Est. 2014">Tbilisi, Georgia · Est. 2014</span>
+        </div>
+        <h1 class="hero-title">
+          <span class="line"><span data-ka="ფინანსური სიცხადე" data-en="Financial Clarity">ფინანსური სიცხადე</span></span>
+          <span class="line"><span data-ka="და " data-en="and ">და </span><span class="purple" data-ka="კონტროლი" data-en="Control">კონტროლი</span></span>
+          <span class="line"><span data-ka="მზარდი ბიზნესისთვის" data-en="for Growing Businesses">მზარდი ბიზნესისთვის</span></span>
+        </h1>
+        <p class="hero-desc" data-ka="ვეხმარებით კომპანიებს საქართველოში შექმნან სანდო ფინანსური სისტემები, ოპტიმიზაცია გაუკეთონ გადასახადებს და მიიღონ უკეთესი ბიზნეს გადაწყვეტილებები." data-en="We help companies in Georgia build reliable financial systems, optimize taxes, and make better business decisions.">
+          ვეხმარებით კომპანიებს საქართველოში შექმნან სანდო ფინანსური სისტემები, ოპტიმიზაცია გაუკეთონ გადასახადებს და მიიღონ უკეთესი ბიზნეს გადაწყვეტილებები.
+        </p>
+        <div class="hero-actions">
+          <a href="#contact" class="btn btn-purple" onclick="scrollTo('contact')">
+            <span data-ka="კონსულტაციის დაჯავშნა" data-en="Book a Consultation">კონსულტაციის დაჯავშნა</span>
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+          </a>
+          <a href="#services" class="btn btn-outline" onclick="scrollTo('services')">
+            <span data-ka="სერვისების ნახვა" data-en="Explore Services">სერვისების ნახვა</span>
+          </a>
+        </div>
       </div>
-      <h1 class="hero-title">
-        <span class="line"><span data-ka="ფინანსური" data-en="Financial">ფინანსური</span></span>
-        <span class="line"><span class="purple" data-ka="გადაწყვეტილებები" data-en="Solutions">გადაწყვეტილებები</span></span>
-        <span class="line"><span data-ka="თქვენი ბიზნესისთვის" data-en="for your business">თქვენი ბიზნესისთვის</span></span>
-      </h1>
-      <p class="hero-desc" data-ka="Loyal Partners გთავაზობთ მაღალი სტანდარტის ბუღალტრულ, საკონსულტაციო და CFO სერვისებს. 130+ კლიენტი. ერთი მისია — თქვენი ზრდა." data-en="Loyal Partners delivers high-standard accounting, consulting, and CFO services. 130+ clients. One mission — your growth.">
-        Loyal Partners გთავაზობთ მაღალი სტანდარტის ბუღალტრულ, საკონსულტაციო და CFO სერვისებს. 130+ კლიენტი. ერთი მისია — თქვენი ზრდა.
-      </p>
-      <div class="hero-actions">
-        <a href="#services" class="btn btn-purple" onclick="scrollTo('services')">
-          <span data-ka="სერვისების ნახვა" data-en="Explore Services">სერვისების ნახვა</span>
-          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
-        </a>
-        <a href="#contact" class="btn btn-outline" onclick="scrollTo('contact')">
-          <span data-ka="უფასო კონსულტაცია" data-en="Free Consultation">უფასო კონსულტაცია</span>
-        </a>
-      </div>
-    </div>
 
-    <div class="hero-metrics">
-      <div class="metric-item">
-        <span class="metric-num">130<span class="green">+</span></span>
-        <span class="metric-label" data-ka="აქტიური კლიენტი" data-en="Active Clients">აქტიური კლიენტი</span>
-      </div>
-      <div class="metric-item">
-        <span class="metric-num">10<span class="green">+</span></span>
-        <span class="metric-label" data-ka="წელი გამოცდილება" data-en="Years Experience">წელი გამოცდილება</span>
-      </div>
-      <div class="metric-item">
-        <span class="metric-num">92<span class="green">%</span></span>
-        <span class="metric-label" data-ka="კლიენტ-რეტენცია" data-en="Client Retention">კლიენტ-რეტენცია</span>
+      <div class="hero-metrics">
+        <div class="metric-item">
+          <span class="metric-num">130<span class="green">+</span></span>
+          <span class="metric-label" data-ka="აქტიური კლიენტი" data-en="Active Clients">აქტიური კლიენტი</span>
+        </div>
+        <div class="metric-item">
+          <span class="metric-num">10<span class="green">+</span></span>
+          <span class="metric-label" data-ka="წელი გამოცდილება" data-en="Years Experience">წელი გამოცდილება</span>
+        </div>
+        <div class="metric-item">
+          <span class="metric-num">92<span class="green">%</span></span>
+          <span class="metric-label" data-ka="კლიენტ-რეტენცია" data-en="Client Retention">კლიენტ-რეტენცია</span>
+        </div>
       </div>
     </div>
   </div>
 </section>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="container">
+    <div class="trust-bar-inner">
+      <div class="trust-badge">
+        <div class="trust-badge-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <span>IFRS</span>
+      </div>
+      <div class="trust-badge">
+        <div class="trust-badge-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        </div>
+        <span>ACCA</span>
+      </div>
+      <div class="trust-badge">
+        <div class="trust-badge-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+        </div>
+        <span>ISA</span>
+      </div>
+      <div class="trust-badge">
+        <div class="trust-badge-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+        </div>
+        <span data-ka="საერთაშორისო სტანდარტები" data-en="International Standards">საერთაშორისო სტანდარტები</span>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- SERVICES -->
 <section id="services" class="section">
@@ -597,6 +774,7 @@ footer{
     <div class="section-header reveal">
       <div class="tag"><span data-ka="სერვისები" data-en="Services">სერვისები</span></div>
       <h2 data-ka="სრული ფინანსური<br>ეკოსისტემა" data-en="Full Financial<br>Ecosystem">სრული ფინანსური<br>ეკოსისტემა</h2>
+      <p data-ka="თქვენი ბიზნესის ყველა ფინანსურ საჭიროებას ერთ სივრცეში ვფარავთ." data-en="We cover every financial need of your business under one roof.">თქვენი ბიზნესის ყველა ფინანსურ საჭიროებას ერთ სივრცეში ვფარავთ.</p>
     </div>
 
     <div class="services-grid">
@@ -773,33 +951,95 @@ footer{
   </div>
 </section>
 
-<!-- NUMBERS -->
-<section id="numbers" class="section">
+<!-- WHY US -->
+<section id="why-us" class="section">
   <div class="container">
     <div class="section-header reveal">
-      <div class="tag"><span data-ka="ციფრები" data-en="By the Numbers">ციფრები</span></div>
-      <h2 data-ka="შედეგები, რომლებიც<br><span class='purple'>ლაპარაკობენ</span>" data-en="Results that<br><span class='purple'>speak for themselves</span>">შედეგები, რომლებიც<br><span class="purple">ლაპარაკობენ</span></h2>
+      <div class="tag"><span data-ka="რატომ ჩვენ" data-en="Why Us">რატომ ჩვენ</span></div>
+      <h2 data-ka="რატომ <span class='purple'>Loyal Partners</span>" data-en="Why <span class='purple'>Loyal Partners</span>">რატომ <span class="purple">Loyal Partners</span></h2>
     </div>
+    <div class="why-grid">
+      <div class="why-item reveal">
+        <div class="why-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4M7 7h10M7 11h6"/></svg>
+        </div>
+        <div>
+          <h3 data-ka="ტექნოლოგიაზე დაფუძნებული პროცესები" data-en="Technology-Driven Processes">ტექნოლოგიაზე დაფუძნებული პროცესები</h3>
+          <p data-ka="თანამედროვე ERP სისტემები და ავტომატიზაცია სწრაფი და ზუსტი შედეგებისთვის." data-en="Modern ERP systems and automation for fast, accurate results.">თანამედროვე ERP სისტემები და ავტომატიზაცია სწრაფი და ზუსტი შედეგებისთვის.</p>
+        </div>
+      </div>
+      <div class="why-item reveal">
+        <div class="why-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        </div>
+        <div>
+          <h3 data-ka="გამოცდილი პროფესიონალები" data-en="Experienced Professionals">გამოცდილი პროფესიონალები</h3>
+          <p data-ka="10+ წლიანი გამოცდილება ფინანსურ სექტორში, Big4 ბექგრაუნდი." data-en="10+ years of finance experience with Big4 background.">10+ წლიანი გამოცდილება ფინანსურ სექტორში, Big4 ბექგრაუნდი.</p>
+        </div>
+      </div>
+      <div class="why-item reveal">
+        <div class="why-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        </div>
+        <div>
+          <h3 data-ka="გამჭვირვალე ანგარიშგება" data-en="Transparent Reporting">გამჭვირვალე ანგარიშგება</h3>
+          <p data-ka="რეგულარული, გასაგები ანგარიშები რეალურ დროში." data-en="Regular, clear reports delivered in real time.">რეგულარული, გასაგები ანგარიშები რეალურ დროში.</p>
+        </div>
+      </div>
+      <div class="why-item reveal">
+        <div class="why-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        </div>
+        <div>
+          <h3 data-ka="მასშტაბირებადი გადაწყვეტილებები" data-en="Scalable Solutions">მასშტაბირებადი გადაწყვეტილებები</h3>
+          <p data-ka="სერვისები, რომლებიც თქვენს ბიზნესთან ერთად იზრდება." data-en="Services that grow alongside your business.">სერვისები, რომლებიც თქვენს ბიზნესთან ერთად იზრდება.</p>
+        </div>
+      </div>
+      <div class="why-item reveal">
+        <div class="why-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+        </div>
+        <div>
+          <h3 data-ka="საერთაშორისო გამოცდილება" data-en="International Experience">საერთაშორისო გამოცდილება</h3>
+          <p data-ka="მუშაობა საერთაშორისო კომპანიებთან და ტრანზაქციებთან." data-en="Experience working with international companies and transactions.">მუშაობა საერთაშორისო კომპანიებთან და ტრანზაქციებთან.</p>
+        </div>
+      </div>
+      <div class="why-item reveal">
+        <div class="why-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <div>
+          <h3 data-ka="ACCA & IFRS სერტიფიცირებული" data-en="ACCA & IFRS Certified">ACCA & IFRS სერტიფიცირებული</h3>
+          <p data-ka="საერთაშორისოდ აღიარებული სერტიფიკატები და სტანდარტები." data-en="Internationally recognized certifications and standards.">საერთაშორისოდ აღიარებული სერტიფიკატები და სტანდარტები.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NUMBERS -->
+<section id="numbers">
+  <div class="container">
     <div class="numbers-grid">
       <div class="num-card reveal">
         <span class="num-val">130<span class="green">+</span></span>
-        <h3 data-ka="კლიენტი" data-en="Clients">კლიენტი</h3>
-        <p data-ka="სტარტაპიდან mid-market კომპანიებამდე — ყველა ზომა." data-en="From startups to mid-market companies — every size.">სტარტაპიდან mid-market კომპანიებამდე — ყველა ზომა.</p>
+        <h3 class="num-title" data-ka="კლიენტი" data-en="Clients">კლიენტი</h3>
+        <p class="num-desc" data-ka="სტარტაპიდან mid-market კომპანიებამდე — ყველა ზომა." data-en="From startups to mid-market companies — every size.">სტარტაპიდან mid-market კომპანიებამდე — ყველა ზომა.</p>
       </div>
       <div class="num-card reveal">
         <span class="num-val">10<span class="green">+</span></span>
-        <h3 data-ka="წელი ბაზარზე" data-en="Years in Market">წელი ბაზარზე</h3>
-        <p data-ka="ღრმა ადგილობრივი ცოდნა, საერთაშორისო სტანდარტები." data-en="Deep local knowledge, international standards.">ღრმა ადგილობრივი ცოდნა, საერთაშორისო სტანდარტები.</p>
+        <h3 class="num-title" data-ka="წელი ბაზარზე" data-en="Years in Market">წელი ბაზარზე</h3>
+        <p class="num-desc" data-ka="ღრმა ადგილობრივი ცოდნა, საერთაშორისო სტანდარტები." data-en="Deep local knowledge, international standards.">ღრმა ადგილობრივი ცოდნა, საერთაშორისო სტანდარტები.</p>
       </div>
       <div class="num-card reveal">
         <span class="num-val">92<span class="green">%</span></span>
-        <h3 data-ka="კლიენტ-რეტენცია" data-en="Client Retention">კლიენტ-რეტენცია</h3>
-        <p data-ka="ჩვენი კლიენტები ჩვენთან რჩებიან — შედეგის გამო." data-en="Our clients stay with us — because of results.">ჩვენი კლიენტები ჩვენთან რჩებიან — შედეგის გამო.</p>
+        <h3 class="num-title" data-ka="კლიენტ-რეტენცია" data-en="Client Retention">კლიენტ-რეტენცია</h3>
+        <p class="num-desc" data-ka="ჩვენი კლიენტები ჩვენთან რჩებიან — შედეგის გამო." data-en="Our clients stay with us — because of results.">ჩვენი კლიენტები ჩვენთან რჩებიან — შედეგის გამო.</p>
       </div>
       <div class="num-card reveal">
         <span class="num-val">48<span class="green">h</span></span>
-        <h3 data-ka="პასუხის SLA" data-en="Response SLA">პასუხის SLA</h3>
-        <p data-ka="ნებისმიერ შეკითხვაზე 48 საათში ვუბრუნდებით." data-en="Any query addressed within 48 hours — guaranteed.">ნებისმიერ შეკითხვაზე 48 საათში ვუბრუნდებით.</p>
+        <h3 class="num-title" data-ka="პასუხის SLA" data-en="Response SLA">პასუხის SLA</h3>
+        <p class="num-desc" data-ka="ნებისმიერ შეკითხვაზე 48 საათში ვუბრუნდებით." data-en="Any query addressed within 48 hours — guaranteed.">ნებისმიერ შეკითხვაზე 48 საათში ვუბრუნდებით.</p>
       </div>
     </div>
   </div>
@@ -814,7 +1054,7 @@ footer{
     </div>
     <div class="process-steps">
       <div class="step reveal">
-        <span class="step-num">STEP 01</span>
+        <div class="step-num-circle">01</div>
         <div class="step-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
         </div>
@@ -822,7 +1062,7 @@ footer{
         <p data-ka="უფასო კონსულტაცია — ვიგებთ თქვენს სიტუაციას, მიზნებს, გამოწვევებს." data-en="Free consultation — we learn your situation, goals, and challenges.">უფასო კონსულტაცია — ვიგებთ თქვენს სიტუაციას, მიზნებს, გამოწვევებს.</p>
       </div>
       <div class="step reveal">
-        <span class="step-num">STEP 02</span>
+        <div class="step-num-circle">02</div>
         <div class="step-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
         </div>
@@ -830,7 +1070,7 @@ footer{
         <p data-ka="ღრმა ანალიზი და ინდივიდუალური სერვის-წინადადების მომზადება." data-en="Deep analysis and preparation of a personalized service proposal.">ღრმა ანალიზი და ინდივიდუალური სერვის-წინადადების მომზადება.</p>
       </div>
       <div class="step reveal">
-        <span class="step-num">STEP 03</span>
+        <div class="step-num-circle">03</div>
         <div class="step-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
         </div>
@@ -838,7 +1078,7 @@ footer{
         <p data-ka="შეთანხმებული ვადებით, გამჭვირვალე კომუნიკაციით." data-en="On agreed timelines, with transparent communication.">შეთანხმებული ვადებით, გამჭვირვალე კომუნიკაციით.</p>
       </div>
       <div class="step reveal">
-        <span class="step-num">STEP 04</span>
+        <div class="step-num-circle">04</div>
         <div class="step-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
         </div>
@@ -912,6 +1152,18 @@ footer{
   </div>
 </section>
 
+<!-- CTA BANNER -->
+<section id="cta-banner">
+  <div class="container">
+    <h2 data-ka="აიღეთ კონტროლი თქვენი კომპანიის<br>ფინანსურ მომავალზე" data-en="Take Control of Your Company's<br>Financial Future">აიღეთ კონტროლი თქვენი კომპანიის<br>ფინანსურ მომავალზე</h2>
+    <p data-ka="დაჯავშნეთ უფასო კონსულტაცია და გაიგეთ, როგორ შეგვიძლია დაგეხმაროთ." data-en="Book a free consultation and discover how we can help you grow.">დაჯავშნეთ უფასო კონსულტაცია და გაიგეთ, როგორ შეგვიძლია დაგეხმაროთ.</p>
+    <a href="#contact" class="btn btn-white" onclick="scrollTo('contact')">
+      <span data-ka="უფასო კონსულტაციის დაჯავშნა" data-en="Schedule a Free Consultation">უფასო კონსულტაციის დაჯავშნა</span>
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+    </a>
+  </div>
+</section>
+
 <!-- TEAM -->
 <section id="team" class="section">
   <div class="container">
@@ -978,14 +1230,14 @@ footer{
           <div class="contact-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
           <div>
             <h4 data-ka="სამუშაო საათები" data-en="Working Hours">სამუშაო საათები</h4>
-            <p data-ka="ორშ–პარ: 10:00–18:00" data-en="Mon–Fri: 10:00–18:00">ორშ–პარ: 10:00–18:00</p>
+            <p data-ka="ორშ-პარ: 10:00-18:00" data-en="Mon-Fri: 10:00-18:00">ორშ-პარ: 10:00-18:00</p>
           </div>
         </div>
       </div>
 
-      <div class="contact-cta-wrap reveal" style="background:var(--black);border-radius:14px;padding:2.5rem;color:#fff;">
-        <h3 style="margin-bottom:0.5rem;color:#fff;" data-ka="მოგვწერეთ" data-en="Get in Touch">მოგვწერეთ</h3>
-        <p style="color:rgba(255,255,255,0.5);margin-bottom:2rem;font-size:0.9rem;" data-ka="დაგვიკავშირდით და მიიღეთ უფასო კონსულტაცია." data-en="Reach out and get a free consultation.">დაგვიკავშირდით და მიიღეთ უფასო კონსულტაცია.</p>
+      <div class="contact-cta-card reveal">
+        <h3 data-ka="მოგვწერეთ" data-en="Get in Touch">მოგვწერეთ</h3>
+        <p data-ka="დაგვიკავშირდით და მიიღეთ უფასო კონსულტაცია." data-en="Reach out and get a free consultation.">დაგვიკავშირდით და მიიღეთ უფასო კონსულტაცია.</p>
         <a href="mailto:info@loyalpartners.ge" class="btn btn-green" style="width:100%;justify-content:center;margin-bottom:1rem;">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:18px;height:18px;"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
           info@loyalpartners.ge
@@ -1007,7 +1259,7 @@ footer{
         <div class="logo footer-logo" style="pointer-events:none;">
           <img src="logo.png" alt="Loyal Partners" class="logo-img">
         </div>
-        <p data-ka="პროფესიული ფინანსური სერვისები ქართველი ბიზნესებისთვის 2014 წლიდან. ეთიკა, ექსპერტიზა, ლოიალობა." data-en="Professional financial services for Georgian businesses since 2014. Ethics, expertise, loyalty.">პროფესიული ფინანსური სერვისები ქართველი ბიზნესებისთვის 2014 წლიდან.</p>
+        <p data-ka="პროფესიული ფინანსური სერვისები ქართველი ბიზნესებისთვის 2014 წლიდან. ეთიკა, ექსპერტიზა, ლოიალობა." data-en="Professional financial services for Georgian businesses since 2014. Ethics, expertise, loyalty.">პროფესიული ფინანსური სერვისები ქართველი ბიზნესებისთვის 2014 წლიდან. ეთიკა, ექსპერტიზა, ლოიალობა.</p>
       </div>
       <div class="footer-col">
         <h4 data-ka="სერვისები" data-en="Services">სერვისები</h4>
@@ -1016,6 +1268,8 @@ footer{
           <li><a href="#services" data-ka="ბუღალტერია" data-en="Accounting">ბუღალტერია</a></li>
           <li><a href="#services" data-ka="აუდიტი" data-en="Audit">აუდიტი</a></li>
           <li><a href="#services" data-ka="საგადასახადო" data-en="Tax">საგადასახადო</a></li>
+          <li><a href="#services" data-ka="მოდელირება" data-en="Modeling">მოდელირება</a></li>
+          <li><a href="#services" data-ka="ანგარიშგება" data-en="Reporting">ანგარიშგება</a></li>
         </ul>
       </div>
       <div class="footer-col">
@@ -1039,7 +1293,11 @@ footer{
     </div>
     <div class="footer-bottom">
       <p data-ka="&copy; 2024 Loyal Partners Georgia. ყველა უფლება დაცულია." data-en="&copy; 2024 Loyal Partners Georgia. All rights reserved.">&copy; 2024 Loyal Partners Georgia. ყველა უფლება დაცულია.</p>
-      <span style="font-size:0.72rem;color:rgba(255,255,255,0.25);">loyalpartners.ge</span>
+      <div class="footer-bottom-links">
+        <a href="#" data-ka="კონფიდენციალურობა" data-en="Privacy Policy">კონფიდენციალურობა</a>
+        <a href="#" data-ka="პირობები" data-en="Terms of Service">პირობები</a>
+        <span style="font-size:0.72rem;color:rgba(255,255,255,0.25);">loyalpartners.ge</span>
+      </div>
     </div>
   </div>
 </footer>
@@ -1056,6 +1314,8 @@ function scrollTo(id) {
   event && event.preventDefault();
   const el = document.getElementById(id);
   if (el) el.scrollIntoView({ behavior: 'smooth' });
+  // Close mobile menu if open
+  document.querySelector('.nav-links').classList.remove('show');
 }
 
 // REVEAL ON SCROLL
