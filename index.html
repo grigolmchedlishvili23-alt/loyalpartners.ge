@@ -3,228 +3,210 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Loyal Partners — Financial Intelligence</title>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<title>Loyal Partners — Financial Solution</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg: #04050C;
-  --bg-2: #080B16;
-  --bg-card: #0B0F1E;
-  --bg-card-2: #0F1425;
-  --cyan: #3EFD9B;
-  --cyan-dim: rgba(62,253,155,0.12);
-  --cyan-border: rgba(62,253,155,0.2);
-  --cyan-glow: 0 0 30px rgba(62,253,155,0.15);
-  --blue: #7674F5;
-  --blue-dim: rgba(118,116,245,0.1);
-  --white: #E8EEF8;
-  --white-2: #C4CEDF;
-  --muted: #5C6B84;
-  --muted-2: #3A4558;
-  --border: rgba(255,255,255,0.06);
-  --border-hover: rgba(62,253,155,0.25);
+  --purple: #7674F5;
+  --purple-light: rgba(118,116,245,0.08);
+  --purple-border: rgba(118,116,245,0.2);
+  --green: #3EFD9B;
+  --green-light: rgba(62,253,155,0.1);
+  --green-border: rgba(62,253,155,0.25);
+  --black: #000000;
+  --dark: #1a1a2e;
+  --bg: #F4F4F4;
+  --white: #FFFFFF;
+  --text: #2D2D3A;
+  --text-2: #5A5A6E;
+  --muted: #8E8E9E;
+  --border: rgba(0,0,0,0.08);
+  --border-2: rgba(0,0,0,0.04);
+  --shadow: 0 2px 20px rgba(0,0,0,0.06);
+  --shadow-hover: 0 8px 32px rgba(118,116,245,0.12);
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;}
 body{
   font-family:'Montserrat',Helvetica,Arial,sans-serif;
   background:var(--bg);
-  color:var(--white);
+  color:var(--text);
   line-height:1.7;
   overflow-x:hidden;
 }
 
 /* SCROLLBAR */
-::-webkit-scrollbar{width:3px;}
+::-webkit-scrollbar{width:4px;}
 ::-webkit-scrollbar-track{background:var(--bg);}
-::-webkit-scrollbar-thumb{background:var(--cyan);border-radius:2px;}
+::-webkit-scrollbar-thumb{background:var(--purple);border-radius:2px;}
 
 /* CURSOR */
 *{cursor:default;}
 a,button{cursor:pointer;}
 
 /* TYPOGRAPHY */
-h1,h2,h3,h4{font-family:Helvetica,'Montserrat',Arial,sans-serif;line-height:1.15;letter-spacing:-0.02em;}
-h1{font-size:clamp(2.8rem,5.5vw,5rem);font-weight:800;}
-h2{font-size:clamp(2rem,3.5vw,3.2rem);font-weight:700;}
-h3{font-size:clamp(1.1rem,1.8vw,1.4rem);font-weight:600;}
-p{font-size:1rem;font-weight:300;color:var(--white-2);}
+h1,h2,h3,h4{font-family:Helvetica,'Montserrat',Arial,sans-serif;line-height:1.2;letter-spacing:-0.02em;color:var(--black);}
+h1{font-size:clamp(2.4rem,5vw,4.2rem);font-weight:800;}
+h2{font-size:clamp(1.8rem,3.2vw,2.8rem);font-weight:700;}
+h3{font-size:clamp(1rem,1.6vw,1.25rem);font-weight:600;}
+p{font-size:1rem;font-weight:400;color:var(--text-2);}
 a{text-decoration:none;color:inherit;}
-.mono{font-family:'Space Mono',monospace;}
 
 /* UTILITY */
 .container{max-width:1200px;margin:0 auto;padding:0 2rem;}
-.section{padding:8rem 0;}
-.cyan{color:var(--cyan);}
-
-/* DOT GRID BG */
-.dot-grid{
-  position:fixed;inset:0;z-index:0;pointer-events:none;
-  background-image:radial-gradient(rgba(62,253,155,0.12) 1px, transparent 1px);
-  background-size:32px 32px;
-  mask-image:radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%);
-}
-
-/* NOISE OVERLAY */
-.noise{
-  position:fixed;inset:0;z-index:1;pointer-events:none;opacity:0.025;
-  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-  background-repeat:repeat;
-}
+.section{padding:6rem 0;}
+.purple{color:var(--purple);}
+.green{color:var(--green);}
 
 /* SECTION TAG */
 .tag{
   display:inline-flex;align-items:center;gap:0.5rem;
-  font-family:'Space Mono',monospace;font-size:0.7rem;
-  letter-spacing:0.12em;text-transform:uppercase;color:var(--cyan);
-  margin-bottom:1.25rem;
-}
-.tag::before{content:'//';opacity:0.5;margin-right:0.25rem;}
-.tag-num{
-  display:inline-flex;align-items:center;justify-content:center;
-  width:20px;height:20px;border:1px solid var(--cyan-border);
-  border-radius:3px;font-size:0.6rem;color:var(--cyan);
+  font-family:'Montserrat',sans-serif;font-size:0.72rem;font-weight:600;
+  letter-spacing:0.12em;text-transform:uppercase;color:var(--purple);
+  margin-bottom:1rem;
+  padding:0.35rem 0.85rem;
+  background:var(--purple-light);
+  border-radius:100px;
 }
 
 /* GLOW DIVIDER */
-.glow-line{
-  width:48px;height:2px;
-  background:linear-gradient(90deg,var(--cyan),transparent);
-  margin:1.5rem 0;
+.accent-line{
+  width:48px;height:3px;
+  background:linear-gradient(90deg,var(--purple),var(--green));
+  border-radius:2px;
+  margin:1.25rem 0;
 }
+
+/* LOGO ICON (CSS pixel grid) */
+.logo-icon{
+  display:inline-grid;
+  grid-template-columns:repeat(4,8px);
+  grid-template-rows:repeat(3,8px);
+  gap:2px;
+  flex-shrink:0;
+}
+.logo-icon .px{border-radius:1px;}
+.logo-icon .pp{background:var(--purple);}
+.logo-icon .pg{background:var(--green);}
+.logo-icon .pe{background:transparent;}
+
+.logo-icon-lg{
+  display:inline-grid;
+  grid-template-columns:repeat(4,14px);
+  grid-template-rows:repeat(3,14px);
+  gap:3px;
+  flex-shrink:0;
+}
+.logo-icon-lg .px{border-radius:2px;}
+.logo-icon-lg .pp{background:var(--purple);}
+.logo-icon-lg .pg{background:var(--green);}
+.logo-icon-lg .pe{background:transparent;}
 
 /* BUTTONS */
 .btn{
   display:inline-flex;align-items:center;gap:0.6rem;
   padding:0.85rem 1.75rem;
-  font-family:'Montserrat',Helvetica,Arial,sans-serif;font-size:0.875rem;font-weight:500;
-  letter-spacing:0.03em;border:none;border-radius:3px;
-  transition:all 0.25s ease;cursor:pointer;position:relative;overflow:hidden;
+  font-family:'Montserrat',Helvetica,sans-serif;font-size:0.875rem;font-weight:600;
+  letter-spacing:0.02em;border:none;border-radius:6px;
+  transition:all 0.3s ease;cursor:pointer;
 }
-.btn::before{
-  content:'';position:absolute;inset:0;
-  background:linear-gradient(120deg,transparent 0%,rgba(255,255,255,0.06) 50%,transparent 100%);
-  transform:translateX(-100%);transition:transform 0.4s ease;
+.btn-purple{background:var(--purple);color:#fff;}
+.btn-purple:hover{background:#5f5de0;box-shadow:0 4px 20px rgba(118,116,245,0.35);}
+.btn-green{background:var(--green);color:var(--black);}
+.btn-green:hover{background:#2de88a;box-shadow:0 4px 20px rgba(62,253,155,0.35);}
+.btn-outline{
+  background:transparent;color:var(--text);
+  border:1.5px solid var(--border);
 }
-.btn:hover::before{transform:translateX(100%);}
-.btn-cyan{background:var(--cyan);color:#04050C;}
-.btn-cyan:hover{background:#6BFDB4;box-shadow:0 0 24px rgba(62,253,155,0.4);}
-.btn-ghost{
-  background:transparent;color:var(--white);
-  border:1px solid rgba(255,255,255,0.12);
-}
-.btn-ghost:hover{border-color:var(--cyan);color:var(--cyan);}
-.btn svg{width:15px;height:15px;flex-shrink:0;}
+.btn-outline:hover{border-color:var(--purple);color:var(--purple);}
+.btn svg{width:16px;height:16px;flex-shrink:0;}
 
 /* ══════════════════════ NAV ══════════════════════ */
 nav{
   position:fixed;top:0;left:0;right:0;z-index:100;
-  padding:1.5rem 0;
-  transition:all 0.4s ease;
-}
-nav::after{
-  content:'';position:absolute;bottom:0;left:0;right:0;height:1px;
-  background:linear-gradient(90deg,transparent,var(--cyan-border),transparent);
-  opacity:0;transition:opacity 0.4s;
+  padding:1.25rem 0;
+  background:rgba(244,244,244,0.85);
+  backdrop-filter:blur(20px);
+  transition:all 0.3s ease;
 }
 nav.scrolled{
-  background:rgba(4,5,12,0.88);
-  backdrop-filter:blur(20px);
-  padding:1rem 0;
-}
-nav.scrolled::after{opacity:1;}
-
-/* NAV TOP BAR */
-.nav-bar{
-  position:absolute;top:0;left:0;right:0;height:2px;
-  background:linear-gradient(90deg,transparent,var(--cyan),var(--blue),var(--cyan),transparent);
-  opacity:0.6;
+  box-shadow:0 1px 12px rgba(0,0,0,0.06);
+  padding:0.85rem 0;
 }
 .nav-inner{display:flex;align-items:center;justify-content:space-between;gap:2rem;}
-.logo{display:flex;flex-direction:column;gap:0;text-decoration:none;}
+.logo{display:flex;align-items:center;gap:0.65rem;text-decoration:none;}
+.logo-text{display:flex;flex-direction:column;line-height:1;}
 .logo-mark{
-  font-family:Helvetica,'Montserrat',Arial,sans-serif;font-size:1.2rem;font-weight:800;
-  color:var(--white);letter-spacing:-0.02em;line-height:1;
+  font-family:Helvetica,'Montserrat',Arial,sans-serif;font-size:1.1rem;font-weight:800;
+  color:var(--purple);letter-spacing:0.04em;text-transform:uppercase;
 }
-.logo-sub{
-  font-family:'Space Mono',monospace;font-size:0.55rem;
-  letter-spacing:0.2em;text-transform:uppercase;color:var(--cyan);
+.logo-sub-text{
+  font-family:Helvetica,'Montserrat',Arial,sans-serif;font-size:0.6rem;
+  letter-spacing:0.22em;text-transform:uppercase;color:var(--black);font-weight:500;
 }
 .nav-links{display:flex;align-items:center;gap:2rem;list-style:none;}
 .nav-links a{
-  font-size:0.85rem;font-weight:400;color:var(--muted);
-  letter-spacing:0.02em;transition:color 0.2s;
-  display:flex;align-items:center;gap:0.3rem;
+  font-size:0.85rem;font-weight:500;color:var(--text-2);
+  transition:color 0.2s;
 }
-.nav-links a:hover{color:var(--white);}
-.nav-links a .lnum{
-  font-family:'Space Mono',monospace;font-size:0.55rem;color:var(--cyan);
-}
+.nav-links a:hover{color:var(--purple);}
 
 /* LANG TOGGLE */
 .lang-toggle{
   display:flex;align-items:center;gap:0;
-  border:1px solid var(--border);border-radius:3px;overflow:hidden;
+  border:1.5px solid var(--border);border-radius:6px;overflow:hidden;
 }
 .lang-btn{
   padding:0.4rem 0.65rem;
-  font-family:'Space Mono',monospace;font-size:0.68rem;
+  font-family:'Montserrat',sans-serif;font-size:0.7rem;font-weight:600;
   color:var(--muted);background:transparent;border:none;
   cursor:pointer;transition:all 0.2s;letter-spacing:0.05em;
 }
-.lang-btn.active{background:var(--cyan-dim);color:var(--cyan);}
-.lang-btn:hover:not(.active){color:var(--white-2);}
+.lang-btn.active{background:var(--purple);color:#fff;}
+.lang-btn:hover:not(.active){color:var(--text);}
 
 .nav-right{display:flex;align-items:center;gap:1rem;}
+
+/* HAMBURGER */
+.menu-toggle{display:none;background:none;border:none;padding:0.5rem;}
+.menu-toggle span{display:block;width:22px;height:2px;background:var(--black);margin:5px 0;transition:0.3s;}
 
 /* ══════════════════════ HERO ══════════════════════ */
 #home{
   min-height:100vh;
   position:relative;
   display:flex;align-items:center;
+  background:var(--white);
   overflow:hidden;
 }
-.hero-bg-lines{
-  position:absolute;inset:0;pointer-events:none;
-  background:
-    linear-gradient(180deg,rgba(62,253,155,0.04) 0%,transparent 40%),
-    linear-gradient(135deg,rgba(118,116,245,0.04) 0%,transparent 60%);
-}
-.hero-grid-overlay{
-  position:absolute;inset:0;pointer-events:none;opacity:0.03;
-  background-image:
-    linear-gradient(rgba(62,253,155,1) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(62,253,155,1) 1px,transparent 1px);
-  background-size:80px 80px;
-}
-.hero-orb-1{
-  position:absolute;top:-20%;right:-10%;
+.hero-gradient{
+  position:absolute;top:-30%;right:-15%;
   width:700px;height:700px;border-radius:50%;
-  background:radial-gradient(circle,rgba(62,253,155,0.05) 0%,transparent 65%);
+  background:radial-gradient(circle,rgba(62,253,155,0.15) 0%,rgba(118,116,245,0.08) 50%,transparent 70%);
   pointer-events:none;
 }
-.hero-orb-2{
-  position:absolute;bottom:-30%;left:-10%;
-  width:600px;height:600px;border-radius:50%;
-  background:radial-gradient(circle,rgba(118,116,245,0.06) 0%,transparent 65%);
+.hero-gradient-2{
+  position:absolute;bottom:-20%;left:-10%;
+  width:500px;height:500px;border-radius:50%;
+  background:radial-gradient(circle,rgba(118,116,245,0.08) 0%,transparent 60%);
   pointer-events:none;
 }
 .hero-content{
   position:relative;z-index:2;
-  max-width:780px;
+  max-width:680px;
   animation:heroReveal 0.8s cubic-bezier(0.16,1,0.3,1) both;
 }
 .hero-badge{
-  display:inline-flex;align-items:center;gap:0.75rem;
-  padding:0.35rem 0.75rem 0.35rem 0.5rem;
-  border:1px solid var(--cyan-border);border-radius:100px;
-  font-family:'Space Mono',monospace;font-size:0.65rem;
-  letter-spacing:0.1em;text-transform:uppercase;color:var(--cyan);
-  margin-bottom:2rem;background:var(--cyan-dim);
+  display:inline-flex;align-items:center;gap:0.6rem;
+  padding:0.4rem 0.85rem;
+  border:1.5px solid var(--green-border);border-radius:100px;
+  font-size:0.72rem;font-weight:600;
+  letter-spacing:0.06em;color:var(--text-2);
+  margin-bottom:2rem;background:var(--green-light);
 }
 .badge-dot{
-  width:6px;height:6px;border-radius:50%;background:var(--cyan);
-  animation:blink 2s ease-in-out infinite;
+  width:7px;height:7px;border-radius:50%;background:var(--green);
+  animation:pulse 2s ease-in-out infinite;
 }
 .hero-title{margin-bottom:1.5rem;}
 .hero-title .line{display:block;overflow:hidden;}
@@ -236,8 +218,8 @@ nav.scrolled::after{opacity:1;}
 .hero-title .line:nth-child(2) span{animation-delay:0.2s;}
 .hero-title .line:nth-child(3) span{animation-delay:0.3s;}
 .hero-desc{
-  font-size:1.1rem;line-height:1.8;
-  color:rgba(196,206,223,0.7);max-width:520px;
+  font-size:1.05rem;line-height:1.8;
+  color:var(--text-2);max-width:520px;
   margin-bottom:2.5rem;
   animation:fadeIn 0.8s 0.5s both;
 }
@@ -247,374 +229,319 @@ nav.scrolled::after{opacity:1;}
 }
 .hero-metrics{
   position:absolute;right:0;top:50%;transform:translateY(-50%);
-  display:flex;flex-direction:column;gap:1px;z-index:2;
+  display:flex;flex-direction:column;gap:0.75rem;z-index:2;
   animation:fadeIn 0.8s 0.7s both;
 }
 .metric-item{
   display:flex;flex-direction:column;
   padding:1.25rem 1.75rem;
-  background:rgba(8,11,22,0.6);
+  background:var(--white);
   border:1px solid var(--border);
-  backdrop-filter:blur(12px);
-  border-left:2px solid var(--cyan-border);
-  transition:border-left-color 0.3s;
+  border-radius:8px;
+  border-left:3px solid var(--purple);
+  transition:box-shadow 0.3s;
   min-width:180px;
 }
-.metric-item:hover{border-left-color:var(--cyan);}
+.metric-item:hover{box-shadow:var(--shadow);}
 .metric-num{
-  font-family:'Space Mono',monospace;
-  font-size:2rem;font-weight:700;color:var(--cyan);
+  font-family:Helvetica,'Montserrat',sans-serif;
+  font-size:2rem;font-weight:800;color:var(--purple);
   line-height:1;
 }
 .metric-label{
-  font-size:0.72rem;letter-spacing:0.06em;
+  font-size:0.72rem;letter-spacing:0.04em;
   color:var(--muted);text-transform:uppercase;
-  margin-top:0.35rem;font-family:'Space Mono',monospace;
-}
-.scroll-hint{
-  position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);
-  display:flex;flex-direction:column;align-items:center;gap:0.5rem;
-  font-family:'Space Mono',monospace;font-size:0.6rem;
-  letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);
-  z-index:2;animation:fadeIn 1s 1s both;
-}
-.scroll-line{
-  width:1px;height:36px;
-  background:linear-gradient(to bottom,var(--cyan),transparent);
-  animation:scrollAnim 1.8s ease-in-out infinite;
+  margin-top:0.35rem;font-weight:600;
 }
 
 /* ══════════════════════ SERVICES ══════════════════════ */
-#services{background:var(--bg-2);}
-.section-header{margin-bottom:4rem;}
+#services{background:var(--bg);}
+.section-header{margin-bottom:3.5rem;}
 .services-grid{
   display:grid;grid-template-columns:repeat(3,1fr);
-  gap:1px;background:var(--border);
-  border:1px solid var(--border);border-radius:4px;overflow:hidden;
+  gap:1.25rem;
 }
 .svc-card{
-  background:var(--bg-card);
-  padding:2.5rem;position:relative;overflow:hidden;
-  transition:background 0.3s;
-  group:hover;
+  background:var(--white);
+  border:1px solid var(--border-2);
+  border-radius:10px;
+  padding:2rem;position:relative;overflow:hidden;
+  transition:box-shadow 0.3s,transform 0.3s;
 }
-.svc-card:hover{background:var(--bg-card-2);}
-.svc-card::before{
-  content:'';position:absolute;inset:0;
-  background:linear-gradient(135deg,var(--cyan-dim) 0%,transparent 60%);
-  opacity:0;transition:opacity 0.4s;
-}
-.svc-card:hover::before{opacity:1;}
-.svc-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:1.75rem;}
+.svc-card:hover{box-shadow:var(--shadow-hover);transform:translateY(-4px);}
+.svc-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:1.5rem;}
 .svc-icon{
-  width:44px;height:44px;
-  border:1px solid var(--cyan-border);border-radius:4px;
+  width:48px;height:48px;
+  background:var(--purple-light);
+  border-radius:10px;
   display:flex;align-items:center;justify-content:center;
-  color:var(--cyan);transition:box-shadow 0.3s;
+  color:var(--purple);transition:background 0.3s;
 }
-.svc-card:hover .svc-icon{box-shadow:var(--cyan-glow);}
-.svc-icon svg{width:20px;height:20px;}
+.svc-card:hover .svc-icon{background:var(--purple);color:#fff;}
+.svc-icon svg{width:22px;height:22px;}
 .svc-idx{
-  font-family:'Space Mono',monospace;font-size:0.65rem;
-  color:var(--muted-2);letter-spacing:0.08em;
+  font-size:0.7rem;font-weight:700;
+  color:var(--muted);letter-spacing:0.05em;
 }
-.svc-title{font-size:1.15rem;margin-bottom:0.75rem;transition:color 0.3s;}
-.svc-card:hover .svc-title{color:var(--cyan);}
-.svc-desc{font-size:0.88rem;line-height:1.7;color:var(--muted);}
+.svc-title{font-size:1.1rem;margin-bottom:0.6rem;transition:color 0.3s;}
+.svc-desc{font-size:0.88rem;line-height:1.7;color:var(--text-2);}
 .svc-features{
-  margin-top:1.5rem;list-style:none;
-  display:flex;flex-direction:column;gap:0.45rem;
+  margin-top:1.25rem;list-style:none;
+  display:flex;flex-direction:column;gap:0.4rem;
 }
 .svc-features li{
-  font-size:0.8rem;color:var(--muted);
-  display:flex;align-items:center;gap:0.65rem;
+  font-size:0.8rem;color:var(--text-2);
+  display:flex;align-items:center;gap:0.6rem;
 }
 .svc-features li::before{
   content:'';flex-shrink:0;
-  width:4px;height:4px;border-radius:50%;
-  background:var(--cyan);opacity:0.6;
+  width:5px;height:5px;border-radius:50%;
+  background:var(--green);
 }
-.svc-card:hover .svc-features li::before{opacity:1;}
 
 /* ══════════════════════ ABOUT ══════════════════════ */
-#about{background:var(--bg);}
+#about{background:var(--white);}
 .about-grid{
   display:grid;grid-template-columns:1fr 1fr;
-  gap:6rem;align-items:center;
+  gap:5rem;align-items:center;
 }
-.about-visual{position:relative;height:500px;}
-.terminal{
-  position:absolute;top:0;left:0;right:60px;
-  background:var(--bg-card);
-  border:1px solid var(--border);border-radius:6px;overflow:hidden;
+.about-visual{position:relative;}
+.about-card-main{
+  background:var(--black);
+  border-radius:14px;
+  padding:2.5rem;
+  position:relative;
+  overflow:hidden;
 }
-.terminal-bar{
-  background:var(--bg-card-2);padding:0.6rem 1rem;
-  display:flex;align-items:center;gap:0.5rem;
-  border-bottom:1px solid var(--border);
+.about-card-main::before{
+  content:'';position:absolute;top:0;right:0;
+  width:200px;height:200px;
+  background:radial-gradient(circle,rgba(62,253,155,0.2) 0%,rgba(118,116,245,0.15) 50%,transparent 70%);
+  pointer-events:none;
 }
-.t-dot{width:10px;height:10px;border-radius:50%;}
-.t-dot-r{background:#FF5F57;}
-.t-dot-y{background:#FFBD2E;}
-.t-dot-g{background:#28C840;}
-.terminal-title{
-  font-family:'Space Mono',monospace;font-size:0.65rem;
-  color:var(--muted);letter-spacing:0.05em;margin-left:0.5rem;
+.about-card-main .logo-icon-lg{margin-bottom:1.5rem;}
+.about-card-main h3{color:var(--white);font-size:1.6rem;margin-bottom:0.5rem;}
+.about-card-main p{color:rgba(255,255,255,0.6);font-size:0.9rem;}
+.about-stats{
+  display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;
+  margin-top:2rem;
 }
-.terminal-body{padding:1.5rem;font-family:'Space Mono',monospace;font-size:0.78rem;line-height:2;}
-.t-prompt{color:var(--cyan);}
-.t-comment{color:var(--muted);}
-.t-val{color:#9B99F7;}
-.t-str{color:#6BFDB4;}
-.t-cursor{
-  display:inline-block;width:8px;height:1.1em;
-  background:var(--cyan);vertical-align:middle;
-  animation:blink 1s step-end infinite;
+.about-stat{
+  background:rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:8px;padding:1rem;
 }
-.about-float-cards{
-  position:absolute;bottom:0;right:0;
-  display:flex;flex-direction:column;gap:1rem;
-  width:220px;
-}
-.float-card{
-  background:var(--bg-card);
-  border:1px solid var(--border);border-radius:4px;padding:1rem 1.25rem;
-  transition:border-color 0.3s;
-}
-.float-card:hover{border-color:var(--cyan-border);}
-.float-card-icon{color:var(--cyan);margin-bottom:0.4rem;}
-.float-card-icon svg{width:16px;height:16px;}
-.float-card h4{font-size:0.85rem;margin-bottom:0.2rem;}
-.float-card p{font-size:0.75rem;color:var(--muted);line-height:1.5;}
-.values-list{list-style:none;display:flex;flex-direction:column;gap:1rem;margin-top:2rem;}
+.about-stat-num{font-size:1.6rem;font-weight:800;color:var(--green);}
+.about-stat-label{font-size:0.72rem;color:rgba(255,255,255,0.5);text-transform:uppercase;letter-spacing:0.05em;font-weight:600;}
+
+.values-list{list-style:none;display:flex;flex-direction:column;gap:1rem;margin-top:1.75rem;}
 .val-item{display:flex;align-items:flex-start;gap:1rem;}
 .val-check{
-  width:20px;height:20px;flex-shrink:0;
-  border:1px solid var(--cyan-border);border-radius:3px;
+  width:22px;height:22px;flex-shrink:0;
+  background:var(--green-light);border-radius:6px;
   display:flex;align-items:center;justify-content:center;
-  margin-top:0.15rem;
+  margin-top:0.1rem;
 }
-.val-check svg{width:10px;height:10px;color:var(--cyan);}
+.val-check svg{width:12px;height:12px;color:var(--green);}
 .val-item h4{font-size:0.9rem;margin-bottom:0.15rem;}
-.val-item p{font-size:0.83rem;color:var(--muted);line-height:1.6;}
+.val-item p{font-size:0.83rem;color:var(--text-2);line-height:1.6;}
 
 /* ══════════════════════ NUMBERS ══════════════════════ */
-#numbers{background:var(--bg-2);}
+#numbers{background:var(--bg);}
 .numbers-grid{
   display:grid;grid-template-columns:repeat(4,1fr);
-  gap:1px;background:var(--border);
-  border:1px solid var(--border);border-radius:4px;overflow:hidden;
-  margin-top:4rem;
+  gap:1.25rem;
+  margin-top:3rem;
 }
 .num-card{
-  background:var(--bg-card);padding:2.5rem 2rem;
-  position:relative;overflow:hidden;
-  transition:background 0.3s;
+  background:var(--white);
+  border:1px solid var(--border-2);
+  border-radius:10px;padding:2rem 1.5rem;
+  text-align:center;
+  transition:box-shadow 0.3s,transform 0.3s;
 }
-.num-card:hover{background:var(--bg-card-2);}
-.num-card::after{
-  content:'';position:absolute;top:0;left:0;right:0;height:2px;
-  background:linear-gradient(90deg,var(--cyan),transparent);
-  transform:scaleX(0);transform-origin:left;
-  transition:transform 0.4s ease;
-}
-.num-card:hover::after{transform:scaleX(1);}
+.num-card:hover{box-shadow:var(--shadow);transform:translateY(-3px);}
 .num-val{
-  font-family:'Space Mono',monospace;
-  font-size:2.8rem;font-weight:700;
-  color:var(--cyan);line-height:1;
-  display:block;margin-bottom:0.75rem;
+  font-family:Helvetica,'Montserrat',sans-serif;
+  font-size:2.8rem;font-weight:800;
+  color:var(--purple);line-height:1;
+  display:block;margin-bottom:0.6rem;
 }
-.num-title{font-size:0.9rem;margin-bottom:0.4rem;}
+.num-title{font-size:0.9rem;margin-bottom:0.3rem;}
 .num-desc{font-size:0.8rem;color:var(--muted);line-height:1.6;}
 
 /* ══════════════════════ PROCESS ══════════════════════ */
-#process{background:var(--bg);}
+#process{background:var(--white);}
 .process-steps{
   display:grid;grid-template-columns:repeat(4,1fr);
-  gap:1px;background:var(--border);
-  border:1px solid var(--border);border-radius:4px;overflow:hidden;
-  margin-top:4rem;
+  gap:1.25rem;
+  margin-top:3rem;
 }
 .step{
-  background:var(--bg-card);padding:2rem 1.75rem;
-  position:relative;overflow:hidden;transition:background 0.3s;
+  background:var(--bg);
+  border:1px solid var(--border-2);
+  border-radius:10px;padding:2rem 1.5rem;
+  position:relative;transition:box-shadow 0.3s,transform 0.3s;
 }
-.step:hover{background:var(--bg-card-2);}
+.step:hover{box-shadow:var(--shadow);transform:translateY(-3px);}
 .step-num{
-  font-family:'Space Mono',monospace;font-size:0.65rem;
-  color:var(--cyan);letter-spacing:0.1em;
+  font-size:0.68rem;font-weight:700;
+  color:var(--purple);letter-spacing:0.1em;
   margin-bottom:1rem;display:block;
 }
 .step-icon{
-  width:40px;height:40px;
-  border:1px solid var(--border);border-radius:4px;
+  width:44px;height:44px;
+  background:var(--purple-light);border-radius:10px;
   display:flex;align-items:center;justify-content:center;
-  color:var(--muted);margin-bottom:1.25rem;
+  color:var(--purple);margin-bottom:1rem;
   transition:all 0.3s;
 }
-.step:hover .step-icon{border-color:var(--cyan-border);color:var(--cyan);}
-.step-icon svg{width:18px;height:18px;}
-.step h3{font-size:0.95rem;margin-bottom:0.5rem;}
-.step p{font-size:0.82rem;color:var(--muted);line-height:1.65;}
-.step-connector{
-  position:absolute;top:2.5rem;right:-1px;
-  width:1px;height:40px;
-  background:linear-gradient(to bottom,var(--cyan),transparent);
-  opacity:0.4;
-}
+.step:hover .step-icon{background:var(--purple);color:#fff;}
+.step-icon svg{width:20px;height:20px;}
+.step h3{font-size:0.95rem;margin-bottom:0.4rem;}
+.step p{font-size:0.82rem;color:var(--text-2);line-height:1.65;}
 
 /* ══════════════════════ TESTIMONIALS ══════════════════════ */
-#testimonials{background:var(--bg-2);}
+#testimonials{background:var(--bg);}
 .testi-grid{
   display:grid;grid-template-columns:repeat(3,1fr);
-  gap:1rem;margin-top:4rem;
+  gap:1.25rem;margin-top:3rem;
 }
 .testi-card{
-  background:var(--bg-card);
-  border:1px solid var(--border);border-radius:4px;
-  padding:2rem;transition:border-color 0.3s,transform 0.3s;
+  background:var(--white);
+  border:1px solid var(--border-2);border-radius:10px;
+  padding:2rem;transition:box-shadow 0.3s,transform 0.3s;
 }
-.testi-card:hover{border-color:var(--cyan-border);transform:translateY(-3px);}
+.testi-card:hover{box-shadow:var(--shadow);transform:translateY(-3px);}
 .testi-rating{
   display:flex;gap:3px;margin-bottom:1rem;
 }
-.testi-rating svg{width:13px;height:13px;fill:var(--cyan);color:var(--cyan);}
+.testi-rating svg{width:14px;height:14px;fill:var(--green);color:var(--green);}
 .testi-quote{
-  font-size:0.88rem;line-height:1.8;color:var(--white-2);
+  font-size:0.88rem;line-height:1.8;color:var(--text-2);
   margin-bottom:1.5rem;font-style:italic;
-  border-left:2px solid var(--cyan-border);padding-left:1rem;
+  border-left:3px solid var(--green);padding-left:1rem;
 }
 .testi-author{display:flex;align-items:center;gap:0.75rem;}
 .testi-avatar{
-  width:36px;height:36px;border-radius:3px;
-  background:var(--cyan-dim);border:1px solid var(--cyan-border);
+  width:40px;height:40px;border-radius:10px;
+  background:var(--purple-light);
   display:flex;align-items:center;justify-content:center;
-  font-family:'Space Mono',monospace;font-size:0.7rem;
-  color:var(--cyan);font-weight:700;
+  font-size:0.75rem;font-weight:700;
+  color:var(--purple);
 }
-.testi-name{font-size:0.85rem;font-weight:600;}
+.testi-name{font-size:0.85rem;font-weight:600;color:var(--black);}
 .testi-role{font-size:0.72rem;color:var(--muted);}
 
 /* ══════════════════════ TEAM ══════════════════════ */
-#team{background:var(--bg);}
+#team{background:var(--white);}
 .team-grid{
   display:grid;grid-template-columns:repeat(4,1fr);
-  gap:1rem;margin-top:4rem;
+  gap:1.25rem;margin-top:3rem;
 }
 .team-card{
-  background:var(--bg-card);
-  border:1px solid var(--border);border-radius:4px;overflow:hidden;
-  transition:border-color 0.3s,transform 0.3s;
+  background:var(--bg);
+  border:1px solid var(--border-2);border-radius:10px;overflow:hidden;
+  transition:box-shadow 0.3s,transform 0.3s;
 }
-.team-card:hover{border-color:var(--cyan-border);transform:translateY(-4px);}
+.team-card:hover{box-shadow:var(--shadow);transform:translateY(-4px);}
 .team-photo{
-  height:180px;background:var(--bg-card-2);
-  position:relative;overflow:hidden;
+  height:180px;
+  background:linear-gradient(135deg,rgba(118,116,245,0.1),rgba(62,253,155,0.08));
   display:flex;align-items:center;justify-content:center;
 }
-.team-photo-scan{
-  position:absolute;top:0;left:0;right:0;
-  height:2px;background:linear-gradient(90deg,transparent,var(--cyan),transparent);
-  animation:scan 3s linear infinite;opacity:0.4;
-}
 .team-initials{
-  font-family:Helvetica,'Montserrat',Arial,sans-serif;font-size:2.2rem;font-weight:800;
-  color:rgba(62,253,155,0.15);position:relative;z-index:1;
+  font-family:Helvetica,'Montserrat',sans-serif;font-size:2.2rem;font-weight:800;
+  color:var(--purple);opacity:0.3;
 }
 .team-info{padding:1.25rem;}
-.team-name{font-size:0.95rem;margin-bottom:0.2rem;}
+.team-name{font-size:0.95rem;margin-bottom:0.15rem;}
 .team-role{
-  font-family:'Space Mono',monospace;font-size:0.62rem;
-  color:var(--cyan);letter-spacing:0.06em;text-transform:uppercase;
+  font-size:0.68rem;font-weight:700;
+  color:var(--purple);letter-spacing:0.05em;text-transform:uppercase;
 }
-.team-bio{font-size:0.78rem;color:var(--muted);line-height:1.55;margin-top:0.5rem;}
+.team-bio{font-size:0.78rem;color:var(--text-2);line-height:1.55;margin-top:0.4rem;}
 
 /* ══════════════════════ CONTACT ══════════════════════ */
-#contact{background:var(--bg-2);}
+#contact{background:var(--bg);}
 .contact-grid{
   display:grid;grid-template-columns:1fr 1.5fr;
-  gap:5rem;align-items:start;
+  gap:4rem;align-items:start;
 }
 .contact-item{display:flex;gap:1rem;margin-bottom:1.75rem;}
 .contact-icon{
-  width:40px;height:40px;flex-shrink:0;
-  border:1px solid var(--border);border-radius:4px;
+  width:44px;height:44px;flex-shrink:0;
+  background:var(--purple-light);border-radius:10px;
   display:flex;align-items:center;justify-content:center;
-  color:var(--cyan);
+  color:var(--purple);
 }
-.contact-icon svg{width:16px;height:16px;}
+.contact-icon svg{width:18px;height:18px;}
 .contact-item h4{
-  font-family:'Space Mono',monospace;font-size:0.62rem;
-  text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);
-  margin-bottom:0.25rem;
+  font-size:0.68rem;font-weight:700;
+  text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);
+  margin-bottom:0.2rem;
 }
-.contact-item p{font-size:0.88rem;color:var(--white-2);}
+.contact-item p{font-size:0.9rem;color:var(--text);}
 .contact-form-wrap{
-  background:var(--bg-card);
-  border:1px solid var(--border);border-radius:4px;padding:2.5rem;
+  background:var(--white);
+  border:1px solid var(--border-2);border-radius:12px;padding:2.5rem;
 }
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
 .form-group{margin-bottom:1.1rem;}
 .form-group label{
-  display:block;font-family:'Space Mono',monospace;
-  font-size:0.62rem;letter-spacing:0.1em;
-  text-transform:uppercase;color:var(--muted);margin-bottom:0.5rem;
+  display:block;font-size:0.72rem;font-weight:700;
+  letter-spacing:0.06em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:0.5rem;
 }
 .form-group input,.form-group textarea,.form-group select{
-  width:100%;background:var(--bg-2);
-  border:1px solid rgba(255,255,255,0.07);
-  border-radius:3px;padding:0.75rem 1rem;
-  color:var(--white);font-family:'Montserrat',Helvetica,Arial,sans-serif;font-size:0.9rem;
+  width:100%;background:var(--bg);
+  border:1.5px solid var(--border);
+  border-radius:8px;padding:0.75rem 1rem;
+  color:var(--text);font-family:'Montserrat',Helvetica,sans-serif;font-size:0.9rem;
   transition:border-color 0.2s,box-shadow 0.2s;outline:none;resize:none;
 }
 .form-group input:focus,.form-group textarea:focus,.form-group select:focus{
-  border-color:var(--cyan-border);
-  box-shadow:0 0 0 3px rgba(62,253,155,0.06);
+  border-color:var(--purple);
+  box-shadow:0 0 0 3px rgba(118,116,245,0.08);
 }
-.form-group select option{background:var(--bg-card);}
+.form-group select option{background:var(--white);}
 
 /* ══════════════════════ FOOTER ══════════════════════ */
 footer{
-  background:var(--bg);
-  border-top:1px solid var(--border);
-  padding:3.5rem 0 2rem;
+  background:var(--black);
+  color:rgba(255,255,255,0.6);
+  padding:4rem 0 2rem;
 }
 .footer-grid{
   display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;
   gap:3rem;margin-bottom:3rem;
 }
 .footer-brand p{
-  font-size:0.85rem;color:var(--muted);
+  font-size:0.85rem;color:rgba(255,255,255,0.4);
   line-height:1.7;margin-top:1rem;
 }
 .footer-col h4{
-  font-family:'Space Mono',monospace;font-size:0.62rem;
-  letter-spacing:0.12em;text-transform:uppercase;color:var(--cyan);
+  font-size:0.68rem;font-weight:700;
+  letter-spacing:0.12em;text-transform:uppercase;color:var(--green);
   margin-bottom:1.25rem;
 }
 .footer-links{list-style:none;display:flex;flex-direction:column;gap:0.55rem;}
-.footer-links a{font-size:0.83rem;color:var(--muted);transition:color 0.2s;}
+.footer-links a{font-size:0.83rem;color:rgba(255,255,255,0.45);transition:color 0.2s;}
 .footer-links a:hover{color:var(--white);}
 .footer-bottom{
-  border-top:1px solid var(--border);
+  border-top:1px solid rgba(255,255,255,0.08);
   padding-top:1.5rem;
   display:flex;justify-content:space-between;align-items:center;
 }
-.footer-bottom p{font-size:0.75rem;color:var(--muted-2);}
-.footer-bottom .mono{font-size:0.7rem;color:var(--muted-2);}
+.footer-bottom p{font-size:0.75rem;color:rgba(255,255,255,0.3);}
+.footer-logo .logo-mark{color:var(--purple);}
+.footer-logo .logo-sub-text{color:rgba(255,255,255,0.4);}
 
 /* ══════════════════════ ANIMATIONS ══════════════════════ */
 @keyframes heroReveal{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
 @keyframes slideUp{from{transform:translateY(100%);}to{transform:translateY(0);}}
 @keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
-@keyframes blink{0%,100%{opacity:1;}50%{opacity:0;}}
-@keyframes scrollAnim{
-  0%{transform:scaleY(0);transform-origin:top;opacity:1;}
-  50%{transform:scaleY(1);transform-origin:top;opacity:1;}
-  100%{transform:scaleY(1);transform-origin:bottom;opacity:0;}
-}
-@keyframes scan{from{top:-2px;}to{top:100%;}}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:0.5;transform:scale(0.85);}}
 
 .reveal{opacity:0;transform:translateY(20px);transition:opacity 0.6s ease,transform 0.6s ease;}
 .reveal.visible{opacity:1;transform:translateY(0);}
@@ -629,10 +556,14 @@ footer{
   .hero-metrics{display:none;}
 }
 @media(max-width:768px){
-  nav .nav-links,nav .btn{display:none;}
+  .nav-links{display:none;}
+  nav .btn{display:none;}
+  .menu-toggle{display:block;}
   .about-grid,.contact-grid{grid-template-columns:1fr;}
   .about-visual{display:none;}
   .services-grid,.testi-grid,.team-grid{grid-template-columns:1fr;}
+  .process-steps{grid-template-columns:1fr;}
+  .numbers-grid{grid-template-columns:1fr 1fr;}
   .form-row{grid-template-columns:1fr;}
   .footer-grid{grid-template-columns:1fr;}
 }
@@ -640,33 +571,39 @@ footer{
 </head>
 <body>
 
-<div class="dot-grid"></div>
-<div class="noise"></div>
-
 <!-- NAV -->
 <nav id="navbar">
-  <div class="nav-bar"></div>
   <div class="container">
     <div class="nav-inner">
       <a href="#home" class="logo" onclick="scrollTo('home')">
-        <span class="logo-mark">Loyal Partners</span>
-        <span class="logo-sub">Financial Intelligence</span>
+        <div class="logo-icon">
+          <span class="px pp"></span><span class="px pe"></span><span class="px pg"></span><span class="px pg"></span>
+          <span class="px pp"></span><span class="px pg"></span><span class="px pg"></span><span class="px pe"></span>
+          <span class="px pp"></span><span class="px pp"></span><span class="px pe"></span><span class="px pe"></span>
+        </div>
+        <div class="logo-text">
+          <span class="logo-mark">Loyal Partners</span>
+          <span class="logo-sub-text">Financial Solution</span>
+        </div>
       </a>
       <ul class="nav-links">
-        <li><a href="#services" onclick="scrollTo('services')"><span class="lnum">01.</span><span data-ka="სერვისები" data-en="Services">სერვისები</span></a></li>
-        <li><a href="#about" onclick="scrollTo('about')"><span class="lnum">02.</span><span data-ka="კომპანიაზე" data-en="About">კომპანიაზე</span></a></li>
-        <li><a href="#process" onclick="scrollTo('process')"><span class="lnum">03.</span><span data-ka="პროცესი" data-en="Process">პროცესი</span></a></li>
-        <li><a href="#team" onclick="scrollTo('team')"><span class="lnum">04.</span><span data-ka="გუნდი" data-en="Team">გუნდი</span></a></li>
+        <li><a href="#services" onclick="scrollTo('services')"><span data-ka="სერვისები" data-en="Services">სერვისები</span></a></li>
+        <li><a href="#about" onclick="scrollTo('about')"><span data-ka="კომპანიაზე" data-en="About">კომპანიაზე</span></a></li>
+        <li><a href="#process" onclick="scrollTo('process')"><span data-ka="პროცესი" data-en="Process">პროცესი</span></a></li>
+        <li><a href="#team" onclick="scrollTo('team')"><span data-ka="გუნდი" data-en="Team">გუნდი</span></a></li>
       </ul>
       <div class="nav-right">
         <div class="lang-toggle">
           <button class="lang-btn active" onclick="setLang('ka')">KA</button>
           <button class="lang-btn" onclick="setLang('en')">EN</button>
         </div>
-        <a href="#contact" class="btn btn-cyan" onclick="scrollTo('contact')">
+        <a href="#contact" class="btn btn-purple" onclick="scrollTo('contact')">
           <span data-ka="კონტაქტი" data-en="Contact">კონტაქტი</span>
           <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
         </a>
+        <button class="menu-toggle" onclick="document.querySelector('.nav-links').classList.toggle('show')">
+          <span></span><span></span><span></span>
+        </button>
       </div>
     </div>
   </div>
@@ -674,31 +611,29 @@ footer{
 
 <!-- HERO -->
 <section id="home">
-  <div class="hero-bg-lines"></div>
-  <div class="hero-grid-overlay"></div>
-  <div class="hero-orb-1"></div>
-  <div class="hero-orb-2"></div>
+  <div class="hero-gradient"></div>
+  <div class="hero-gradient-2"></div>
 
   <div class="container" style="position:relative;z-index:2;width:100%;">
     <div class="hero-content">
       <div class="hero-badge">
         <span class="badge-dot"></span>
-        <span class="mono" data-ka="Tbilisi, Georgia · Est. 2014" data-en="Tbilisi, Georgia · Est. 2014">Tbilisi, Georgia · Est. 2014</span>
+        <span data-ka="Tbilisi, Georgia · Est. 2014" data-en="Tbilisi, Georgia · Est. 2014">Tbilisi, Georgia · Est. 2014</span>
       </div>
       <h1 class="hero-title">
         <span class="line"><span data-ka="ფინანსური" data-en="Financial">ფინანსური</span></span>
-        <span class="line"><span data-ka="ინტელიჯენსი" data-en="Intelligence"><span class="cyan" data-ka="ინტელიჯენსი" data-en="Intelligence">ინტელიჯენსი</span></span></span>
-        <span class="line"><span data-ka="თქვენს ბიზნესსთვის" data-en="for your business">თქვენს ბიზნესსთვის</span></span>
+        <span class="line"><span class="purple" data-ka="გადაწყვეტილებები" data-en="Solutions">გადაწყვეტილებები</span></span>
+        <span class="line"><span data-ka="თქვენი ბიზნესისთვის" data-en="for your business">თქვენი ბიზნესისთვის</span></span>
       </h1>
       <p class="hero-desc" data-ka="Loyal Partners გთავაზობთ მაღალი სტანდარტის ბუღალტრულ, საკონსულტაციო და CFO სერვისებს. 130+ კლიენტი. ერთი მისია — თქვენი ზრდა." data-en="Loyal Partners delivers high-standard accounting, consulting, and CFO services. 130+ clients. One mission — your growth.">
         Loyal Partners გთავაზობთ მაღალი სტანდარტის ბუღალტრულ, საკონსულტაციო და CFO სერვისებს. 130+ კლიენტი. ერთი მისია — თქვენი ზრდა.
       </p>
       <div class="hero-actions">
-        <a href="#services" class="btn btn-cyan" onclick="scrollTo('services')">
+        <a href="#services" class="btn btn-purple" onclick="scrollTo('services')">
           <span data-ka="სერვისების ნახვა" data-en="Explore Services">სერვისების ნახვა</span>
           <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
         </a>
-        <a href="#contact" class="btn btn-ghost" onclick="scrollTo('contact')">
+        <a href="#contact" class="btn btn-outline" onclick="scrollTo('contact')">
           <span data-ka="უფასო კონსულტაცია" data-en="Free Consultation">უფასო კონსულტაცია</span>
         </a>
       </div>
@@ -706,22 +641,17 @@ footer{
 
     <div class="hero-metrics">
       <div class="metric-item">
-        <span class="metric-num">130<span class="cyan">+</span></span>
+        <span class="metric-num">130<span class="green">+</span></span>
         <span class="metric-label" data-ka="აქტიური კლიენტი" data-en="Active Clients">აქტიური კლიენტი</span>
       </div>
       <div class="metric-item">
-        <span class="metric-num">10<span class="cyan">+</span></span>
+        <span class="metric-num">10<span class="green">+</span></span>
         <span class="metric-label" data-ka="წელი გამოცდილება" data-en="Years Experience">წელი გამოცდილება</span>
       </div>
       <div class="metric-item">
-        <span class="metric-num">92<span class="cyan">%</span></span>
+        <span class="metric-num">92<span class="green">%</span></span>
         <span class="metric-label" data-ka="კლიენტ-რეტენცია" data-en="Client Retention">კლიენტ-რეტენცია</span>
       </div>
-    </div>
-
-    <div class="scroll-hint">
-      <div class="scroll-line"></div>
-      scroll
     </div>
   </div>
 </section>
@@ -741,7 +671,7 @@ footer{
           <div class="svc-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
           </div>
-          <span class="svc-idx mono">01</span>
+          <span class="svc-idx">01</span>
         </div>
         <h3 class="svc-title" data-ka="Outsourced CFO" data-en="Outsourced CFO">Outsourced CFO</h3>
         <p class="svc-desc" data-ka="ფინანსური დირექტორის სრული ფუნქცია — ფიქსირებული ხარჯის გარეშე. სტრატეგიული ფინანსები, ინვესტორებთან ურთიერთობა, ბიუჯეტირება." data-en="Full CFO function without the fixed cost. Strategic finance, investor relations, budgeting and forecasting.">ფინანსური დირექტორის სრული ფუნქცია — ფიქსირებული ხარჯის გარეშე. სტრატეგიული ფინანსები, ინვესტორებთან ურთიერთობა, ბიუჯეტირება.</p>
@@ -758,7 +688,7 @@ footer{
           <div class="svc-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4M7 7h10M7 11h6"/></svg>
           </div>
-          <span class="svc-idx mono">02</span>
+          <span class="svc-idx">02</span>
         </div>
         <h3 class="svc-title" data-ka="ბუღალტრული აღრიცხვა" data-en="Accounting">ბუღალტრული აღრიცხვა</h3>
         <p class="svc-desc" data-ka="სრული ბუღალტრული მომსახურება IFRS სტანდარტებით. ყოველთვიური ბალანსები, ანგარიშები, საგადასახადო სერვისი." data-en="Full accounting services under IFRS standards. Monthly statements, reports, and tax services.">სრული ბუღალტრული მომსახურება IFRS სტანდარტებით. ყოველთვიური ბალანსები, ანგარიშები, საგადასახადო სერვისი.</p>
@@ -775,7 +705,7 @@ footer{
           <div class="svc-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
           </div>
-          <span class="svc-idx mono">03</span>
+          <span class="svc-idx">03</span>
         </div>
         <h3 class="svc-title" data-ka="აუდიტი" data-en="Audit">აუდიტი</h3>
         <p class="svc-desc" data-ka="დამოუკიდებელი ფინანსური აუდიტი ქართული და საერთაშორისო სტანდარტებით. ობიექტური შეფასება, სარისხო ანალიზი." data-en="Independent financial audit under Georgian and international standards. Objective assessment and risk analysis.">დამოუკიდებელი ფინანსური აუდიტი ქართული და საერთაშორისო სტანდარტებით. ობიექტური შეფასება, სარისხო ანალიზი.</p>
@@ -792,7 +722,7 @@ footer{
           <div class="svc-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3M12 17h.01"/></svg>
           </div>
-          <span class="svc-idx mono">04</span>
+          <span class="svc-idx">04</span>
         </div>
         <h3 class="svc-title" data-ka="საგადასახადო კონსულტაცია" data-en="Tax Consulting">საგადასახადო კონსულტაცია</h3>
         <p class="svc-desc" data-ka="ოპტიმალური საგადასახადო სტრუქტურა, ლეგიტიმური საგადასახადო შეღავათები, კომპლიანსი." data-en="Optimal tax structure, legitimate tax incentives, compliance management.">ოპტიმალური საგადასახადო სტრუქტურა, ლეგიტიმური საგადასახადო შეღავათები, კომპლიანსი.</p>
@@ -809,14 +739,14 @@ footer{
           <div class="svc-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
           </div>
-          <span class="svc-idx mono">05</span>
+          <span class="svc-idx">05</span>
         </div>
         <h3 class="svc-title" data-ka="ფინანსური მოდელირება" data-en="Financial Modeling">ფინანსური მოდელირება</h3>
         <p class="svc-desc" data-ka="ბიზნეს პლანები, ფინანსური პროგნოზები, ინვესტიციის სტრუქტურირება. სტარტაპიდან mid-market-მდე." data-en="Business plans, financial forecasts, investment structuring. From startup to mid-market.">ბიზნეს პლანები, ფინანსური პროგნოზები, ინვესტიციის სტრუქტურირება. სტარტაპიდან mid-market-მდე.</p>
         <ul class="svc-features">
           <li data-ka="ბიზნეს გეგმები" data-en="Business Plans">ბიზნეს გეგმები</li>
           <li data-ka="სცენარების ანალიზი" data-en="Scenario Analysis">სცენარების ანალიზი</li>
-          <li data-ka="M&A ტრანზაქციები" data-en="M&A Transactions">M&A ტრანზაქციები</li>
+          <li data-ka="M&A ტრანზაქციები" data-en="M&A Transactions">M&amp;A ტრანზაქციები</li>
           <li data-ka="Valuation" data-en="Valuation">Valuation</li>
         </ul>
       </div>
@@ -826,7 +756,7 @@ footer{
           <div class="svc-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
           </div>
-          <span class="svc-idx mono">06</span>
+          <span class="svc-idx">06</span>
         </div>
         <h3 class="svc-title" data-ka="ფინანსური ანგარიშგება" data-en="Financial Reporting">ფინანსური ანგარიშგება</h3>
         <p class="svc-desc" data-ka="ბანკებისთვის, ინვესტორებისთვის, სახელმწიფო ორგანოებისთვის. IFRS, GAAP — ნებისმიერი ფორმატი." data-en="For banks, investors, and regulatory bodies. IFRS, GAAP — any format required.">ბანკებისთვის, ინვესტორებისთვის, სახელმწიფო ორგანოებისთვის. IFRS, GAAP — ნებისმიერი ფორმატი.</p>
@@ -848,51 +778,39 @@ footer{
     <div class="about-grid">
 
       <div class="about-visual reveal">
-        <div class="terminal">
-          <div class="terminal-bar">
-            <div class="t-dot t-dot-r"></div>
-            <div class="t-dot t-dot-y"></div>
-            <div class="t-dot t-dot-g"></div>
-            <span class="terminal-title">loyal-partners.sh</span>
+        <div class="about-card-main">
+          <div class="logo-icon-lg">
+            <span class="px pp"></span><span class="px pe"></span><span class="px pg"></span><span class="px pg"></span>
+            <span class="px pp"></span><span class="px pg"></span><span class="px pg"></span><span class="px pe"></span>
+            <span class="px pp"></span><span class="px pp"></span><span class="px pe"></span><span class="px pe"></span>
           </div>
-          <div class="terminal-body">
-            <div><span class="t-prompt">$ </span><span class="t-val">./profile.sh</span></div>
-            <div style="height:0.5rem;"></div>
-            <div><span class="t-comment"># Company Profile</span></div>
-            <div><span class="t-val">name</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= <span class="t-str">"Loyal Partners Georgia"</span></div>
-            <div><span class="t-val">founded</span> &nbsp;&nbsp;&nbsp;= <span class="t-str">2014</span></div>
-            <div><span class="t-val">location</span> &nbsp;&nbsp;= <span class="t-str">"Tbilisi, GE"</span></div>
-            <div><span class="t-val">clients</span> &nbsp;&nbsp;&nbsp;= <span class="t-str">130+</span></div>
-            <div><span class="t-val">retention</span> &nbsp;= <span class="t-str">92%</span></div>
-            <div><span class="t-val">standards</span> &nbsp;= <span class="t-str">["IFRS","ACCA","ISA"]</span></div>
-            <div style="height:0.5rem;"></div>
-            <div><span class="t-comment"># Services loaded: 6/6</span></div>
-            <div><span class="t-prompt">$ </span><span class="t-cursor"></span></div>
-          </div>
-        </div>
-
-        <div class="about-float-cards">
-          <div class="float-card">
-            <div class="float-card-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <h3>Loyal Partners</h3>
+          <p>Financial Solution · Tbilisi, Georgia</p>
+          <div class="about-stats">
+            <div class="about-stat">
+              <div class="about-stat-num">130+</div>
+              <div class="about-stat-label" data-ka="კლიენტი" data-en="Clients">კლიენტი</div>
             </div>
-            <h4 data-ka="ACCA სერტიფიცირებული" data-en="ACCA Certified">ACCA სერტიფიცირებული</h4>
-            <p data-ka="საერთაშორისო სტანდარტი" data-en="International standard">საერთაშორისო სტანდარტი</p>
-          </div>
-          <div class="float-card">
-            <div class="float-card-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <div class="about-stat">
+              <div class="about-stat-num">10+</div>
+              <div class="about-stat-label" data-ka="წელი" data-en="Years">წელი</div>
             </div>
-            <h4 data-ka="48h SLA" data-en="48h SLA">48h SLA</h4>
-            <p data-ka="სწრაფი გამოხმაურება" data-en="Fast response guarantee">სწრაფი გამოხმაურება</p>
+            <div class="about-stat">
+              <div class="about-stat-num">92%</div>
+              <div class="about-stat-label" data-ka="რეტენცია" data-en="Retention">რეტენცია</div>
+            </div>
+            <div class="about-stat">
+              <div class="about-stat-num">48h</div>
+              <div class="about-stat-label">SLA</div>
+            </div>
           </div>
         </div>
       </div>
 
       <div class="reveal">
         <div class="tag"><span data-ka="კომპანიაზე" data-en="About Us">კომპანიაზე</span></div>
-        <h2 data-ka="ეთიკა. ექსპერტიზა.<br><span class='cyan'>ლოიალობა.</span>" data-en="Ethics. Expertise.<br><span class='cyan'>Loyalty.</span>">ეთიკა. ექსპერტიზა.<br><span class="cyan">ლოიალობა.</span></h2>
-        <div class="glow-line"></div>
+        <h2 data-ka="ეთიკა. ექსპერტიზა.<br><span class='purple'>ლოიალობა.</span>" data-en="Ethics. Expertise.<br><span class='purple'>Loyalty.</span>">ეთიკა. ექსპერტიზა.<br><span class="purple">ლოიალობა.</span></h2>
+        <div class="accent-line"></div>
         <p style="margin-bottom:0.75rem;" data-ka="Loyal Partners 2014 წელს დაარსდა ერთი მიზნით — ქართველ ბიზნესსს მიუხედავად ზომისა, მიეწოდებინა ის ხარისხის ფინანსური მომსახურება, რაც მანამდე მხოლოდ კორპორაციებისთვის იყო ხელმისაწვდომი." data-en="Loyal Partners was founded in 2014 with one goal — to bring enterprise-grade financial services to Georgian businesses of any size.">Loyal Partners 2014 წელს დაარსდა ერთი მიზნით — ქართველ ბიზნესსს მიუხედავად ზომისა, მიეწოდებინა ის ხარისხის ფინანსური მომსახურება, რაც მანამდე მხოლოდ კორპორაციებისთვის იყო ხელმისაწვდომი.</p>
         <p data-ka="დღეს ჩვენი 130+ კლიენტი მოიცავს სტარტაპებს, საშუალო ბიზნეს კომპანიებს და საერთაშორისო ოპერაციებს." data-en="Today our 130+ clients span startups, mid-market companies, and international operations.">დღეს ჩვენი 130+ კლიენტი მოიცავს სტარტაპებს, საშუალო ბიზნეს კომპანიებს და საერთაშორისო ოპერაციებს.</p>
 
@@ -930,26 +848,26 @@ footer{
   <div class="container">
     <div class="section-header reveal">
       <div class="tag"><span data-ka="ციფრები" data-en="By the Numbers">ციფრები</span></div>
-      <h2 data-ka="შედეგები, რომლებიც<br><span class='cyan'>ლაპარაკობენ</span>" data-en="Results that<br><span class='cyan'>speak for themselves</span>">შედეგები, რომლებიც<br><span class="cyan">ლაპარაკობენ</span></h2>
+      <h2 data-ka="შედეგები, რომლებიც<br><span class='purple'>ლაპარაკობენ</span>" data-en="Results that<br><span class='purple'>speak for themselves</span>">შედეგები, რომლებიც<br><span class="purple">ლაპარაკობენ</span></h2>
     </div>
     <div class="numbers-grid">
       <div class="num-card reveal">
-        <span class="num-val mono">130<span class="cyan">+</span></span>
+        <span class="num-val">130<span class="green">+</span></span>
         <h3 data-ka="კლიენტი" data-en="Clients">კლიენტი</h3>
         <p data-ka="სტარტაპიდან mid-market კომპანიებამდე — ყველა ზომა." data-en="From startups to mid-market companies — every size.">სტარტაპიდან mid-market კომპანიებამდე — ყველა ზომა.</p>
       </div>
       <div class="num-card reveal">
-        <span class="num-val mono">10<span class="cyan">+</span></span>
+        <span class="num-val">10<span class="green">+</span></span>
         <h3 data-ka="წელი ბაზარზე" data-en="Years in Market">წელი ბაზარზე</h3>
         <p data-ka="ღრმა ადგილობრივი ცოდნა, საერთაშორისო სტანდარტები." data-en="Deep local knowledge, international standards.">ღრმა ადგილობრივი ცოდნა, საერთაშორისო სტანდარტები.</p>
       </div>
       <div class="num-card reveal">
-        <span class="num-val mono">92<span class="cyan">%</span></span>
+        <span class="num-val">92<span class="green">%</span></span>
         <h3 data-ka="კლიენტ-რეტენცია" data-en="Client Retention">კლიენტ-რეტენცია</h3>
         <p data-ka="ჩვენი კლიენტები ჩვენთან რჩებიან — შედეგის გამო." data-en="Our clients stay with us — because of results.">ჩვენი კლიენტები ჩვენთან რჩებიან — შედეგის გამო.</p>
       </div>
       <div class="num-card reveal">
-        <span class="num-val mono">48<span class="cyan">h</span></span>
+        <span class="num-val">48<span class="green">h</span></span>
         <h3 data-ka="პასუხის SLA" data-en="Response SLA">პასუხის SLA</h3>
         <p data-ka="ნებისმიერ შეკითხვაზე 48 საათში ვუბრუნდებით." data-en="Any query addressed within 48 hours — guaranteed.">ნებისმიერ შეკითხვაზე 48 საათში ვუბრუნდებით.</p>
       </div>
@@ -962,38 +880,35 @@ footer{
   <div class="container">
     <div class="section-header reveal">
       <div class="tag"><span data-ka="მუშაობის პროცესი" data-en="Process">მუშაობის პროცესი</span></div>
-      <h2 data-ka="4 ნაბიჯი<br><span class='cyan'>წარმატებამდე</span>" data-en="4 Steps to<br><span class='cyan'>Success</span>">4 ნაბიჯი<br><span class="cyan">წარმატებამდე</span></h2>
+      <h2 data-ka="4 ნაბიჯი<br><span class='purple'>წარმატებამდე</span>" data-en="4 Steps to<br><span class='purple'>Success</span>">4 ნაბიჯი<br><span class="purple">წარმატებამდე</span></h2>
     </div>
     <div class="process-steps">
       <div class="step reveal">
-        <span class="step-num mono">STEP_01</span>
+        <span class="step-num">STEP 01</span>
         <div class="step-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
         </div>
         <h3 data-ka="პირველი შეხვედრა" data-en="Initial Meeting">პირველი შეხვედრა</h3>
         <p data-ka="უფასო კონსულტაცია — ვიგებთ თქვენს სიტუაციას, მიზნებს, გამოწვევებს." data-en="Free consultation — we learn your situation, goals, and challenges.">უფასო კონსულტაცია — ვიგებთ თქვენს სიტუაციას, მიზნებს, გამოწვევებს.</p>
-        <div class="step-connector"></div>
       </div>
       <div class="step reveal">
-        <span class="step-num mono">STEP_02</span>
+        <span class="step-num">STEP 02</span>
         <div class="step-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
         </div>
         <h3 data-ka="ანალიზი" data-en="Analysis">ანალიზი</h3>
         <p data-ka="ღრმა ანალიზი და ინდივიდუალური სერვის-წინადადების მომზადება." data-en="Deep analysis and preparation of a personalized service proposal.">ღრმა ანალიზი და ინდივიდუალური სერვის-წინადადების მომზადება.</p>
-        <div class="step-connector"></div>
       </div>
       <div class="step reveal">
-        <span class="step-num mono">STEP_03</span>
+        <span class="step-num">STEP 03</span>
         <div class="step-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
         </div>
         <h3 data-ka="სერვისის გაწევა" data-en="Service Delivery">სერვისის გაწევა</h3>
         <p data-ka="შეთანხმებული ვადებით, გამჭვირვალე კომუნიკაციით." data-en="On agreed timelines, with transparent communication.">შეთანხმებული ვადებით, გამჭვირვალე კომუნიკაციით.</p>
-        <div class="step-connector"></div>
       </div>
       <div class="step reveal">
-        <span class="step-num mono">STEP_04</span>
+        <span class="step-num">STEP 04</span>
         <div class="step-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
         </div>
@@ -1009,7 +924,7 @@ footer{
   <div class="container">
     <div class="section-header reveal">
       <div class="tag"><span data-ka="კლიენტები" data-en="Clients">კლიენტები</span></div>
-      <h2 data-ka="130+ კომპანიის<br><span class='cyan'>ნდობა</span>" data-en="Trusted by<br><span class='cyan'>130+ companies</span>">130+ კომპანიის<br><span class="cyan">ნდობა</span></h2>
+      <h2 data-ka="130+ კომპანიის<br><span class='purple'>ნდობა</span>" data-en="Trusted by<br><span class='purple'>130+ companies</span>">130+ კომპანიის<br><span class="purple">ნდობა</span></h2>
     </div>
     <div class="testi-grid">
       <div class="testi-card reveal">
@@ -1072,50 +987,46 @@ footer{
   <div class="container">
     <div class="section-header reveal">
       <div class="tag"><span data-ka="გუნდი" data-en="Team">გუნდი</span></div>
-      <h2 data-ka="ექსპერტები, რომლებიც<br><span class='cyan'>თქვენს გვერდით</span> დგანან" data-en="Experts who stand<br><span class='cyan'>beside you</span>">ექსპერტები, რომლებიც<br><span class="cyan">თქვენს გვერდით</span> დგანან</h2>
+      <h2 data-ka="ექსპერტები, რომლებიც<br><span class='purple'>თქვენს გვერდით</span> დგანან" data-en="Experts who stand<br><span class='purple'>beside you</span>">ექსპერტები, რომლებიც<br><span class="purple">თქვენს გვერდით</span> დგანან</h2>
     </div>
     <div class="team-grid">
       <div class="team-card reveal">
         <div class="team-photo">
-          <div class="team-photo-scan"></div>
           <div class="team-initials">NN</div>
         </div>
         <div class="team-info">
           <h3 class="team-name">ნინო ნაჭყებია</h3>
-          <div class="team-role mono">Managing Partner</div>
-          <p class="team-bio" data-ka="ACCA, 15+ წელი. IFRS, M&A, კორპორატიული ფინანსები." data-en="ACCA, 15+ years. IFRS, M&A, corporate finance.">ACCA, 15+ წელი. IFRS, M&A, კორპორატიული ფინანსები.</p>
+          <div class="team-role">Managing Partner</div>
+          <p class="team-bio" data-ka="ACCA, 15+ წელი. IFRS, M&A, კორპორატიული ფინანსები." data-en="ACCA, 15+ years. IFRS, M&A, corporate finance.">ACCA, 15+ წელი. IFRS, M&amp;A, კორპორატიული ფინანსები.</p>
         </div>
       </div>
       <div class="team-card reveal">
         <div class="team-photo">
-          <div class="team-photo-scan" style="animation-delay:0.8s;"></div>
           <div class="team-initials">DK</div>
         </div>
         <div class="team-info">
           <h3 class="team-name">დავით კვარაცხელია</h3>
-          <div class="team-role mono">Head of Audit</div>
+          <div class="team-role">Head of Audit</div>
           <p class="team-bio" data-ka="CPA, ACCA. სტატუტური აუდიტი, Due Diligence." data-en="CPA, ACCA. Statutory audit, Due Diligence.">CPA, ACCA. სტატუტური აუდიტი, Due Diligence.</p>
         </div>
       </div>
       <div class="team-card reveal">
         <div class="team-photo">
-          <div class="team-photo-scan" style="animation-delay:1.6s;"></div>
           <div class="team-initials">MJ</div>
         </div>
         <div class="team-info">
           <h3 class="team-name">მარიამ ჯანელიძე</h3>
-          <div class="team-role mono">Tax Manager</div>
+          <div class="team-role">Tax Manager</div>
           <p class="team-bio" data-ka="10+ წელი. საგადასახადო სტრუქტურირება, Transfer Pricing." data-en="10+ years. Tax structuring, Transfer Pricing.">10+ წელი. საგადასახადო სტრუქტურირება, Transfer Pricing.</p>
         </div>
       </div>
       <div class="team-card reveal">
         <div class="team-photo">
-          <div class="team-photo-scan" style="animation-delay:2.4s;"></div>
           <div class="team-initials">AT</div>
         </div>
         <div class="team-info">
           <h3 class="team-name">ანი ტყეშელაშვილი</h3>
-          <div class="team-role mono">Senior Accountant</div>
+          <div class="team-role">Senior Accountant</div>
           <p class="team-bio" data-ka="IFRS სპეციალისტი. ფინანსური ანგარიშგება, ERP სისტემები." data-en="IFRS specialist. Financial reporting, ERP systems.">IFRS სპეციალისტი. ფინანსური ანგარიშგება, ERP სისტემები.</p>
         </div>
       </div>
@@ -1128,7 +1039,7 @@ footer{
   <div class="container">
     <div class="section-header reveal">
       <div class="tag"><span data-ka="კონტაქტი" data-en="Contact">კონტაქტი</span></div>
-      <h2 data-ka="დაიწყეთ<br><span class='cyan'>თანამშრომლობა</span>" data-en="Start your<br><span class='cyan'>Partnership</span>">დაიწყეთ<br><span class="cyan">თანამშრომლობა</span></h2>
+      <h2 data-ka="დაიწყეთ<br><span class='purple'>თანამშრომლობა</span>" data-en="Start your<br><span class='purple'>Partnership</span>">დაიწყეთ<br><span class="purple">თანამშრომლობა</span></h2>
     </div>
     <div class="contact-grid">
       <div class="reveal">
@@ -1199,7 +1110,7 @@ footer{
           <label data-ka="შეტყობინება" data-en="Message">შეტყობინება</label>
           <textarea rows="4" placeholder=""></textarea>
         </div>
-        <button class="btn btn-cyan" style="width:100%;justify-content:center;">
+        <button class="btn btn-purple" style="width:100%;justify-content:center;">
           <span data-ka="გაგზავნა" data-en="Send Message">გაგზავნა</span>
           <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
         </button>
@@ -1213,9 +1124,16 @@ footer{
   <div class="container">
     <div class="footer-grid">
       <div class="footer-brand">
-        <div class="logo">
-          <span class="logo-mark">Loyal Partners</span>
-          <span class="logo-sub">Financial Intelligence</span>
+        <div class="logo footer-logo" style="pointer-events:none;">
+          <div class="logo-icon">
+            <span class="px pp"></span><span class="px pe"></span><span class="px pg"></span><span class="px pg"></span>
+            <span class="px pp"></span><span class="px pg"></span><span class="px pg"></span><span class="px pe"></span>
+            <span class="px pp"></span><span class="px pp"></span><span class="px pe"></span><span class="px pe"></span>
+          </div>
+          <div class="logo-text">
+            <span class="logo-mark">Loyal Partners</span>
+            <span class="logo-sub-text">Financial Solution</span>
+          </div>
         </div>
         <p data-ka="პროფესიული ფინანსური სერვისები ქართველი ბიზნესებისთვის 2014 წლიდან. ეთიკა, ექსპერტიზა, ლოიალობა." data-en="Professional financial services for Georgian businesses since 2014. Ethics, expertise, loyalty.">პროფესიული ფინანსური სერვისები ქართველი ბიზნესებისთვის 2014 წლიდან.</p>
       </div>
@@ -1248,8 +1166,8 @@ footer{
       </div>
     </div>
     <div class="footer-bottom">
-      <p data-ka="© 2024 Loyal Partners Georgia. ყველა უფლება დაცულია." data-en="© 2024 Loyal Partners Georgia. All rights reserved.">© 2024 Loyal Partners Georgia. ყველა უფლება დაცულია.</p>
-      <span class="mono" style="font-size:0.68rem;color:var(--muted-2);">loyalpartners.ge</span>
+      <p data-ka="&copy; 2024 Loyal Partners Georgia. ყველა უფლება დაცულია." data-en="&copy; 2024 Loyal Partners Georgia. All rights reserved.">&copy; 2024 Loyal Partners Georgia. ყველა უფლება დაცულია.</p>
+      <span style="font-size:0.72rem;color:rgba(255,255,255,0.25);">loyalpartners.ge</span>
     </div>
   </div>
 </footer>
@@ -1287,16 +1205,13 @@ function setLang(lang) {
   currentLang = lang;
   document.documentElement.setAttribute('data-lang', lang);
 
-  // Update toggle buttons
   document.querySelectorAll('.lang-btn').forEach(btn => {
     btn.classList.toggle('active', btn.textContent.toLowerCase() === lang);
   });
 
-  // Update all translatable elements
   document.querySelectorAll('[data-ka]').forEach(el => {
     const text = el.getAttribute('data-' + lang);
     if (!text) return;
-    // Check if it contains HTML
     if (text.includes('<')) {
       el.innerHTML = text;
     } else {
@@ -1304,13 +1219,11 @@ function setLang(lang) {
     }
   });
 
-  // Update select options
   document.querySelectorAll('select option[data-ka]').forEach(opt => {
     const text = opt.getAttribute('data-' + lang);
     if (text) opt.textContent = text;
   });
 
-  // Update html lang attr
   document.documentElement.lang = lang;
 }
 </script>
