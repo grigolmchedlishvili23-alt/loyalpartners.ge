@@ -110,16 +110,8 @@ nav.scrolled{
   padding:0.85rem 0;
 }
 .nav-inner{display:flex;align-items:center;justify-content:space-between;gap:2rem;}
-.logo{display:flex;align-items:center;gap:0.65rem;text-decoration:none;}
-.logo-text{display:flex;flex-direction:column;line-height:1;}
-.logo-mark{
-  font-family:Helvetica,'Montserrat',Arial,sans-serif;font-size:1.1rem;font-weight:800;
-  color:var(--purple);letter-spacing:0.04em;text-transform:uppercase;
-}
-.logo-sub-text{
-  font-family:Helvetica,'Montserrat',Arial,sans-serif;font-size:0.6rem;
-  letter-spacing:0.22em;text-transform:uppercase;color:var(--black);font-weight:500;
-}
+.logo{display:flex;align-items:center;text-decoration:none;}
+.logo-img{height:42px;width:auto;display:block;}
 .nav-links{display:flex;align-items:center;gap:2rem;list-style:none;}
 .nav-links a{
   font-size:0.85rem;font-weight:500;color:var(--text-2);
@@ -486,8 +478,7 @@ footer{
   display:flex;justify-content:space-between;align-items:center;
 }
 .footer-bottom p{font-size:0.75rem;color:rgba(255,255,255,0.3);}
-.footer-logo .logo-mark{color:var(--purple);}
-.footer-logo .logo-sub-text{color:rgba(255,255,255,0.4);}
+.footer-logo .logo-img{height:38px;}
 
 /* ══════════════════════ ANIMATIONS ══════════════════════ */
 @keyframes heroReveal{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
@@ -527,10 +518,7 @@ footer{
   <div class="container">
     <div class="nav-inner">
       <a href="#home" class="logo" onclick="scrollTo('home')">
-        <div class="logo-text">
-          <span class="logo-mark">Loyal Partners</span>
-          <span class="logo-sub-text">Financial Solution</span>
-        </div>
+        <img src="assets/logo-light.png" alt="Loyal Partners" class="logo-img">
       </a>
       <ul class="nav-links">
         <li><a href="#services" onclick="scrollTo('services')"><span data-ka="სერვისები" data-en="Services">სერვისები</span></a></li>
@@ -1036,10 +1024,7 @@ footer{
     <div class="footer-grid">
       <div class="footer-brand">
         <div class="logo footer-logo" style="pointer-events:none;">
-          <div class="logo-text">
-            <span class="logo-mark">Loyal Partners</span>
-            <span class="logo-sub-text">Financial Solution</span>
-          </div>
+          <img src="assets/logo-dark.png" alt="Loyal Partners" class="logo-img">
         </div>
         <p data-ka="პროფესიული ფინანსური სერვისები ქართველი ბიზნესებისთვის 2014 წლიდან. ეთიკა, ექსპერტიზა, ლოიალობა." data-en="Professional financial services for Georgian businesses since 2014. Ethics, expertise, loyalty.">პროფესიული ფინანსური სერვისები ქართველი ბიზნესებისთვის 2014 წლიდან.</p>
       </div>
