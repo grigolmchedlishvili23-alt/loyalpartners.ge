@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html lang="ka" data-lang="ka">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Loyal Partners — ფინანსური კალკულატორი</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --purple: #7674F5;
+  --purple-light: rgba(118,116,245,0.08);
+  --purple-border: rgba(118,116,245,0.15);
+  --purple-glow: rgba(118,116,245,0.35);
+  --green: #3EFD9B;
+  --green-light: rgba(62,253,155,0.1);
+  --green-border: rgba(62,253,155,0.25);
+  --black: #000000;
+  --dark: #0D0D1A;
+  --bg: #F4F4F4;
+  --white: #FFFFFF;
+  --text: #2D2D3A;
+  --text-body: #4A4A5A;
+  --muted: #8E8E9E;
+  --border: rgba(0,0,0,0.08);
+  --border-light: rgba(0,0,0,0.04);
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.06);
+  --shadow-md: 0 4px 16px rgba(0,0,0,0.06);
+  --shadow-lg: 0 12px 40px rgba(0,0,0,0.1);
+  --radius-card: 16px;
+  --radius-btn: 12px;
+  --radius-pill: 100px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--bg);
+  color: var(--text-body);
+  font-size: 1rem;
+  line-height: 1.75;
+  font-weight: 400;
+  overflow-x: hidden;
+}
+
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--purple); border-radius: 2px; }
+
+* { cursor: default; }
+a, button, input, label { cursor: pointer; }
+input[type="number"] { cursor: text; }
+
+/* TYPOGRAPHY */
+h1, h2, h3, h4 {
+  font-family: 'DM Sans', 'Inter', sans-serif;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  color: var(--black);
+}
+h1 { font-size: clamp(2.8rem, 5.5vw, 4.5rem); font-weight: 700; }
+h2 { font-size: clamp(2rem, 3.5vw, 3rem); font-weight: 700; }
+h3 { font-size: clamp(1rem, 1.6vw, 1.25rem); font-weight: 600; }
+p { font-size: 1rem; font-weight: 400; color: var(--text-body); max-width: 640px; }
+a { text-decoration: none; color: inherit; }
+
+/* UTILITY */
+.container { max-width: 1280px; margin: 0 auto; padding: 0 2rem; }
+.section { padding: 7rem 0; }
+.purple { color: var(--purple); }
+.green { color: var(--green); }
+
+/* SECTION TAG */
+.tag {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  font-family: 'DM Sans', sans-serif; font-size: 0.72rem; font-weight: 600;
+  letter-spacing: 0.12em; text-transform: uppercase; color: var(--purple);
+  margin-bottom: 1rem;
+  padding: 0.4rem 0.9rem;
+  background: var(--purple-light);
+  border-radius: var(--radius-pill);
+}
+
+/* ACCENT LINE */
+.accent-line {
+  width: 48px; height: 3px;
+  background: linear-gradient(90deg, var(--purple), var(--green));
+  border-radius: 2px;
+  margin: 1.25rem 0;
+}
+
+/* SECTION HEADER */
+.section-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+.section-header p {
+  max-width: 600px;
+  margin: 1rem auto 0;
+}
+
+/* BUTTONS */
+.btn {
+  display: inline-flex; align-items: center; gap: 0.6rem;
+  padding: 0.9rem 1.85rem;
+  font-family: 'DM Sans', sans-serif; font-size: 0.875rem; font-weight: 600;
+  letter-spacing: 0.02em; border: none; border-radius: var(--radius-btn);
+  transition: all 0.3s ease; cursor: pointer;
+}
+.btn-purple { background: var(--purple); color: #fff; }
+.btn-purple:hover { background: #5f5de0; box-shadow: 0 6px 24px var(--purple-glow); transform: translateY(-1px); }
+.btn-green { background: var(--green); color: var(--black); }
+.btn-green:hover { background: #2de88a; box-shadow: 0 6px 24px rgba(62,253,155,0.35); transform: translateY(-1px); }
+.btn-outline {
+  background: transparent; color: var(--text);
+  border: 1.5px solid var(--border);
+}
+.btn-outline:hover { border-color: var(--purple); color: var(--purple); }
+.btn-white { background: var(--white); color: var(--purple); font-weight: 700; }
+.btn-white:hover { background: #f0f0ff; transform: translateY(-1px); box-shadow: 0 6px 24px rgba(255,255,255,0.25); }
+.btn svg { width: 16px; height: 16px; flex-shrink: 0; }
+
+/* ============================== NAV ============================== */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  padding: 1.1rem 0;
+  background: rgba(255,255,255,0.8);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  transition: all 0.3s ease;
+}
+nav.scrolled {
+  background: rgba(255,255,255,0.95);
+  box-shadow: 0 1px 12px rgba(0,0,0,0.06);
+  padding: 0.75rem 0;
+}
+.nav-inner { display: flex; align-items: center; justify-content: space-between; gap: 2rem; }
+.logo { display: flex; align-items: center; text-decoration: none; }
+.logo-img { height: 54px; width: auto; display: block; }
+.nav-links { display: flex; align-items: center; gap: 2rem; list-style: none; }
+.nav-links a {
+  font-size: 0.875rem; font-weight: 500; color: var(--text-body);
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--purple); }
+
+/* LANG TOGGLE */
+.lang-toggle {
+  display: flex; align-items: center; gap: 0;
+  border: 1.5px solid var(--border); border-radius: 8px; overflow: hidden;
+}
+.lang-btn {
+  padding: 0.4rem 0.7rem;
+  font-family: 'DM Sans', sans-serif; font-size: 0.7rem; font-weight: 600;
+  color: var(--muted); background: transparent; border: none;
+  cursor: pointer; transition: all 0.2s; letter-spacing: 0.05em;
+}
+.lang-btn.active { background: var(--purple); color: #fff; }
+.lang-btn:hover:not(.active) { color: var(--text); }
+
+.nav-right { display: flex; align-items: center; gap: 1rem; }
+
+/* HAMBURGER */
+.menu-toggle { display: none; background: none; border: none; padding: 0.5rem; }
+.menu-toggle span { display: block; width: 22px; height: 2px; background: var(--black); margin: 5px 0; transition: 0.3s; }
+
+/* MOBILE NAV */
+.nav-links.show {
+  display: flex !important;
+  flex-direction: column;
+  position: absolute;
+  top: 100%;
+  left: 0; right: 0;
+  background: var(--white);
+  padding: 1.5rem 2rem;
+  box-shadow: var(--shadow-md);
+  gap: 1rem;
+}
+
+/* ============================== HERO BANNER ============================== */
+.calc-hero {
+  padding: 8rem 0 4rem;
+  text-align: center;
+  background: var(--white);
+  position: relative;
+  overflow: hidden;
+}
+.calc-hero::before {
+  content: '';
+  position: absolute;
+  top: -50%; right: -20%;
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(118,116,245,0.06) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+.calc-hero::after {
+  content: '';
+  position: absolute;
+  bottom: -30%; left: -10%;
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(62,253,155,0.05) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+.calc-hero h1 {
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  margin-bottom: 1rem;
+}
+.calc-hero p {
+  max-width: 550px;
+  margin: 0 auto;
+  font-size: 1.05rem;
+}
+
+/* ============================== CALCULATOR SECTION ============================== */
+.calc-section {
+  padding: 4rem 0 7rem;
+}
+
+/* TAB NAVIGATION */
+.calc-tabs {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 2.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.calc-tab {
+  padding: 0.75rem 1.5rem;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.875rem;
+  font-weight: 600;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-btn);
+  background: var(--white);
+  color: var(--text-body);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.calc-tab:hover { border-color: var(--purple); color: var(--purple); }
+.calc-tab.active {
+  background: var(--purple);
+  color: #fff;
+  border-color: var(--purple);
+}
+
+/* CALCULATOR CARD */
+.calc-panel {
+  display: none;
+  max-width: 680px;
+  margin: 0 auto;
+}
+.calc-panel.active { display: block; }
+
+.calc-card {
+  background: var(--white);
+  border-radius: var(--radius-card);
+  padding: 2.5rem;
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--border-light);
+}
+
+.calc-card h3 {
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+.calc-card .calc-desc {
+  font-size: 0.9rem;
+  color: var(--muted);
+  margin-bottom: 2rem;
+}
+
+/* FORM ELEMENTS */
+.form-group {
+  margin-bottom: 1.5rem;
+}
+.form-label {
+  display: block;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.02em;
+}
+.input-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.input-wrap input {
+  width: 100%;
+  padding: 1rem 1.25rem;
+  padding-right: 4rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 500;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-btn);
+  background: var(--bg);
+  color: var(--text);
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  -moz-appearance: textfield;
+}
+.input-wrap input::-webkit-outer-spin-button,
+.input-wrap input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.input-wrap input:focus {
+  border-color: var(--purple);
+  box-shadow: 0 0 0 3px var(--purple-light);
+}
+.input-currency {
+  position: absolute;
+  right: 1.25rem;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--muted);
+  letter-spacing: 0.05em;
+  pointer-events: none;
+}
+
+/* RADIO GROUP */
+.radio-group {
+  display: flex;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+.radio-option {
+  flex: 1;
+  min-width: 140px;
+}
+.radio-option input[type="radio"] {
+  display: none;
+}
+.radio-option label {
+  display: block;
+  padding: 0.75rem 1rem;
+  text-align: center;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-btn);
+  background: var(--white);
+  color: var(--text-body);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.radio-option input[type="radio"]:checked + label {
+  background: var(--purple-light);
+  border-color: var(--purple);
+  color: var(--purple);
+}
+.radio-option label:hover {
+  border-color: var(--purple-border);
+}
+
+/* CALCULATE BUTTON */
+.calc-btn {
+  width: 100%;
+  padding: 1rem;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  background: var(--purple);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-btn);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 0.5rem;
+}
+.calc-btn:hover {
+  background: #5f5de0;
+  box-shadow: 0 6px 24px var(--purple-glow);
+  transform: translateY(-1px);
+}
+
+/* RESULTS */
+.calc-results {
+  margin-top: 2rem;
+  background: var(--bg);
+  border-radius: var(--radius-btn);
+  padding: 1.75rem;
+  border: 1px solid var(--border-light);
+}
+.calc-results.hidden { display: none; }
+
+.result-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.65rem 0;
+  border-bottom: 1px solid var(--border-light);
+}
+.result-row:last-child { border-bottom: none; }
+
+.result-label {
+  font-size: 0.9rem;
+  color: var(--text-body);
+}
+.result-value {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text);
+}
+.result-row.total {
+  margin-top: 0.5rem;
+  padding-top: 1rem;
+  border-top: 2px solid var(--green);
+  border-bottom: none;
+}
+.result-row.total .result-value {
+  font-size: 1.2rem;
+  color: var(--purple);
+}
+.result-row.total .result-label {
+  font-weight: 600;
+  color: var(--text);
+}
+
+/* ============================== CTA BANNER ============================== */
+#cta-banner {
+  background: linear-gradient(135deg, #7674F5 0%, #5856d6 100%);
+  padding: 6rem 0;
+  text-align: center;
+}
+#cta-banner h2 {
+  color: var(--white);
+  max-width: 700px;
+  margin: 0 auto 2rem;
+}
+#cta-banner p {
+  color: rgba(255,255,255,0.75);
+  max-width: 500px;
+  margin: 0 auto 2.5rem;
+}
+
+/* ============================== FOOTER ============================== */
+footer {
+  background: var(--black);
+  color: rgba(255,255,255,0.6);
+  padding: 4.5rem 0 2rem;
+}
+.footer-grid {
+  display: grid; grid-template-columns: 1.6fr 1fr 1fr 1fr;
+  gap: 3rem; margin-bottom: 3rem;
+}
+.footer-brand p {
+  font-size: 0.85rem; color: rgba(255,255,255,0.4);
+  line-height: 1.7; margin-top: 1rem; max-width: none;
+}
+.footer-col h4 {
+  font-size: 0.68rem; font-weight: 700;
+  letter-spacing: 0.12em; text-transform: uppercase; color: var(--green);
+  margin-bottom: 1.25rem;
+}
+.footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+.footer-links a { font-size: 0.83rem; color: rgba(255,255,255,0.45); transition: color 0.2s; }
+.footer-links a:hover { color: var(--white); }
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.08);
+  padding-top: 1.5rem;
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 1rem;
+}
+.footer-bottom p { font-size: 0.75rem; color: rgba(255,255,255,0.3); max-width: none; }
+.footer-bottom-links { display: flex; gap: 1.5rem; }
+.footer-bottom-links a { font-size: 0.72rem; color: rgba(255,255,255,0.25); transition: color 0.2s; }
+.footer-bottom-links a:hover { color: rgba(255,255,255,0.6); }
+.footer-logo .logo-img { height: 48px; }
+
+/* ============================== ANIMATIONS ============================== */
+@keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* ============================== RESPONSIVE ============================== */
+@media (max-width: 1024px) {
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  nav .btn { display: none; }
+  .menu-toggle { display: block; }
+  .footer-grid { grid-template-columns: 1fr; }
+  .section { padding: 5rem 0; }
+  .calc-card { padding: 1.75rem; }
+  .calc-tabs { gap: 0.35rem; }
+  .calc-tab { padding: 0.6rem 1rem; font-size: 0.8rem; }
+  .calc-hero { padding: 7rem 0 3rem; }
+  .calc-section { padding: 3rem 0 5rem; }
+  .radio-group { flex-direction: column; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <div class="container">
+    <div class="nav-inner">
+      <a href="index.html" class="logo">
+        <img src="logo.png" alt="Loyal Partners" class="logo-img">
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html#services"><span data-ka="სერვისები" data-en="Services">სერვისები</span></a></li>
+        <li><a href="index.html#about"><span data-ka="კომპანიაზე" data-en="About">კომპანიაზე</span></a></li>
+        <li><a href="index.html#process"><span data-ka="პროცესი" data-en="Process">პროცესი</span></a></li>
+        <li><a href="index.html#team"><span data-ka="გუნდი" data-en="Team">გუნდი</span></a></li>
+        <li><a href="index.html#contact"><span data-ka="კონტაქტი" data-en="Contact">კონტაქტი</span></a></li>
+      </ul>
+      <div class="nav-right">
+        <div class="lang-toggle">
+          <button class="lang-btn active" onclick="setLang('ka')">KA</button>
+          <button class="lang-btn" onclick="setLang('en')">EN</button>
+        </div>
+        <a href="index.html#contact" class="btn btn-purple">
+          <span data-ka="კონსულტაცია" data-en="Book Consultation">კონსულტაცია</span>
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+        </a>
+        <button class="menu-toggle" onclick="document.querySelector('.nav-links').classList.toggle('show')">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="calc-hero">
+  <div class="container">
+    <div class="tag"><span data-ka="კალკულატორი" data-en="Calculator">კალკულატორი</span></div>
+    <h1 data-ka="ფინანსური <span class='purple'>კალკულატორი</span>" data-en="Financial <span class='purple'>Calculator</span>">ფინანსური <span class="purple">კალკულატორი</span></h1>
+    <p data-ka="გამოიყენეთ ჩვენი კალკულატორები საქართველოს საგადასახადო სისტემის სწრაფი გამოთვლებისთვის." data-en="Use our calculators for quick calculations within the Georgian tax system.">გამოიყენეთ ჩვენი კალკულატორები საქართველოს საგადასახადო სისტემის სწრაფი გამოთვლებისთვის.</p>
+  </div>
+</section>
+
+<!-- CALCULATOR -->
+<section class="calc-section">
+  <div class="container">
+
+    <!-- TABS -->
+    <div class="calc-tabs">
+      <button class="calc-tab active" onclick="switchTab('vat')" data-ka="დღგ კალკულატორი" data-en="VAT Calculator">დღგ კალკულატორი</button>
+      <button class="calc-tab" onclick="switchTab('income')" data-ka="საშემოსავლო გადასახადი" data-en="Income Tax">საშემოსავლო გადასახადი</button>
+      <button class="calc-tab" onclick="switchTab('pension')" data-ka="საპენსიო კალკულატორი" data-en="Pension Calculator">საპენსიო კალკულატორი</button>
+    </div>
+
+    <!-- VAT CALCULATOR -->
+    <div class="calc-panel active" id="panel-vat">
+      <div class="calc-card reveal visible">
+        <h3 data-ka="დღგ კალკულატორი" data-en="VAT Calculator">დღგ კალკულატორი</h3>
+        <p class="calc-desc" data-ka="საქართველოს დღგ განაკვეთი — 18%" data-en="Georgian VAT rate — 18%">საქართველოს დღგ განაკვეთი — 18%</p>
+
+        <div class="form-group">
+          <label class="form-label" data-ka="თანხა" data-en="Amount">თანხა</label>
+          <div class="input-wrap">
+            <input type="number" id="vat-amount" placeholder="0.00" min="0" step="0.01" oninput="calculateVAT()">
+            <span class="input-currency">GEL</span>
+          </div>
+        </div>
+
+        <div class="radio-group">
+          <div class="radio-option">
+            <input type="radio" name="vat-mode" id="vat-add" value="add" checked onchange="calculateVAT()">
+            <label for="vat-add" data-ka="დაამატე დღგ" data-en="Add VAT">დაამატე დღგ</label>
+          </div>
+          <div class="radio-option">
+            <input type="radio" name="vat-mode" id="vat-remove" value="remove" onchange="calculateVAT()">
+            <label for="vat-remove" data-ka="გამოაკელი დღგ" data-en="Remove VAT">გამოაკელი დღგ</label>
+          </div>
+        </div>
+
+        <button class="calc-btn" onclick="calculateVAT()" data-ka="გამოთვლა" data-en="Calculate">გამოთვლა</button>
+
+        <div class="calc-results hidden" id="vat-results">
+          <div class="result-row">
+            <span class="result-label" id="vat-label-base" data-ka="საწყისი თანხა" data-en="Base Amount">საწყისი თანხა</span>
+            <span class="result-value" id="vat-base">0.00 GEL</span>
+          </div>
+          <div class="result-row">
+            <span class="result-label" data-ka="დღგ (18%)" data-en="VAT (18%)">დღგ (18%)</span>
+            <span class="result-value" id="vat-tax">0.00 GEL</span>
+          </div>
+          <div class="result-row total">
+            <span class="result-label" id="vat-label-total" data-ka="სულ (დღგ-ს ჩათვლით)" data-en="Total (incl. VAT)">სულ (დღგ-ს ჩათვლით)</span>
+            <span class="result-value" id="vat-total">0.00 GEL</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- INCOME TAX CALCULATOR -->
+    <div class="calc-panel" id="panel-income">
+      <div class="calc-card reveal visible">
+        <h3 data-ka="საშემოსავლო გადასახადის კალკულატორი" data-en="Income Tax Calculator">საშემოსავლო გადასახადის კალკულატორი</h3>
+        <p class="calc-desc" data-ka="საქართველოს საშემოსავლო გადასახადის განაკვეთი — 20%" data-en="Georgian income tax rate — 20%">საქართველოს საშემოსავლო გადასახადის განაკვეთი — 20%</p>
+
+        <div class="form-group">
+          <label class="form-label" data-ka="ხელფასი (ბრუტო)" data-en="Gross Salary">ხელფასი (ბრუტო)</label>
+          <div class="input-wrap">
+            <input type="number" id="income-gross" placeholder="0.00" min="0" step="0.01" oninput="calculateIncome()">
+            <span class="input-currency">GEL</span>
+          </div>
+        </div>
+
+        <button class="calc-btn" onclick="calculateIncome()" data-ka="გამოთვლა" data-en="Calculate">გამოთვლა</button>
+
+        <div class="calc-results hidden" id="income-results">
+          <div class="result-row">
+            <span class="result-label" data-ka="ბრუტო ხელფასი" data-en="Gross Salary">ბრუტო ხელფასი</span>
+            <span class="result-value" id="income-gross-val">0.00 GEL</span>
+          </div>
+          <div class="result-row">
+            <span class="result-label" data-ka="საშემოსავლო გადასახადი (20%)" data-en="Income Tax (20%)">საშემოსავლო გადასახადი (20%)</span>
+            <span class="result-value" id="income-tax">0.00 GEL</span>
+          </div>
+          <div class="result-row total">
+            <span class="result-label" data-ka="ნეტო ხელფასი" data-en="Net Salary">ნეტო ხელფასი</span>
+            <span class="result-value" id="income-net">0.00 GEL</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PENSION CALCULATOR -->
+    <div class="calc-panel" id="panel-pension">
+      <div class="calc-card reveal visible">
+        <h3 data-ka="საპენსიო კალკულატორი" data-en="Pension Calculator">საპენსიო კალკულატორი</h3>
+        <p class="calc-desc" data-ka="საპენსიო შენატანები: თანამშრომელი 2%, დამსაქმებელი 2%, სახელმწიფო 1% (ხელფასი &lt; 2 000 ₾/თვე)" data-en="Pension contributions: Employee 2%, Employer 2%, Government 1% (if salary &lt; 2,000 GEL/month)">საპენსიო შენატანები: თანამშრომელი 2%, დამსაქმებელი 2%, სახელმწიფო 1% (ხელფასი &lt; 2 000 ₾/თვე)</p>
+
+        <div class="form-group">
+          <label class="form-label" data-ka="ყოველთვიური ბრუტო ხელფასი" data-en="Monthly Gross Salary">ყოველთვიური ბრუტო ხელფასი</label>
+          <div class="input-wrap">
+            <input type="number" id="pension-gross" placeholder="0.00" min="0" step="0.01" oninput="calculatePension()">
+            <span class="input-currency">GEL</span>
+          </div>
+        </div>
+
+        <button class="calc-btn" onclick="calculatePension()" data-ka="გამოთვლა" data-en="Calculate">გამოთვლა</button>
+
+        <div class="calc-results hidden" id="pension-results">
+          <div class="result-row">
+            <span class="result-label" data-ka="ბრუტო ხელფასი" data-en="Gross Salary">ბრუტო ხელფასი</span>
+            <span class="result-value" id="pension-gross-val">0.00 GEL</span>
+          </div>
+          <div class="result-row">
+            <span class="result-label" data-ka="თანამშრომლის შენატანი (2%)" data-en="Employee Contribution (2%)">თანამშრომლის შენატანი (2%)</span>
+            <span class="result-value" id="pension-employee">0.00 GEL</span>
+          </div>
+          <div class="result-row">
+            <span class="result-label" data-ka="დამსაქმებლის შენატანი (2%)" data-en="Employer Contribution (2%)">დამსაქმებლის შენატანი (2%)</span>
+            <span class="result-value" id="pension-employer">0.00 GEL</span>
+          </div>
+          <div class="result-row">
+            <span class="result-label" data-ka="სახელმწიფოს შენატანი (1%)" data-en="Government Contribution (1%)">სახელმწიფოს შენატანი (1%)</span>
+            <span class="result-value" id="pension-gov">0.00 GEL</span>
+          </div>
+          <div class="result-row">
+            <span class="result-label" data-ka="სულ საპენსიო შენატანი" data-en="Total Pension Contribution">სულ საპენსიო შენატანი</span>
+            <span class="result-value" id="pension-total">0.00 GEL</span>
+          </div>
+          <div class="result-row total">
+            <span class="result-label" data-ka="ხელფასი საპენსიო შენატანის შემდეგ" data-en="Salary After Pension Deduction">ხელფასი საპენსიო შენატანის შემდეგ</span>
+            <span class="result-value" id="pension-net">0.00 GEL</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<section id="cta-banner">
+  <div class="container">
+    <h2 data-ka="გჭირდებათ პროფესიონალური<br><span style='color:var(--green)'>კონსულტაცია?</span>" data-en="Need Professional<br><span style='color:var(--green)'>Consultation?</span>">გჭირდებათ პროფესიონალური<br><span style="color:var(--green)">კონსულტაცია?</span></h2>
+    <p data-ka="ჩვენი ექსპერტები დაგეხმარებიან საგადასახადო დაგეგმვაში, ბუღალტერიასა და ფინანსურ მართვაში." data-en="Our experts will help you with tax planning, accounting, and financial management.">ჩვენი ექსპერტები დაგეხმარებიან საგადასახადო დაგეგმვაში, ბუღალტერიასა და ფინანსურ მართვაში.</p>
+    <a href="index.html#contact" class="btn btn-white">
+      <span data-ka="დაჯავშნე კონსულტაცია" data-en="Book a Consultation">დაჯავშნე კონსულტაცია</span>
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo footer-logo" style="pointer-events:none;">
+          <img src="logo.png" alt="Loyal Partners" class="logo-img">
+        </div>
+        <p data-ka="პროფესიული ფინანსური სერვისები ქართველი ბიზნესებისთვის 2014 წლიდან. ეთიკა, ექსპერტიზა, ლოიალობა." data-en="Professional financial services for Georgian businesses since 2014. Ethics, expertise, loyalty.">პროფესიული ფინანსური სერვისები ქართველი ბიზნესებისთვის 2014 წლიდან. ეთიკა, ექსპერტიზა, ლოიალობა.</p>
+      </div>
+      <div class="footer-col">
+        <h4 data-ka="სერვისები" data-en="Services">სერვისები</h4>
+        <ul class="footer-links">
+          <li><a href="index.html#services">Outsourced CFO</a></li>
+          <li><a href="index.html#services" data-ka="ბუღალტერია" data-en="Accounting">ბუღალტერია</a></li>
+          <li><a href="index.html#services" data-ka="აუდიტი" data-en="Audit">აუდიტი</a></li>
+          <li><a href="index.html#services" data-ka="საგადასახადო" data-en="Tax">საგადასახადო</a></li>
+          <li><a href="index.html#services" data-ka="მოდელირება" data-en="Modeling">მოდელირება</a></li>
+          <li><a href="index.html#services" data-ka="ანგარიშგება" data-en="Reporting">ანგარიშგება</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4 data-ka="კომპანია" data-en="Company">კომპანია</h4>
+        <ul class="footer-links">
+          <li><a href="index.html#about" data-ka="ჩვენს შესახებ" data-en="About Us">ჩვენს შესახებ</a></li>
+          <li><a href="index.html#team" data-ka="გუნდი" data-en="Team">გუნდი</a></li>
+          <li><a href="index.html#process" data-ka="პროცესი" data-en="Process">პროცესი</a></li>
+          <li><a href="index.html#contact" data-ka="კარიერა" data-en="Careers">კარიერა</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4 data-ka="კონტაქტი" data-en="Contact">კონტაქტი</h4>
+        <ul class="footer-links">
+          <li><a href="mailto:info@loyalpartners.ge">info@loyalpartners.ge</a></li>
+          <li><a href="mailto:hr@loyalpartners.ge">hr@loyalpartners.ge</a></li>
+          <li><a href="#">LinkedIn</a></li>
+          <li><a href="#">Facebook</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p data-ka="&copy; 2024 Loyal Partners Georgia. ყველა უფლება დაცულია." data-en="&copy; 2024 Loyal Partners Georgia. All rights reserved.">&copy; 2024 Loyal Partners Georgia. ყველა უფლება დაცულია.</p>
+      <div class="footer-bottom-links">
+        <a href="#" data-ka="კონფიდენციალურობა" data-en="Privacy Policy">კონფიდენციალურობა</a>
+        <a href="#" data-ka="პირობები" data-en="Terms of Service">პირობები</a>
+        <span style="font-size:0.72rem;color:rgba(255,255,255,0.25);">loyalpartners.ge</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// NAV SCROLL
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 40);
+});
+
+// FORMAT NUMBER with space separator (Georgian style)
+function formatNum(num) {
+  if (isNaN(num) || num === 0) return '0.00';
+  const parts = num.toFixed(2).split('.');
+  parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+  return parts.join('.');
+}
+
+// TAB SWITCHING
+function switchTab(tab) {
+  document.querySelectorAll('.calc-tab').forEach((t, i) => {
+    const tabs = ['vat', 'income', 'pension'];
+    t.classList.toggle('active', tabs[i] === tab);
+  });
+  document.querySelectorAll('.calc-panel').forEach(p => p.classList.remove('active'));
+  document.getElementById('panel-' + tab).classList.add('active');
+}
+
+// VAT CALCULATOR
+function calculateVAT() {
+  const amount = parseFloat(document.getElementById('vat-amount').value) || 0;
+  const mode = document.querySelector('input[name="vat-mode"]:checked').value;
+  const results = document.getElementById('vat-results');
+
+  if (amount <= 0) {
+    results.classList.add('hidden');
+    return;
+  }
+
+  results.classList.remove('hidden');
+
+  let base, vat, total;
+  const baseLabelEl = document.getElementById('vat-label-base');
+  const totalLabelEl = document.getElementById('vat-label-total');
+
+  if (mode === 'add') {
+    base = amount;
+    vat = amount * 0.18;
+    total = amount * 1.18;
+    baseLabelEl.setAttribute('data-ka', 'საწყისი თანხა');
+    baseLabelEl.setAttribute('data-en', 'Base Amount');
+    totalLabelEl.setAttribute('data-ka', 'სულ (დღგ-ს ჩათვლით)');
+    totalLabelEl.setAttribute('data-en', 'Total (incl. VAT)');
+  } else {
+    total = amount;
+    base = amount / 1.18;
+    vat = amount - base;
+    baseLabelEl.setAttribute('data-ka', 'წმინდა თანხა (დღგ-ს გარეშე)');
+    baseLabelEl.setAttribute('data-en', 'Net Amount (excl. VAT)');
+    totalLabelEl.setAttribute('data-ka', 'სრული თანხა');
+    totalLabelEl.setAttribute('data-en', 'Full Amount');
+  }
+
+  // Update displayed text for current language
+  const lang = document.documentElement.getAttribute('data-lang') || 'ka';
+  baseLabelEl.textContent = baseLabelEl.getAttribute('data-' + lang);
+  totalLabelEl.textContent = totalLabelEl.getAttribute('data-' + lang);
+
+  document.getElementById('vat-base').textContent = formatNum(base) + ' GEL';
+  document.getElementById('vat-tax').textContent = formatNum(vat) + ' GEL';
+  document.getElementById('vat-total').textContent = formatNum(total) + ' GEL';
+}
+
+// INCOME TAX CALCULATOR
+function calculateIncome() {
+  const gross = parseFloat(document.getElementById('income-gross').value) || 0;
+  const results = document.getElementById('income-results');
+
+  if (gross <= 0) {
+    results.classList.add('hidden');
+    return;
+  }
+
+  results.classList.remove('hidden');
+
+  const tax = gross * 0.20;
+  const net = gross - tax;
+
+  document.getElementById('income-gross-val').textContent = formatNum(gross) + ' GEL';
+  document.getElementById('income-tax').textContent = formatNum(tax) + ' GEL';
+  document.getElementById('income-net').textContent = formatNum(net) + ' GEL';
+}
+
+// PENSION CALCULATOR
+function calculatePension() {
+  const gross = parseFloat(document.getElementById('pension-gross').value) || 0;
+  const results = document.getElementById('pension-results');
+
+  if (gross <= 0) {
+    results.classList.add('hidden');
+    return;
+  }
+
+  results.classList.remove('hidden');
+
+  const employee = gross * 0.02;
+  const employer = gross * 0.02;
+  const gov = gross < 2000 ? gross * 0.01 : 0;
+  const totalPension = employee + employer + gov;
+  const net = gross - employee; // Only employee contribution is deducted from salary
+
+  document.getElementById('pension-gross-val').textContent = formatNum(gross) + ' GEL';
+  document.getElementById('pension-employee').textContent = formatNum(employee) + ' GEL';
+  document.getElementById('pension-employer').textContent = formatNum(employer) + ' GEL';
+  document.getElementById('pension-gov').textContent = formatNum(gov) + ' GEL';
+  document.getElementById('pension-total').textContent = formatNum(totalPension) + ' GEL';
+  document.getElementById('pension-net').textContent = formatNum(net) + ' GEL';
+
+  // Update government label to show 0% if salary >= 2000
+  const govLabel = document.querySelector('#pension-results .result-row:nth-child(4) .result-label');
+  if (gross >= 2000) {
+    govLabel.setAttribute('data-ka', 'სახელმწიფოს შენატანი (0% — ხელფასი ≥ 2 000)');
+    govLabel.setAttribute('data-en', 'Government Contribution (0% — salary ≥ 2,000)');
+  } else {
+    govLabel.setAttribute('data-ka', 'სახელმწიფოს შენატანი (1%)');
+    govLabel.setAttribute('data-en', 'Government Contribution (1%)');
+  }
+  const lang = document.documentElement.getAttribute('data-lang') || 'ka';
+  govLabel.textContent = govLabel.getAttribute('data-' + lang);
+}
+
+// LANGUAGE SYSTEM
+let currentLang = 'ka';
+
+function setLang(lang) {
+  currentLang = lang;
+  document.documentElement.setAttribute('data-lang', lang);
+
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.textContent.toLowerCase() === lang);
+  });
+
+  document.querySelectorAll('[data-ka]').forEach(el => {
+    const text = el.getAttribute('data-' + lang);
+    if (!text) return;
+    if (text.includes('<')) {
+      el.innerHTML = text;
+    } else {
+      el.textContent = text;
+    }
+  });
+
+  document.documentElement.lang = lang;
+
+  // Re-run active calculations to update result labels
+  calculateVAT();
+  calculateIncome();
+  calculatePension();
+}
+
+// REVEAL ON SCROLL
+const revealEls = document.querySelectorAll('.reveal');
+const revealObs = new IntersectionObserver((entries) => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('visible'), i * 50);
+      revealObs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.08 });
+revealEls.forEach(el => revealObs.observe(el));
+</script>
+</body>
+</html>
