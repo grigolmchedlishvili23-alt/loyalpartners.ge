@@ -636,13 +636,37 @@ footer {
     <!-- PENSION CALCULATOR -->
     <div class="calc-panel" id="panel-pension">
       <div class="calc-card reveal visible">
-        <h3 data-ka="საპენსიო კალკულატორი" data-en="Pension Calculator">საპენსიო კალკულატორი</h3>
-        <p class="calc-desc" data-ka="საპენსიო შენატანები: თანამშრომელი 2%, დამსაქმებელი 2%, სახელმწიფო 1% (ხელფასი &lt; 2 000 ₾/თვე)" data-en="Pension contributions: Employee 2%, Employer 2%, Government 1% (if salary &lt; 2,000 GEL/month)">საპენსიო შენატანები: თანამშრომელი 2%, დამსაქმებელი 2%, სახელმწიფო 1% (ხელფასი &lt; 2 000 ₾/თვე)</p>
+        <h3 data-ka="საპენსიო და საშემოსავლო კალკულატორი" data-en="Pension & Income Tax Calculator">საპენსიო და საშემოსავლო კალკულატორი</h3>
+        <p class="calc-desc" data-ka="საპენსიო შენატანები: თანამშრომელი 2%, დამსაქმებელი 2%, სახელმწიფო 2% (თვიური ბაზა &lt; 2 000 ₾). საშემოსავლო გადასახადი გამოითვლება საპენსიო შენატანის გამოკლების შემდეგ." data-en="Pension: Employee 2%, Employer 2%, Government 2% (if monthly base &lt; 2,000 GEL). Income tax is calculated after pension deduction.">საპენსიო შენატანები: თანამშრომელი 2%, დამსაქმებელი 2%, სახელმწიფო 2% (თვიური ბაზა &lt; 2 000 ₾). საშემოსავლო გადასახადი გამოითვლება საპენსიო შენატანის გამოკლების შემდეგ.</p>
 
         <div class="form-group">
-          <label class="form-label" data-ka="ყოველთვიური ბრუტო ხელფასი" data-en="Monthly Gross Salary">ყოველთვიური ბრუტო ხელფასი</label>
+          <label class="form-label" data-ka="ხელფასი (ფულადი)" data-en="Salary (Cash)">ხელფასი (ფულადი)</label>
           <div class="input-wrap">
-            <input type="number" id="pension-gross" placeholder="0.00" min="0" step="0.01" oninput="calculatePension()">
+            <input type="number" id="pension-salary" placeholder="1000" min="0" step="0.01" oninput="calculatePension()">
+            <span class="input-currency">GEL</span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" data-ka="დამატებითი ფულადი სარგებელი" data-en="Additional Cash Benefits">დამატებითი ფულადი სარგებელი</label>
+          <div class="input-wrap">
+            <input type="number" id="pension-cash-benefit" placeholder="0" min="0" step="0.01" oninput="calculatePension()">
+            <span class="input-currency">GEL</span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" data-ka="არაფულადი სარგებელი" data-en="Non-Cash Benefits">არაფულადი სარგებელი</label>
+          <div class="input-wrap">
+            <input type="number" id="pension-noncash-benefit" placeholder="0" min="0" step="0.01" oninput="calculatePension()">
+            <span class="input-currency">GEL</span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" data-ka="სხვა დაკავებული თანხა (მაგ. დაზღვევა)" data-en="Other Deductions (e.g. Insurance)">სხვა დაკავებული თანხა (მაგ. დაზღვევა)</label>
+          <div class="input-wrap">
+            <input type="number" id="pension-other-deduction" placeholder="0" min="0" step="0.01" oninput="calculatePension()">
             <span class="input-currency">GEL</span>
           </div>
         </div>
@@ -650,9 +674,9 @@ footer {
         <button class="calc-btn" onclick="calculatePension()" data-ka="გამოთვლა" data-en="Calculate">გამოთვლა</button>
 
         <div class="calc-results hidden" id="pension-results">
-          <div class="result-row">
-            <span class="result-label" data-ka="ბრუტო ხელფასი" data-en="Gross Salary">ბრუტო ხელფასი</span>
-            <span class="result-value" id="pension-gross-val">0.00 GEL</span>
+          <div class="result-row" style="border-bottom:2px solid var(--border);padding-bottom:0.75rem;margin-bottom:0.25rem;">
+            <span class="result-label" data-ka="საპენსიო ბაზა" data-en="Pension Base">საპენსიო ბაზა</span>
+            <span class="result-value" id="pension-base-val">0.00 GEL</span>
           </div>
           <div class="result-row">
             <span class="result-label" data-ka="თანამშრომლის შენატანი (2%)" data-en="Employee Contribution (2%)">თანამშრომლის შენატანი (2%)</span>
@@ -663,15 +687,23 @@ footer {
             <span class="result-value" id="pension-employer">0.00 GEL</span>
           </div>
           <div class="result-row">
-            <span class="result-label" data-ka="სახელმწიფოს შენატანი (1%)" data-en="Government Contribution (1%)">სახელმწიფოს შენატანი (1%)</span>
+            <span class="result-label" id="pension-gov-label" data-ka="სახელმწიფოს შენატანი (2%)" data-en="Government Contribution (2%)">სახელმწიფოს შენატანი (2%)</span>
             <span class="result-value" id="pension-gov">0.00 GEL</span>
           </div>
           <div class="result-row">
-            <span class="result-label" data-ka="სულ საპენსიო შენატანი" data-en="Total Pension Contribution">სულ საპენსიო შენატანი</span>
+            <span class="result-label" data-ka="სულ საპენსიო ანგარიშზე" data-en="Total to Pension Account">სულ საპენსიო ანგარიშზე</span>
             <span class="result-value" id="pension-total">0.00 GEL</span>
           </div>
+          <div class="result-row" style="border-top:2px solid var(--border);padding-top:0.75rem;margin-top:0.25rem;">
+            <span class="result-label" data-ka="საშემოსავლო გადასახადი (20%)" data-en="Income Tax (20%)">საშემოსავლო გადასახადი (20%)</span>
+            <span class="result-value" id="pension-income-tax">0.00 GEL</span>
+          </div>
+          <div class="result-row">
+            <span class="result-label" data-ka="სხვა დაკავებული თანხა" data-en="Other Deductions">სხვა დაკავებული თანხა</span>
+            <span class="result-value" id="pension-other-val">0.00 GEL</span>
+          </div>
           <div class="result-row total">
-            <span class="result-label" data-ka="ხელფასი საპენსიო შენატანის შემდეგ" data-en="Salary After Pension Deduction">ხელფასი საპენსიო შენატანის შემდეგ</span>
+            <span class="result-label" data-ka="ხელზე ასაღები თანხა" data-en="Net Take-Home Pay">ხელზე ასაღები თანხა</span>
             <span class="result-value" id="pension-net">0.00 GEL</span>
           </div>
         </div>
@@ -835,38 +867,61 @@ function calculateIncome() {
 }
 
 // PENSION CALCULATOR
+// Georgian pension logic:
+// Pension base = salary + cash benefits + non-cash benefits
+// Employee contribution = base * 2%
+// Employer contribution = same as employee (2% of base)
+// Government contribution = 2% of base if monthly base < 2000, else 0%
+// Income tax = (pension base - employee contribution) * 20%
+// Net take-home = (salary + cash benefits) - employee contribution - income tax - other deductions
 function calculatePension() {
-  const gross = parseFloat(document.getElementById('pension-gross').value) || 0;
+  const salary = parseFloat(document.getElementById('pension-salary').value) || 0;
+  const cashBenefit = parseFloat(document.getElementById('pension-cash-benefit').value) || 0;
+  const nonCashBenefit = parseFloat(document.getElementById('pension-noncash-benefit').value) || 0;
+  const otherDeduction = parseFloat(document.getElementById('pension-other-deduction').value) || 0;
   const results = document.getElementById('pension-results');
 
-  if (gross <= 0) {
+  if (salary <= 0) {
     results.classList.add('hidden');
     return;
   }
 
   results.classList.remove('hidden');
 
-  const employee = gross * 0.02;
-  const employer = gross * 0.02;
-  const gov = gross < 2000 ? gross * 0.01 : 0;
-  const totalPension = employee + employer + gov;
-  const net = gross - employee; // Only employee contribution is deducted from salary
+  // Pension base includes all compensation
+  const pensionBase = salary + cashBenefit + nonCashBenefit;
 
-  document.getElementById('pension-gross-val').textContent = formatNum(gross) + ' GEL';
+  // Pension contributions
+  const employee = pensionBase * 0.02;
+  const employer = employee; // Employer matches employee contribution
+  const gov = pensionBase < 2000 ? employee : 0; // Government matches if base < 2000/month (24000/year)
+  const totalPension = employee + employer + gov;
+
+  // Income tax calculated AFTER deducting employee pension contribution
+  const taxableAmount = pensionBase - employee;
+  const incomeTax = taxableAmount * 0.20;
+
+  // Net take-home: cash compensation minus employee pension, income tax, other deductions
+  const cashCompensation = salary + cashBenefit;
+  const net = cashCompensation - employee - incomeTax - otherDeduction;
+
+  document.getElementById('pension-base-val').textContent = formatNum(pensionBase) + ' GEL';
   document.getElementById('pension-employee').textContent = formatNum(employee) + ' GEL';
   document.getElementById('pension-employer').textContent = formatNum(employer) + ' GEL';
   document.getElementById('pension-gov').textContent = formatNum(gov) + ' GEL';
   document.getElementById('pension-total').textContent = formatNum(totalPension) + ' GEL';
+  document.getElementById('pension-income-tax').textContent = formatNum(incomeTax) + ' GEL';
+  document.getElementById('pension-other-val').textContent = formatNum(otherDeduction) + ' GEL';
   document.getElementById('pension-net').textContent = formatNum(net) + ' GEL';
 
-  // Update government label to show 0% if salary >= 2000
-  const govLabel = document.querySelector('#pension-results .result-row:nth-child(4) .result-label');
-  if (gross >= 2000) {
-    govLabel.setAttribute('data-ka', 'სახელმწიფოს შენატანი (0% — ხელფასი ≥ 2 000)');
-    govLabel.setAttribute('data-en', 'Government Contribution (0% — salary ≥ 2,000)');
+  // Update government label
+  const govLabel = document.getElementById('pension-gov-label');
+  if (pensionBase >= 2000) {
+    govLabel.setAttribute('data-ka', 'სახელმწიფოს შენატანი (0% — ბაზა ≥ 2 000)');
+    govLabel.setAttribute('data-en', 'Government Contribution (0% — base ≥ 2,000)');
   } else {
-    govLabel.setAttribute('data-ka', 'სახელმწიფოს შენატანი (1%)');
-    govLabel.setAttribute('data-en', 'Government Contribution (1%)');
+    govLabel.setAttribute('data-ka', 'სახელმწიფოს შენატანი (2%)');
+    govLabel.setAttribute('data-en', 'Government Contribution (2%)');
   }
   const lang = document.documentElement.getAttribute('data-lang') || 'ka';
   govLabel.textContent = govLabel.getAttribute('data-' + lang);
