@@ -1,0 +1,1318 @@
+<!DOCTYPE html>
+<html lang="ka" data-lang="ka">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Loyal Partners — Financial Intelligence</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #04050C;
+  --bg-2: #080B16;
+  --bg-card: #0B0F1E;
+  --bg-card-2: #0F1425;
+  --cyan: #3EFD9B;
+  --cyan-dim: rgba(62,253,155,0.12);
+  --cyan-border: rgba(62,253,155,0.2);
+  --cyan-glow: 0 0 30px rgba(62,253,155,0.15);
+  --blue: #7674F5;
+  --blue-dim: rgba(118,116,245,0.1);
+  --white: #E8EEF8;
+  --white-2: #C4CEDF;
+  --muted: #5C6B84;
+  --muted-2: #3A4558;
+  --border: rgba(255,255,255,0.06);
+  --border-hover: rgba(62,253,155,0.25);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:'Montserrat',Helvetica,Arial,sans-serif;
+  background:var(--bg);
+  color:var(--white);
+  line-height:1.7;
+  overflow-x:hidden;
+}
+
+/* SCROLLBAR */
+::-webkit-scrollbar{width:3px;}
+::-webkit-scrollbar-track{background:var(--bg);}
+::-webkit-scrollbar-thumb{background:var(--cyan);border-radius:2px;}
+
+/* CURSOR */
+*{cursor:default;}
+a,button{cursor:pointer;}
+
+/* TYPOGRAPHY */
+h1,h2,h3,h4{font-family:Helvetica,'Montserrat',Arial,sans-serif;line-height:1.15;letter-spacing:-0.02em;}
+h1{font-size:clamp(2.8rem,5.5vw,5rem);font-weight:800;}
+h2{font-size:clamp(2rem,3.5vw,3.2rem);font-weight:700;}
+h3{font-size:clamp(1.1rem,1.8vw,1.4rem);font-weight:600;}
+p{font-size:1rem;font-weight:300;color:var(--white-2);}
+a{text-decoration:none;color:inherit;}
+.mono{font-family:'Space Mono',monospace;}
+
+/* UTILITY */
+.container{max-width:1200px;margin:0 auto;padding:0 2rem;}
+.section{padding:8rem 0;}
+.cyan{color:var(--cyan);}
+
+/* DOT GRID BG */
+.dot-grid{
+  position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:radial-gradient(rgba(62,253,155,0.12) 1px, transparent 1px);
+  background-size:32px 32px;
+  mask-image:radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%);
+}
+
+/* NOISE OVERLAY */
+.noise{
+  position:fixed;inset:0;z-index:1;pointer-events:none;opacity:0.025;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-repeat:repeat;
+}
+
+/* SECTION TAG */
+.tag{
+  display:inline-flex;align-items:center;gap:0.5rem;
+  font-family:'Space Mono',monospace;font-size:0.7rem;
+  letter-spacing:0.12em;text-transform:uppercase;color:var(--cyan);
+  margin-bottom:1.25rem;
+}
+.tag::before{content:'//';opacity:0.5;margin-right:0.25rem;}
+.tag-num{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:20px;height:20px;border:1px solid var(--cyan-border);
+  border-radius:3px;font-size:0.6rem;color:var(--cyan);
+}
+
+/* GLOW DIVIDER */
+.glow-line{
+  width:48px;height:2px;
+  background:linear-gradient(90deg,var(--cyan),transparent);
+  margin:1.5rem 0;
+}
+
+/* BUTTONS */
+.btn{
+  display:inline-flex;align-items:center;gap:0.6rem;
+  padding:0.85rem 1.75rem;
+  font-family:'Montserrat',Helvetica,Arial,sans-serif;font-size:0.875rem;font-weight:500;
+  letter-spacing:0.03em;border:none;border-radius:3px;
+  transition:all 0.25s ease;cursor:pointer;position:relative;overflow:hidden;
+}
+.btn::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(120deg,transparent 0%,rgba(255,255,255,0.06) 50%,transparent 100%);
+  transform:translateX(-100%);transition:transform 0.4s ease;
+}
+.btn:hover::before{transform:translateX(100%);}
+.btn-cyan{background:var(--cyan);color:#04050C;}
+.btn-cyan:hover{background:#6BFDB4;box-shadow:0 0 24px rgba(62,253,155,0.4);}
+.btn-ghost{
+  background:transparent;color:var(--white);
+  border:1px solid rgba(255,255,255,0.12);
+}
+.btn-ghost:hover{border-color:var(--cyan);color:var(--cyan);}
+.btn svg{width:15px;height:15px;flex-shrink:0;}
+
+/* ══════════════════════ NAV ══════════════════════ */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  padding:1.5rem 0;
+  transition:all 0.4s ease;
+}
+nav::after{
+  content:'';position:absolute;bottom:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,var(--cyan-border),transparent);
+  opacity:0;transition:opacity 0.4s;
+}
+nav.scrolled{
+  background:rgba(4,5,12,0.88);
+  backdrop-filter:blur(20px);
+  padding:1rem 0;
+}
+nav.scrolled::after{opacity:1;}
+
+/* NAV TOP BAR */
+.nav-bar{
+  position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,transparent,var(--cyan),var(--blue),var(--cyan),transparent);
+  opacity:0.6;
+}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;gap:2rem;}
+.logo{display:flex;flex-direction:column;gap:0;text-decoration:none;}
+.logo-mark{
+  font-family:Helvetica,'Montserrat',Arial,sans-serif;font-size:1.2rem;font-weight:800;
+  color:var(--white);letter-spacing:-0.02em;line-height:1;
+}
+.logo-sub{
+  font-family:'Space Mono',monospace;font-size:0.55rem;
+  letter-spacing:0.2em;text-transform:uppercase;color:var(--cyan);
+}
+.nav-links{display:flex;align-items:center;gap:2rem;list-style:none;}
+.nav-links a{
+  font-size:0.85rem;font-weight:400;color:var(--muted);
+  letter-spacing:0.02em;transition:color 0.2s;
+  display:flex;align-items:center;gap:0.3rem;
+}
+.nav-links a:hover{color:var(--white);}
+.nav-links a .lnum{
+  font-family:'Space Mono',monospace;font-size:0.55rem;color:var(--cyan);
+}
+
+/* LANG TOGGLE */
+.lang-toggle{
+  display:flex;align-items:center;gap:0;
+  border:1px solid var(--border);border-radius:3px;overflow:hidden;
+}
+.lang-btn{
+  padding:0.4rem 0.65rem;
+  font-family:'Space Mono',monospace;font-size:0.68rem;
+  color:var(--muted);background:transparent;border:none;
+  cursor:pointer;transition:all 0.2s;letter-spacing:0.05em;
+}
+.lang-btn.active{background:var(--cyan-dim);color:var(--cyan);}
+.lang-btn:hover:not(.active){color:var(--white-2);}
+
+.nav-right{display:flex;align-items:center;gap:1rem;}
+
+/* ══════════════════════ HERO ══════════════════════ */
+#home{
+  min-height:100vh;
+  position:relative;
+  display:flex;align-items:center;
+  overflow:hidden;
+}
+.hero-bg-lines{
+  position:absolute;inset:0;pointer-events:none;
+  background:
+    linear-gradient(180deg,rgba(62,253,155,0.04) 0%,transparent 40%),
+    linear-gradient(135deg,rgba(118,116,245,0.04) 0%,transparent 60%);
+}
+.hero-grid-overlay{
+  position:absolute;inset:0;pointer-events:none;opacity:0.03;
+  background-image:
+    linear-gradient(rgba(62,253,155,1) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(62,253,155,1) 1px,transparent 1px);
+  background-size:80px 80px;
+}
+.hero-orb-1{
+  position:absolute;top:-20%;right:-10%;
+  width:700px;height:700px;border-radius:50%;
+  background:radial-gradient(circle,rgba(62,253,155,0.05) 0%,transparent 65%);
+  pointer-events:none;
+}
+.hero-orb-2{
+  position:absolute;bottom:-30%;left:-10%;
+  width:600px;height:600px;border-radius:50%;
+  background:radial-gradient(circle,rgba(118,116,245,0.06) 0%,transparent 65%);
+  pointer-events:none;
+}
+.hero-content{
+  position:relative;z-index:2;
+  max-width:780px;
+  animation:heroReveal 0.8s cubic-bezier(0.16,1,0.3,1) both;
+}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:0.75rem;
+  padding:0.35rem 0.75rem 0.35rem 0.5rem;
+  border:1px solid var(--cyan-border);border-radius:100px;
+  font-family:'Space Mono',monospace;font-size:0.65rem;
+  letter-spacing:0.1em;text-transform:uppercase;color:var(--cyan);
+  margin-bottom:2rem;background:var(--cyan-dim);
+}
+.badge-dot{
+  width:6px;height:6px;border-radius:50%;background:var(--cyan);
+  animation:blink 2s ease-in-out infinite;
+}
+.hero-title{margin-bottom:1.5rem;}
+.hero-title .line{display:block;overflow:hidden;}
+.hero-title .line span{
+  display:block;
+  animation:slideUp 0.7s cubic-bezier(0.16,1,0.3,1) both;
+}
+.hero-title .line:nth-child(1) span{animation-delay:0.1s;}
+.hero-title .line:nth-child(2) span{animation-delay:0.2s;}
+.hero-title .line:nth-child(3) span{animation-delay:0.3s;}
+.hero-desc{
+  font-size:1.1rem;line-height:1.8;
+  color:rgba(196,206,223,0.7);max-width:520px;
+  margin-bottom:2.5rem;
+  animation:fadeIn 0.8s 0.5s both;
+}
+.hero-actions{
+  display:flex;gap:1rem;flex-wrap:wrap;
+  animation:fadeIn 0.8s 0.6s both;
+}
+.hero-metrics{
+  position:absolute;right:0;top:50%;transform:translateY(-50%);
+  display:flex;flex-direction:column;gap:1px;z-index:2;
+  animation:fadeIn 0.8s 0.7s both;
+}
+.metric-item{
+  display:flex;flex-direction:column;
+  padding:1.25rem 1.75rem;
+  background:rgba(8,11,22,0.6);
+  border:1px solid var(--border);
+  backdrop-filter:blur(12px);
+  border-left:2px solid var(--cyan-border);
+  transition:border-left-color 0.3s;
+  min-width:180px;
+}
+.metric-item:hover{border-left-color:var(--cyan);}
+.metric-num{
+  font-family:'Space Mono',monospace;
+  font-size:2rem;font-weight:700;color:var(--cyan);
+  line-height:1;
+}
+.metric-label{
+  font-size:0.72rem;letter-spacing:0.06em;
+  color:var(--muted);text-transform:uppercase;
+  margin-top:0.35rem;font-family:'Space Mono',monospace;
+}
+.scroll-hint{
+  position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:0.5rem;
+  font-family:'Space Mono',monospace;font-size:0.6rem;
+  letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);
+  z-index:2;animation:fadeIn 1s 1s both;
+}
+.scroll-line{
+  width:1px;height:36px;
+  background:linear-gradient(to bottom,var(--cyan),transparent);
+  animation:scrollAnim 1.8s ease-in-out infinite;
+}
+
+/* ══════════════════════ SERVICES ══════════════════════ */
+#services{background:var(--bg-2);}
+.section-header{margin-bottom:4rem;}
+.services-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:1px;background:var(--border);
+  border:1px solid var(--border);border-radius:4px;overflow:hidden;
+}
+.svc-card{
+  background:var(--bg-card);
+  padding:2.5rem;position:relative;overflow:hidden;
+  transition:background 0.3s;
+  group:hover;
+}
+.svc-card:hover{background:var(--bg-card-2);}
+.svc-card::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,var(--cyan-dim) 0%,transparent 60%);
+  opacity:0;transition:opacity 0.4s;
+}
+.svc-card:hover::before{opacity:1;}
+.svc-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:1.75rem;}
+.svc-icon{
+  width:44px;height:44px;
+  border:1px solid var(--cyan-border);border-radius:4px;
+  display:flex;align-items:center;justify-content:center;
+  color:var(--cyan);transition:box-shadow 0.3s;
+}
+.svc-card:hover .svc-icon{box-shadow:var(--cyan-glow);}
+.svc-icon svg{width:20px;height:20px;}
+.svc-idx{
+  font-family:'Space Mono',monospace;font-size:0.65rem;
+  color:var(--muted-2);letter-spacing:0.08em;
+}
+.svc-title{font-size:1.15rem;margin-bottom:0.75rem;transition:color 0.3s;}
+.svc-card:hover .svc-title{color:var(--cyan);}
+.svc-desc{font-size:0.88rem;line-height:1.7;color:var(--muted);}
+.svc-features{
+  margin-top:1.5rem;list-style:none;
+  display:flex;flex-direction:column;gap:0.45rem;
+}
+.svc-features li{
+  font-size:0.8rem;color:var(--muted);
+  display:flex;align-items:center;gap:0.65rem;
+}
+.svc-features li::before{
+  content:'';flex-shrink:0;
+  width:4px;height:4px;border-radius:50%;
+  background:var(--cyan);opacity:0.6;
+}
+.svc-card:hover .svc-features li::before{opacity:1;}
+
+/* ══════════════════════ ABOUT ══════════════════════ */
+#about{background:var(--bg);}
+.about-grid{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:6rem;align-items:center;
+}
+.about-visual{position:relative;height:500px;}
+.terminal{
+  position:absolute;top:0;left:0;right:60px;
+  background:var(--bg-card);
+  border:1px solid var(--border);border-radius:6px;overflow:hidden;
+}
+.terminal-bar{
+  background:var(--bg-card-2);padding:0.6rem 1rem;
+  display:flex;align-items:center;gap:0.5rem;
+  border-bottom:1px solid var(--border);
+}
+.t-dot{width:10px;height:10px;border-radius:50%;}
+.t-dot-r{background:#FF5F57;}
+.t-dot-y{background:#FFBD2E;}
+.t-dot-g{background:#28C840;}
+.terminal-title{
+  font-family:'Space Mono',monospace;font-size:0.65rem;
+  color:var(--muted);letter-spacing:0.05em;margin-left:0.5rem;
+}
+.terminal-body{padding:1.5rem;font-family:'Space Mono',monospace;font-size:0.78rem;line-height:2;}
+.t-prompt{color:var(--cyan);}
+.t-comment{color:var(--muted);}
+.t-val{color:#9B99F7;}
+.t-str{color:#6BFDB4;}
+.t-cursor{
+  display:inline-block;width:8px;height:1.1em;
+  background:var(--cyan);vertical-align:middle;
+  animation:blink 1s step-end infinite;
+}
+.about-float-cards{
+  position:absolute;bottom:0;right:0;
+  display:flex;flex-direction:column;gap:1rem;
+  width:220px;
+}
+.float-card{
+  background:var(--bg-card);
+  border:1px solid var(--border);border-radius:4px;padding:1rem 1.25rem;
+  transition:border-color 0.3s;
+}
+.float-card:hover{border-color:var(--cyan-border);}
+.float-card-icon{color:var(--cyan);margin-bottom:0.4rem;}
+.float-card-icon svg{width:16px;height:16px;}
+.float-card h4{font-size:0.85rem;margin-bottom:0.2rem;}
+.float-card p{font-size:0.75rem;color:var(--muted);line-height:1.5;}
+.values-list{list-style:none;display:flex;flex-direction:column;gap:1rem;margin-top:2rem;}
+.val-item{display:flex;align-items:flex-start;gap:1rem;}
+.val-check{
+  width:20px;height:20px;flex-shrink:0;
+  border:1px solid var(--cyan-border);border-radius:3px;
+  display:flex;align-items:center;justify-content:center;
+  margin-top:0.15rem;
+}
+.val-check svg{width:10px;height:10px;color:var(--cyan);}
+.val-item h4{font-size:0.9rem;margin-bottom:0.15rem;}
+.val-item p{font-size:0.83rem;color:var(--muted);line-height:1.6;}
+
+/* ══════════════════════ NUMBERS ══════════════════════ */
+#numbers{background:var(--bg-2);}
+.numbers-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:1px;background:var(--border);
+  border:1px solid var(--border);border-radius:4px;overflow:hidden;
+  margin-top:4rem;
+}
+.num-card{
+  background:var(--bg-card);padding:2.5rem 2rem;
+  position:relative;overflow:hidden;
+  transition:background 0.3s;
+}
+.num-card:hover{background:var(--bg-card-2);}
+.num-card::after{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,var(--cyan),transparent);
+  transform:scaleX(0);transform-origin:left;
+  transition:transform 0.4s ease;
+}
+.num-card:hover::after{transform:scaleX(1);}
+.num-val{
+  font-family:'Space Mono',monospace;
+  font-size:2.8rem;font-weight:700;
+  color:var(--cyan);line-height:1;
+  display:block;margin-bottom:0.75rem;
+}
+.num-title{font-size:0.9rem;margin-bottom:0.4rem;}
+.num-desc{font-size:0.8rem;color:var(--muted);line-height:1.6;}
+
+/* ══════════════════════ PROCESS ══════════════════════ */
+#process{background:var(--bg);}
+.process-steps{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:1px;background:var(--border);
+  border:1px solid var(--border);border-radius:4px;overflow:hidden;
+  margin-top:4rem;
+}
+.step{
+  background:var(--bg-card);padding:2rem 1.75rem;
+  position:relative;overflow:hidden;transition:background 0.3s;
+}
+.step:hover{background:var(--bg-card-2);}
+.step-num{
+  font-family:'Space Mono',monospace;font-size:0.65rem;
+  color:var(--cyan);letter-spacing:0.1em;
+  margin-bottom:1rem;display:block;
+}
+.step-icon{
+  width:40px;height:40px;
+  border:1px solid var(--border);border-radius:4px;
+  display:flex;align-items:center;justify-content:center;
+  color:var(--muted);margin-bottom:1.25rem;
+  transition:all 0.3s;
+}
+.step:hover .step-icon{border-color:var(--cyan-border);color:var(--cyan);}
+.step-icon svg{width:18px;height:18px;}
+.step h3{font-size:0.95rem;margin-bottom:0.5rem;}
+.step p{font-size:0.82rem;color:var(--muted);line-height:1.65;}
+.step-connector{
+  position:absolute;top:2.5rem;right:-1px;
+  width:1px;height:40px;
+  background:linear-gradient(to bottom,var(--cyan),transparent);
+  opacity:0.4;
+}
+
+/* ══════════════════════ TESTIMONIALS ══════════════════════ */
+#testimonials{background:var(--bg-2);}
+.testi-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:1rem;margin-top:4rem;
+}
+.testi-card{
+  background:var(--bg-card);
+  border:1px solid var(--border);border-radius:4px;
+  padding:2rem;transition:border-color 0.3s,transform 0.3s;
+}
+.testi-card:hover{border-color:var(--cyan-border);transform:translateY(-3px);}
+.testi-rating{
+  display:flex;gap:3px;margin-bottom:1rem;
+}
+.testi-rating svg{width:13px;height:13px;fill:var(--cyan);color:var(--cyan);}
+.testi-quote{
+  font-size:0.88rem;line-height:1.8;color:var(--white-2);
+  margin-bottom:1.5rem;font-style:italic;
+  border-left:2px solid var(--cyan-border);padding-left:1rem;
+}
+.testi-author{display:flex;align-items:center;gap:0.75rem;}
+.testi-avatar{
+  width:36px;height:36px;border-radius:3px;
+  background:var(--cyan-dim);border:1px solid var(--cyan-border);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Space Mono',monospace;font-size:0.7rem;
+  color:var(--cyan);font-weight:700;
+}
+.testi-name{font-size:0.85rem;font-weight:600;}
+.testi-role{font-size:0.72rem;color:var(--muted);}
+
+/* ══════════════════════ TEAM ══════════════════════ */
+#team{background:var(--bg);}
+.team-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:1rem;margin-top:4rem;
+}
+.team-card{
+  background:var(--bg-card);
+  border:1px solid var(--border);border-radius:4px;overflow:hidden;
+  transition:border-color 0.3s,transform 0.3s;
+}
+.team-card:hover{border-color:var(--cyan-border);transform:translateY(-4px);}
+.team-photo{
+  height:180px;background:var(--bg-card-2);
+  position:relative;overflow:hidden;
+  display:flex;align-items:center;justify-content:center;
+}
+.team-photo-scan{
+  position:absolute;top:0;left:0;right:0;
+  height:2px;background:linear-gradient(90deg,transparent,var(--cyan),transparent);
+  animation:scan 3s linear infinite;opacity:0.4;
+}
+.team-initials{
+  font-family:Helvetica,'Montserrat',Arial,sans-serif;font-size:2.2rem;font-weight:800;
+  color:rgba(62,253,155,0.15);position:relative;z-index:1;
+}
+.team-info{padding:1.25rem;}
+.team-name{font-size:0.95rem;margin-bottom:0.2rem;}
+.team-role{
+  font-family:'Space Mono',monospace;font-size:0.62rem;
+  color:var(--cyan);letter-spacing:0.06em;text-transform:uppercase;
+}
+.team-bio{font-size:0.78rem;color:var(--muted);line-height:1.55;margin-top:0.5rem;}
+
+/* ══════════════════════ CONTACT ══════════════════════ */
+#contact{background:var(--bg-2);}
+.contact-grid{
+  display:grid;grid-template-columns:1fr 1.5fr;
+  gap:5rem;align-items:start;
+}
+.contact-item{display:flex;gap:1rem;margin-bottom:1.75rem;}
+.contact-icon{
+  width:40px;height:40px;flex-shrink:0;
+  border:1px solid var(--border);border-radius:4px;
+  display:flex;align-items:center;justify-content:center;
+  color:var(--cyan);
+}
+.contact-icon svg{width:16px;height:16px;}
+.contact-item h4{
+  font-family:'Space Mono',monospace;font-size:0.62rem;
+  text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);
+  margin-bottom:0.25rem;
+}
+.contact-item p{font-size:0.88rem;color:var(--white-2);}
+.contact-form-wrap{
+  background:var(--bg-card);
+  border:1px solid var(--border);border-radius:4px;padding:2.5rem;
+}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+.form-group{margin-bottom:1.1rem;}
+.form-group label{
+  display:block;font-family:'Space Mono',monospace;
+  font-size:0.62rem;letter-spacing:0.1em;
+  text-transform:uppercase;color:var(--muted);margin-bottom:0.5rem;
+}
+.form-group input,.form-group textarea,.form-group select{
+  width:100%;background:var(--bg-2);
+  border:1px solid rgba(255,255,255,0.07);
+  border-radius:3px;padding:0.75rem 1rem;
+  color:var(--white);font-family:'Montserrat',Helvetica,Arial,sans-serif;font-size:0.9rem;
+  transition:border-color 0.2s,box-shadow 0.2s;outline:none;resize:none;
+}
+.form-group input:focus,.form-group textarea:focus,.form-group select:focus{
+  border-color:var(--cyan-border);
+  box-shadow:0 0 0 3px rgba(62,253,155,0.06);
+}
+.form-group select option{background:var(--bg-card);}
+
+/* ══════════════════════ FOOTER ══════════════════════ */
+footer{
+  background:var(--bg);
+  border-top:1px solid var(--border);
+  padding:3.5rem 0 2rem;
+}
+.footer-grid{
+  display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;
+  gap:3rem;margin-bottom:3rem;
+}
+.footer-brand p{
+  font-size:0.85rem;color:var(--muted);
+  line-height:1.7;margin-top:1rem;
+}
+.footer-col h4{
+  font-family:'Space Mono',monospace;font-size:0.62rem;
+  letter-spacing:0.12em;text-transform:uppercase;color:var(--cyan);
+  margin-bottom:1.25rem;
+}
+.footer-links{list-style:none;display:flex;flex-direction:column;gap:0.55rem;}
+.footer-links a{font-size:0.83rem;color:var(--muted);transition:color 0.2s;}
+.footer-links a:hover{color:var(--white);}
+.footer-bottom{
+  border-top:1px solid var(--border);
+  padding-top:1.5rem;
+  display:flex;justify-content:space-between;align-items:center;
+}
+.footer-bottom p{font-size:0.75rem;color:var(--muted-2);}
+.footer-bottom .mono{font-size:0.7rem;color:var(--muted-2);}
+
+/* ══════════════════════ ANIMATIONS ══════════════════════ */
+@keyframes heroReveal{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+@keyframes slideUp{from{transform:translateY(100%);}to{transform:translateY(0);}}
+@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:0;}}
+@keyframes scrollAnim{
+  0%{transform:scaleY(0);transform-origin:top;opacity:1;}
+  50%{transform:scaleY(1);transform-origin:top;opacity:1;}
+  100%{transform:scaleY(1);transform-origin:bottom;opacity:0;}
+}
+@keyframes scan{from{top:-2px;}to{top:100%;}}
+
+.reveal{opacity:0;transform:translateY(20px);transition:opacity 0.6s ease,transform 0.6s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+
+/* ══════════════════════ RESPONSIVE ══════════════════════ */
+@media(max-width:1024px){
+  .services-grid{grid-template-columns:repeat(2,1fr);}
+  .numbers-grid{grid-template-columns:repeat(2,1fr);}
+  .process-steps{grid-template-columns:repeat(2,1fr);}
+  .team-grid{grid-template-columns:repeat(2,1fr);}
+  .footer-grid{grid-template-columns:1fr 1fr;}
+  .hero-metrics{display:none;}
+}
+@media(max-width:768px){
+  nav .nav-links,nav .btn{display:none;}
+  .about-grid,.contact-grid{grid-template-columns:1fr;}
+  .about-visual{display:none;}
+  .services-grid,.testi-grid,.team-grid{grid-template-columns:1fr;}
+  .form-row{grid-template-columns:1fr;}
+  .footer-grid{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<div class="dot-grid"></div>
+<div class="noise"></div>
+
+<!-- NAV -->
+<nav id="navbar">
+  <div class="nav-bar"></div>
+  <div class="container">
+    <div class="nav-inner">
+      <a href="#home" class="logo" onclick="scrollTo('home')">
+        <span class="logo-mark">Loyal Partners</span>
+        <span class="logo-sub">Financial Intelligence</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#services" onclick="scrollTo('services')"><span class="lnum">01.</span><span data-ka="სერვისები" data-en="Services">სერვისები</span></a></li>
+        <li><a href="#about" onclick="scrollTo('about')"><span class="lnum">02.</span><span data-ka="კომპანიაზე" data-en="About">კომპანიაზე</span></a></li>
+        <li><a href="#process" onclick="scrollTo('process')"><span class="lnum">03.</span><span data-ka="პროცესი" data-en="Process">პროცესი</span></a></li>
+        <li><a href="#team" onclick="scrollTo('team')"><span class="lnum">04.</span><span data-ka="გუნდი" data-en="Team">გუნდი</span></a></li>
+      </ul>
+      <div class="nav-right">
+        <div class="lang-toggle">
+          <button class="lang-btn active" onclick="setLang('ka')">KA</button>
+          <button class="lang-btn" onclick="setLang('en')">EN</button>
+        </div>
+        <a href="#contact" class="btn btn-cyan" onclick="scrollTo('contact')">
+          <span data-ka="კონტაქტი" data-en="Contact">კონტაქტი</span>
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="home">
+  <div class="hero-bg-lines"></div>
+  <div class="hero-grid-overlay"></div>
+  <div class="hero-orb-1"></div>
+  <div class="hero-orb-2"></div>
+
+  <div class="container" style="position:relative;z-index:2;width:100%;">
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span class="badge-dot"></span>
+        <span class="mono" data-ka="Tbilisi, Georgia · Est. 2014" data-en="Tbilisi, Georgia · Est. 2014">Tbilisi, Georgia · Est. 2014</span>
+      </div>
+      <h1 class="hero-title">
+        <span class="line"><span data-ka="ფინანსური" data-en="Financial">ფინანსური</span></span>
+        <span class="line"><span data-ka="ინტელიჯენსი" data-en="Intelligence"><span class="cyan" data-ka="ინტელიჯენსი" data-en="Intelligence">ინტელიჯენსი</span></span></span>
+        <span class="line"><span data-ka="თქვენს ბიზნესსთვის" data-en="for your business">თქვენს ბიზნესსთვის</span></span>
+      </h1>
+      <p class="hero-desc" data-ka="Loyal Partners გთავაზობთ მაღალი სტანდარტის ბუღალტრულ, საკონსულტაციო და CFO სერვისებს. 130+ კლიენტი. ერთი მისია — თქვენი ზრდა." data-en="Loyal Partners delivers high-standard accounting, consulting, and CFO services. 130+ clients. One mission — your growth.">
+        Loyal Partners გთავაზობთ მაღალი სტანდარტის ბუღალტრულ, საკონსულტაციო და CFO სერვისებს. 130+ კლიენტი. ერთი მისია — თქვენი ზრდა.
+      </p>
+      <div class="hero-actions">
+        <a href="#services" class="btn btn-cyan" onclick="scrollTo('services')">
+          <span data-ka="სერვისების ნახვა" data-en="Explore Services">სერვისების ნახვა</span>
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+        </a>
+        <a href="#contact" class="btn btn-ghost" onclick="scrollTo('contact')">
+          <span data-ka="უფასო კონსულტაცია" data-en="Free Consultation">უფასო კონსულტაცია</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="hero-metrics">
+      <div class="metric-item">
+        <span class="metric-num">130<span class="cyan">+</span></span>
+        <span class="metric-label" data-ka="აქტიური კლიენტი" data-en="Active Clients">აქტიური კლიენტი</span>
+      </div>
+      <div class="metric-item">
+        <span class="metric-num">10<span class="cyan">+</span></span>
+        <span class="metric-label" data-ka="წელი გამოცდილება" data-en="Years Experience">წელი გამოცდილება</span>
+      </div>
+      <div class="metric-item">
+        <span class="metric-num">92<span class="cyan">%</span></span>
+        <span class="metric-label" data-ka="კლიენტ-რეტენცია" data-en="Client Retention">კლიენტ-რეტენცია</span>
+      </div>
+    </div>
+
+    <div class="scroll-hint">
+      <div class="scroll-line"></div>
+      scroll
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services" class="section">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="tag"><span data-ka="სერვისები" data-en="Services">სერვისები</span></div>
+      <h2 data-ka="სრული ფინანსური<br>ეკოსისტემა" data-en="Full Financial<br>Ecosystem">სრული ფინანსური<br>ეკოსისტემა</h2>
+    </div>
+
+    <div class="services-grid">
+
+      <div class="svc-card reveal">
+        <div class="svc-top">
+          <div class="svc-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+          </div>
+          <span class="svc-idx mono">01</span>
+        </div>
+        <h3 class="svc-title" data-ka="Outsourced CFO" data-en="Outsourced CFO">Outsourced CFO</h3>
+        <p class="svc-desc" data-ka="ფინანსური დირექტორის სრული ფუნქცია — ფიქსირებული ხარჯის გარეშე. სტრატეგიული ფინანსები, ინვესტორებთან ურთიერთობა, ბიუჯეტირება." data-en="Full CFO function without the fixed cost. Strategic finance, investor relations, budgeting and forecasting.">ფინანსური დირექტორის სრული ფუნქცია — ფიქსირებული ხარჯის გარეშე. სტრატეგიული ფინანსები, ინვესტორებთან ურთიერთობა, ბიუჯეტირება.</p>
+        <ul class="svc-features">
+          <li data-ka="ფინანსური სტრატეგია" data-en="Financial Strategy">ფინანსური სტრატეგია</li>
+          <li data-ka="Cash Flow მენეჯმენტი" data-en="Cash Flow Management">Cash Flow მენეჯმენტი</li>
+          <li data-ka="ინვესტორთა ანგარიშგება" data-en="Investor Reporting">ინვესტორთა ანგარიშგება</li>
+          <li data-ka="KPI სისტემები" data-en="KPI Systems">KPI სისტემები</li>
+        </ul>
+      </div>
+
+      <div class="svc-card reveal">
+        <div class="svc-top">
+          <div class="svc-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4M7 7h10M7 11h6"/></svg>
+          </div>
+          <span class="svc-idx mono">02</span>
+        </div>
+        <h3 class="svc-title" data-ka="ბუღალტრული აღრიცხვა" data-en="Accounting">ბუღალტრული აღრიცხვა</h3>
+        <p class="svc-desc" data-ka="სრული ბუღალტრული მომსახურება IFRS სტანდარტებით. ყოველთვიური ბალანსები, ანგარიშები, საგადასახადო სერვისი." data-en="Full accounting services under IFRS standards. Monthly statements, reports, and tax services.">სრული ბუღალტრული მომსახურება IFRS სტანდარტებით. ყოველთვიური ბალანსები, ანგარიშები, საგადასახადო სერვისი.</p>
+        <ul class="svc-features">
+          <li data-ka="IFRS სტანდარტები" data-en="IFRS Standards">IFRS სტანდარტები</li>
+          <li data-ka="ყოველთვიური ანგარიშები" data-en="Monthly Reports">ყოველთვიური ანგარიშები</li>
+          <li data-ka="პირველადი დოკუმენტაცია" data-en="Primary Documentation">პირველადი დოკუმენტაცია</li>
+          <li data-ka="ERP ინტეგრაცია" data-en="ERP Integration">ERP ინტეგრაცია</li>
+        </ul>
+      </div>
+
+      <div class="svc-card reveal">
+        <div class="svc-top">
+          <div class="svc-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+          </div>
+          <span class="svc-idx mono">03</span>
+        </div>
+        <h3 class="svc-title" data-ka="აუდიტი" data-en="Audit">აუდიტი</h3>
+        <p class="svc-desc" data-ka="დამოუკიდებელი ფინანსური აუდიტი ქართული და საერთაშორისო სტანდარტებით. ობიექტური შეფასება, სარისხო ანალიზი." data-en="Independent financial audit under Georgian and international standards. Objective assessment and risk analysis.">დამოუკიდებელი ფინანსური აუდიტი ქართული და საერთაშორისო სტანდარტებით. ობიექტური შეფასება, სარისხო ანალიზი.</p>
+        <ul class="svc-features">
+          <li data-ka="სტატუტური აუდიტი" data-en="Statutory Audit">სტატუტური აუდიტი</li>
+          <li data-ka="Due Diligence" data-en="Due Diligence">Due Diligence</li>
+          <li data-ka="შიდა კონტროლი" data-en="Internal Control">შიდა კონტროლი</li>
+          <li data-ka="საგადასახადო აუდიტი" data-en="Tax Audit">საგადასახადო აუდიტი</li>
+        </ul>
+      </div>
+
+      <div class="svc-card reveal">
+        <div class="svc-top">
+          <div class="svc-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3M12 17h.01"/></svg>
+          </div>
+          <span class="svc-idx mono">04</span>
+        </div>
+        <h3 class="svc-title" data-ka="საგადასახადო კონსულტაცია" data-en="Tax Consulting">საგადასახადო კონსულტაცია</h3>
+        <p class="svc-desc" data-ka="ოპტიმალური საგადასახადო სტრუქტურა, ლეგიტიმური საგადასახადო შეღავათები, კომპლიანსი." data-en="Optimal tax structure, legitimate tax incentives, compliance management.">ოპტიმალური საგადასახადო სტრუქტურა, ლეგიტიმური საგადასახადო შეღავათები, კომპლიანსი.</p>
+        <ul class="svc-features">
+          <li data-ka="სტრუქტურის ოპტიმიზაცია" data-en="Structure Optimization">სტრუქტურის ოპტიმიზაცია</li>
+          <li data-ka="საგადასახადო კომპლიანსი" data-en="Tax Compliance">საგადასახადო კომპლიანსი</li>
+          <li data-ka="გასაჩივრება" data-en="Tax Appeals">გასაჩივრება</li>
+          <li data-ka="Transfer Pricing" data-en="Transfer Pricing">Transfer Pricing</li>
+        </ul>
+      </div>
+
+      <div class="svc-card reveal">
+        <div class="svc-top">
+          <div class="svc-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          </div>
+          <span class="svc-idx mono">05</span>
+        </div>
+        <h3 class="svc-title" data-ka="ფინანსური მოდელირება" data-en="Financial Modeling">ფინანსური მოდელირება</h3>
+        <p class="svc-desc" data-ka="ბიზნეს პლანები, ფინანსური პროგნოზები, ინვესტიციის სტრუქტურირება. სტარტაპიდან mid-market-მდე." data-en="Business plans, financial forecasts, investment structuring. From startup to mid-market.">ბიზნეს პლანები, ფინანსური პროგნოზები, ინვესტიციის სტრუქტურირება. სტარტაპიდან mid-market-მდე.</p>
+        <ul class="svc-features">
+          <li data-ka="ბიზნეს გეგმები" data-en="Business Plans">ბიზნეს გეგმები</li>
+          <li data-ka="სცენარების ანალიზი" data-en="Scenario Analysis">სცენარების ანალიზი</li>
+          <li data-ka="M&A ტრანზაქციები" data-en="M&A Transactions">M&A ტრანზაქციები</li>
+          <li data-ka="Valuation" data-en="Valuation">Valuation</li>
+        </ul>
+      </div>
+
+      <div class="svc-card reveal">
+        <div class="svc-top">
+          <div class="svc-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+          </div>
+          <span class="svc-idx mono">06</span>
+        </div>
+        <h3 class="svc-title" data-ka="ფინანსური ანგარიშგება" data-en="Financial Reporting">ფინანსური ანგარიშგება</h3>
+        <p class="svc-desc" data-ka="ბანკებისთვის, ინვესტორებისთვის, სახელმწიფო ორგანოებისთვის. IFRS, GAAP — ნებისმიერი ფორმატი." data-en="For banks, investors, and regulatory bodies. IFRS, GAAP — any format required.">ბანკებისთვის, ინვესტორებისთვის, სახელმწიფო ორგანოებისთვის. IFRS, GAAP — ნებისმიერი ფორმატი.</p>
+        <ul class="svc-features">
+          <li data-ka="IFRS / GAAP" data-en="IFRS / GAAP">IFRS / GAAP</li>
+          <li data-ka="კვარტალური ანგარიშები" data-en="Quarterly Reports">კვარტალური ანგარიშები</li>
+          <li data-ka="კონსოლიდაცია" data-en="Consolidation">კონსოლიდაცია</li>
+          <li data-ka="ESG რეპორტინგი" data-en="ESG Reporting">ESG რეპორტინგი</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="section">
+  <div class="container">
+    <div class="about-grid">
+
+      <div class="about-visual reveal">
+        <div class="terminal">
+          <div class="terminal-bar">
+            <div class="t-dot t-dot-r"></div>
+            <div class="t-dot t-dot-y"></div>
+            <div class="t-dot t-dot-g"></div>
+            <span class="terminal-title">loyal-partners.sh</span>
+          </div>
+          <div class="terminal-body">
+            <div><span class="t-prompt">$ </span><span class="t-val">./profile.sh</span></div>
+            <div style="height:0.5rem;"></div>
+            <div><span class="t-comment"># Company Profile</span></div>
+            <div><span class="t-val">name</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= <span class="t-str">"Loyal Partners Georgia"</span></div>
+            <div><span class="t-val">founded</span> &nbsp;&nbsp;&nbsp;= <span class="t-str">2014</span></div>
+            <div><span class="t-val">location</span> &nbsp;&nbsp;= <span class="t-str">"Tbilisi, GE"</span></div>
+            <div><span class="t-val">clients</span> &nbsp;&nbsp;&nbsp;= <span class="t-str">130+</span></div>
+            <div><span class="t-val">retention</span> &nbsp;= <span class="t-str">92%</span></div>
+            <div><span class="t-val">standards</span> &nbsp;= <span class="t-str">["IFRS","ACCA","ISA"]</span></div>
+            <div style="height:0.5rem;"></div>
+            <div><span class="t-comment"># Services loaded: 6/6</span></div>
+            <div><span class="t-prompt">$ </span><span class="t-cursor"></span></div>
+          </div>
+        </div>
+
+        <div class="about-float-cards">
+          <div class="float-card">
+            <div class="float-card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <h4 data-ka="ACCA სერტიფიცირებული" data-en="ACCA Certified">ACCA სერტიფიცირებული</h4>
+            <p data-ka="საერთაშორისო სტანდარტი" data-en="International standard">საერთაშორისო სტანდარტი</p>
+          </div>
+          <div class="float-card">
+            <div class="float-card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <h4 data-ka="48h SLA" data-en="48h SLA">48h SLA</h4>
+            <p data-ka="სწრაფი გამოხმაურება" data-en="Fast response guarantee">სწრაფი გამოხმაურება</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal">
+        <div class="tag"><span data-ka="კომპანიაზე" data-en="About Us">კომპანიაზე</span></div>
+        <h2 data-ka="ეთიკა. ექსპერტიზა.<br><span class='cyan'>ლოიალობა.</span>" data-en="Ethics. Expertise.<br><span class='cyan'>Loyalty.</span>">ეთიკა. ექსპერტიზა.<br><span class="cyan">ლოიალობა.</span></h2>
+        <div class="glow-line"></div>
+        <p style="margin-bottom:0.75rem;" data-ka="Loyal Partners 2014 წელს დაარსდა ერთი მიზნით — ქართველ ბიზნესსს მიუხედავად ზომისა, მიეწოდებინა ის ხარისხის ფინანსური მომსახურება, რაც მანამდე მხოლოდ კორპორაციებისთვის იყო ხელმისაწვდომი." data-en="Loyal Partners was founded in 2014 with one goal — to bring enterprise-grade financial services to Georgian businesses of any size.">Loyal Partners 2014 წელს დაარსდა ერთი მიზნით — ქართველ ბიზნესსს მიუხედავად ზომისა, მიეწოდებინა ის ხარისხის ფინანსური მომსახურება, რაც მანამდე მხოლოდ კორპორაციებისთვის იყო ხელმისაწვდომი.</p>
+        <p data-ka="დღეს ჩვენი 130+ კლიენტი მოიცავს სტარტაპებს, საშუალო ბიზნეს კომპანიებს და საერთაშორისო ოპერაციებს." data-en="Today our 130+ clients span startups, mid-market companies, and international operations.">დღეს ჩვენი 130+ კლიენტი მოიცავს სტარტაპებს, საშუალო ბიზნეს კომპანიებს და საერთაშორისო ოპერაციებს.</p>
+
+        <ul class="values-list">
+          <li class="val-item">
+            <div class="val-check"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="2 6 5 9 10 3"/></svg></div>
+            <div>
+              <h4 data-ka="გამჭვირვალობა" data-en="Transparency">გამჭვირვალობა</h4>
+              <p data-ka="ყველა ოპერაცია და გადაწყვეტილება სრულად გამჭვირვალე და გასაგებია." data-en="Every operation and decision is fully transparent and understandable.">ყველა ოპერაცია და გადაწყვეტილება სრულად გამჭვირვალე და გასაგებია.</p>
+            </div>
+          </li>
+          <li class="val-item">
+            <div class="val-check"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="2 6 5 9 10 3"/></svg></div>
+            <div>
+              <h4 data-ka="ექსელენტობა" data-en="Excellence">ექსელენტობა</h4>
+              <p data-ka="ACCA სერტიფიცირებული სპეციალისტები, საერთაშორისო სტანდარტები." data-en="ACCA certified specialists, international standards, latest tools.">ACCA სერტიფიცირებული სპეციალისტები, საერთაშორისო სტანდარტები.</p>
+            </div>
+          </li>
+          <li class="val-item">
+            <div class="val-check"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="2 6 5 9 10 3"/></svg></div>
+            <div>
+              <h4 data-ka="გრძელვადიანი პარტნიორობა" data-en="Long-term Partnership">გრძელვადიანი პარტნიორობა</h4>
+              <p data-ka="ჩვენი კლიენტების 92% 3+ წელია ჩვენთანაა. ეს პარტნიორობაა." data-en="92% of our clients have been with us for 3+ years. This is partnership.">ჩვენი კლიენტების 92% 3+ წელია ჩვენთანაა. ეს პარტნიორობაა.</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- NUMBERS -->
+<section id="numbers" class="section">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="tag"><span data-ka="ციფრები" data-en="By the Numbers">ციფრები</span></div>
+      <h2 data-ka="შედეგები, რომლებიც<br><span class='cyan'>ლაპარაკობენ</span>" data-en="Results that<br><span class='cyan'>speak for themselves</span>">შედეგები, რომლებიც<br><span class="cyan">ლაპარაკობენ</span></h2>
+    </div>
+    <div class="numbers-grid">
+      <div class="num-card reveal">
+        <span class="num-val mono">130<span class="cyan">+</span></span>
+        <h3 data-ka="კლიენტი" data-en="Clients">კლიენტი</h3>
+        <p data-ka="სტარტაპიდან mid-market კომპანიებამდე — ყველა ზომა." data-en="From startups to mid-market companies — every size.">სტარტაპიდან mid-market კომპანიებამდე — ყველა ზომა.</p>
+      </div>
+      <div class="num-card reveal">
+        <span class="num-val mono">10<span class="cyan">+</span></span>
+        <h3 data-ka="წელი ბაზარზე" data-en="Years in Market">წელი ბაზარზე</h3>
+        <p data-ka="ღრმა ადგილობრივი ცოდნა, საერთაშორისო სტანდარტები." data-en="Deep local knowledge, international standards.">ღრმა ადგილობრივი ცოდნა, საერთაშორისო სტანდარტები.</p>
+      </div>
+      <div class="num-card reveal">
+        <span class="num-val mono">92<span class="cyan">%</span></span>
+        <h3 data-ka="კლიენტ-რეტენცია" data-en="Client Retention">კლიენტ-რეტენცია</h3>
+        <p data-ka="ჩვენი კლიენტები ჩვენთან რჩებიან — შედეგის გამო." data-en="Our clients stay with us — because of results.">ჩვენი კლიენტები ჩვენთან რჩებიან — შედეგის გამო.</p>
+      </div>
+      <div class="num-card reveal">
+        <span class="num-val mono">48<span class="cyan">h</span></span>
+        <h3 data-ka="პასუხის SLA" data-en="Response SLA">პასუხის SLA</h3>
+        <p data-ka="ნებისმიერ შეკითხვაზე 48 საათში ვუბრუნდებით." data-en="Any query addressed within 48 hours — guaranteed.">ნებისმიერ შეკითხვაზე 48 საათში ვუბრუნდებით.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process" class="section">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="tag"><span data-ka="მუშაობის პროცესი" data-en="Process">მუშაობის პროცესი</span></div>
+      <h2 data-ka="4 ნაბიჯი<br><span class='cyan'>წარმატებამდე</span>" data-en="4 Steps to<br><span class='cyan'>Success</span>">4 ნაბიჯი<br><span class="cyan">წარმატებამდე</span></h2>
+    </div>
+    <div class="process-steps">
+      <div class="step reveal">
+        <span class="step-num mono">STEP_01</span>
+        <div class="step-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        </div>
+        <h3 data-ka="პირველი შეხვედრა" data-en="Initial Meeting">პირველი შეხვედრა</h3>
+        <p data-ka="უფასო კონსულტაცია — ვიგებთ თქვენს სიტუაციას, მიზნებს, გამოწვევებს." data-en="Free consultation — we learn your situation, goals, and challenges.">უფასო კონსულტაცია — ვიგებთ თქვენს სიტუაციას, მიზნებს, გამოწვევებს.</p>
+        <div class="step-connector"></div>
+      </div>
+      <div class="step reveal">
+        <span class="step-num mono">STEP_02</span>
+        <div class="step-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </div>
+        <h3 data-ka="ანალიზი" data-en="Analysis">ანალიზი</h3>
+        <p data-ka="ღრმა ანალიზი და ინდივიდუალური სერვის-წინადადების მომზადება." data-en="Deep analysis and preparation of a personalized service proposal.">ღრმა ანალიზი და ინდივიდუალური სერვის-წინადადების მომზადება.</p>
+        <div class="step-connector"></div>
+      </div>
+      <div class="step reveal">
+        <span class="step-num mono">STEP_03</span>
+        <div class="step-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        </div>
+        <h3 data-ka="სერვისის გაწევა" data-en="Service Delivery">სერვისის გაწევა</h3>
+        <p data-ka="შეთანხმებული ვადებით, გამჭვირვალე კომუნიკაციით." data-en="On agreed timelines, with transparent communication.">შეთანხმებული ვადებით, გამჭვირვალე კომუნიკაციით.</p>
+        <div class="step-connector"></div>
+      </div>
+      <div class="step reveal">
+        <span class="step-num mono">STEP_04</span>
+        <div class="step-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+        </div>
+        <h3 data-ka="მუდმივი მონიტორინგი" data-en="Ongoing Monitoring">მუდმივი მონიტორინგი</h3>
+        <p data-ka="ყოველთვიური ანგარიშები, სტრატეგიული კონსულტაციები — ზრდა ერთად." data-en="Monthly reports, strategic consultations — growth together.">ყოველთვიური ანგარიშები, სტრატეგიული კონსულტაციები — ზრდა ერთად.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials" class="section">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="tag"><span data-ka="კლიენტები" data-en="Clients">კლიენტები</span></div>
+      <h2 data-ka="130+ კომპანიის<br><span class='cyan'>ნდობა</span>" data-en="Trusted by<br><span class='cyan'>130+ companies</span>">130+ კომპანიის<br><span class="cyan">ნდობა</span></h2>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card reveal">
+        <div class="testi-rating">
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <p class="testi-quote" data-ka="Loyal Partners-მა ჩვენი ბუღალტერია სრულიად გარდაქმნა. ახლა ფინანსებზე 80%-ით ნაკლებ დროს ვხარჯავ." data-en="Loyal Partners completely transformed our accounting. I now spend 80% less time on finances.">Loyal Partners-მა ჩვენი ბუღალტერია სრულიად გარდაქმნა. ახლა ფინანსებზე 80%-ით ნაკლებ დროს ვხარჯავ.</p>
+        <div class="testi-author">
+          <div class="testi-avatar">ნმ</div>
+          <div>
+            <div class="testi-name">ნინო მაისაშვილი</div>
+            <div class="testi-role">CEO, TechStart Georgia</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card reveal">
+        <div class="testi-rating">
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <p class="testi-quote" data-ka="Outsourced CFO სერვისმა ჩვენი ინვესტორებთან მოლაპარაკება განსხვავებულ სიბრტყეზე გადაიყვანა." data-en="The Outsourced CFO service brought our investor negotiations to a completely different level.">Outsourced CFO სერვისმა ჩვენი ინვესტორებთან მოლაპარაკება განსხვავებულ სიბრტყეზე გადაიყვანა.</p>
+        <div class="testi-author">
+          <div class="testi-avatar">გბ</div>
+          <div>
+            <div class="testi-name">გიორგი ბერიძე</div>
+            <div class="testi-role">Founder, Betmaster Group</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card reveal">
+        <div class="testi-rating">
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <p class="testi-quote" data-ka="საგადასახადო შემოწმებაში Loyal Partners-ის გუნდი ჩვენ გვერდით იდგა. პროფესიონალიზმი და ოპერატიულობა." data-en="During a tax audit, the Loyal Partners team stood beside us the whole time. Professionalism and speed.">საგადასახადო შემოწმებაში Loyal Partners-ის გუნდი ჩვენ გვერდით იდგა. პროფესიონალიზმი და ოპერატიულობა.</p>
+        <div class="testi-author">
+          <div class="testi-avatar">სკ</div>
+          <div>
+            <div class="testi-name">სალომე კობახიძე</div>
+            <div class="testi-role">CFO, Retail Holdings LLC</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section id="team" class="section">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="tag"><span data-ka="გუნდი" data-en="Team">გუნდი</span></div>
+      <h2 data-ka="ექსპერტები, რომლებიც<br><span class='cyan'>თქვენს გვერდით</span> დგანან" data-en="Experts who stand<br><span class='cyan'>beside you</span>">ექსპერტები, რომლებიც<br><span class="cyan">თქვენს გვერდით</span> დგანან</h2>
+    </div>
+    <div class="team-grid">
+      <div class="team-card reveal">
+        <div class="team-photo">
+          <div class="team-photo-scan"></div>
+          <div class="team-initials">NN</div>
+        </div>
+        <div class="team-info">
+          <h3 class="team-name">ნინო ნაჭყებია</h3>
+          <div class="team-role mono">Managing Partner</div>
+          <p class="team-bio" data-ka="ACCA, 15+ წელი. IFRS, M&A, კორპორატიული ფინანსები." data-en="ACCA, 15+ years. IFRS, M&A, corporate finance.">ACCA, 15+ წელი. IFRS, M&A, კორპორატიული ფინანსები.</p>
+        </div>
+      </div>
+      <div class="team-card reveal">
+        <div class="team-photo">
+          <div class="team-photo-scan" style="animation-delay:0.8s;"></div>
+          <div class="team-initials">DK</div>
+        </div>
+        <div class="team-info">
+          <h3 class="team-name">დავით კვარაცხელია</h3>
+          <div class="team-role mono">Head of Audit</div>
+          <p class="team-bio" data-ka="CPA, ACCA. სტატუტური აუდიტი, Due Diligence." data-en="CPA, ACCA. Statutory audit, Due Diligence.">CPA, ACCA. სტატუტური აუდიტი, Due Diligence.</p>
+        </div>
+      </div>
+      <div class="team-card reveal">
+        <div class="team-photo">
+          <div class="team-photo-scan" style="animation-delay:1.6s;"></div>
+          <div class="team-initials">MJ</div>
+        </div>
+        <div class="team-info">
+          <h3 class="team-name">მარიამ ჯანელიძე</h3>
+          <div class="team-role mono">Tax Manager</div>
+          <p class="team-bio" data-ka="10+ წელი. საგადასახადო სტრუქტურირება, Transfer Pricing." data-en="10+ years. Tax structuring, Transfer Pricing.">10+ წელი. საგადასახადო სტრუქტურირება, Transfer Pricing.</p>
+        </div>
+      </div>
+      <div class="team-card reveal">
+        <div class="team-photo">
+          <div class="team-photo-scan" style="animation-delay:2.4s;"></div>
+          <div class="team-initials">AT</div>
+        </div>
+        <div class="team-info">
+          <h3 class="team-name">ანი ტყეშელაშვილი</h3>
+          <div class="team-role mono">Senior Accountant</div>
+          <p class="team-bio" data-ka="IFRS სპეციალისტი. ფინანსური ანგარიშგება, ERP სისტემები." data-en="IFRS specialist. Financial reporting, ERP systems.">IFRS სპეციალისტი. ფინანსური ანგარიშგება, ERP სისტემები.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="section">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="tag"><span data-ka="კონტაქტი" data-en="Contact">კონტაქტი</span></div>
+      <h2 data-ka="დაიწყეთ<br><span class='cyan'>თანამშრომლობა</span>" data-en="Start your<br><span class='cyan'>Partnership</span>">დაიწყეთ<br><span class="cyan">თანამშრომლობა</span></h2>
+    </div>
+    <div class="contact-grid">
+      <div class="reveal">
+        <div class="contact-item">
+          <div class="contact-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+          <div>
+            <h4 data-ka="მისამართი" data-en="Address">მისამართი</h4>
+            <p data-ka="ვაჟა-ფშაველას 45, თბილისი" data-en="45 Vazha-Pshavela Ave, Tbilisi">ვაჟა-ფშაველას 45, თბილისი</p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+          <div>
+            <h4>Email</h4>
+            <p>info@loyalpartners.ge</p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.01 1.18 2 2 0 012 .01h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14.92v2z"/></svg></div>
+          <div>
+            <h4 data-ka="ტელეფონი" data-en="Phone">ტელეფონი</h4>
+            <p>+995 32 2 XX XX XX</p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+          <div>
+            <h4 data-ka="სამუშაო საათები" data-en="Working Hours">სამუშაო საათები</h4>
+            <p data-ka="ორშ–პარ: 10:00–18:00" data-en="Mon–Fri: 10:00–18:00">ორშ–პარ: 10:00–18:00</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-form-wrap reveal">
+        <h3 style="margin-bottom:1.5rem;" data-ka="მოგვწერეთ" data-en="Get in Touch">მოგვწერეთ</h3>
+        <div class="form-row">
+          <div class="form-group">
+            <label data-ka="სახელი" data-en="Name">სახელი</label>
+            <input type="text" placeholder="">
+          </div>
+          <div class="form-group">
+            <label data-ka="კომპანია" data-en="Company">კომპანია</label>
+            <input type="text" placeholder="">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" placeholder="you@company.ge">
+          </div>
+          <div class="form-group">
+            <label data-ka="ტელეფონი" data-en="Phone">ტელეფონი</label>
+            <input type="tel" placeholder="+995 5XX XXX XXX">
+          </div>
+        </div>
+        <div class="form-group">
+          <label data-ka="სერვისი" data-en="Service">სერვისი</label>
+          <select>
+            <option value="" data-ka="აირჩიეთ" data-en="Select service">აირჩიეთ</option>
+            <option data-ka="Outsourced CFO" data-en="Outsourced CFO">Outsourced CFO</option>
+            <option data-ka="ბუღალტრული აღრიცხვა" data-en="Accounting">ბუღალტრული აღრიცხვა</option>
+            <option data-ka="აუდიტი" data-en="Audit">აუდიტი</option>
+            <option data-ka="საგადასახადო კონსულტაცია" data-en="Tax Consulting">საგადასახადო კონსულტაცია</option>
+            <option data-ka="ფინანსური მოდელირება" data-en="Financial Modeling">ფინანსური მოდელირება</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label data-ka="შეტყობინება" data-en="Message">შეტყობინება</label>
+          <textarea rows="4" placeholder=""></textarea>
+        </div>
+        <button class="btn btn-cyan" style="width:100%;justify-content:center;">
+          <span data-ka="გაგზავნა" data-en="Send Message">გაგზავნა</span>
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo">
+          <span class="logo-mark">Loyal Partners</span>
+          <span class="logo-sub">Financial Intelligence</span>
+        </div>
+        <p data-ka="პროფესიული ფინანსური სერვისები ქართველი ბიზნესებისთვის 2014 წლიდან. ეთიკა, ექსპერტიზა, ლოიალობა." data-en="Professional financial services for Georgian businesses since 2014. Ethics, expertise, loyalty.">პროფესიული ფინანსური სერვისები ქართველი ბიზნესებისთვის 2014 წლიდან.</p>
+      </div>
+      <div class="footer-col">
+        <h4 data-ka="სერვისები" data-en="Services">სერვისები</h4>
+        <ul class="footer-links">
+          <li><a href="#services">Outsourced CFO</a></li>
+          <li><a href="#services" data-ka="ბუღალტერია" data-en="Accounting">ბუღალტერია</a></li>
+          <li><a href="#services" data-ka="აუდიტი" data-en="Audit">აუდიტი</a></li>
+          <li><a href="#services" data-ka="საგადასახადო" data-en="Tax">საგადასახადო</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4 data-ka="კომპანია" data-en="Company">კომპანია</h4>
+        <ul class="footer-links">
+          <li><a href="#about" data-ka="ჩვენს შესახებ" data-en="About Us">ჩვენს შესახებ</a></li>
+          <li><a href="#team" data-ka="გუნდი" data-en="Team">გუნდი</a></li>
+          <li><a href="#process" data-ka="პროცესი" data-en="Process">პროცესი</a></li>
+          <li><a href="#contact" data-ka="კარიერა" data-en="Careers">კარიერა</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4 data-ka="კონტაქტი" data-en="Contact">კონტაქტი</h4>
+        <ul class="footer-links">
+          <li><a href="mailto:info@loyalpartners.ge">info@loyalpartners.ge</a></li>
+          <li><a href="mailto:hr@loyalpartners.ge">hr@loyalpartners.ge</a></li>
+          <li><a href="#">LinkedIn</a></li>
+          <li><a href="#">Facebook</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p data-ka="© 2024 Loyal Partners Georgia. ყველა უფლება დაცულია." data-en="© 2024 Loyal Partners Georgia. All rights reserved.">© 2024 Loyal Partners Georgia. ყველა უფლება დაცულია.</p>
+      <span class="mono" style="font-size:0.68rem;color:var(--muted-2);">loyalpartners.ge</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// NAV SCROLL
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 40);
+});
+
+// SMOOTH SCROLL
+function scrollTo(id) {
+  event && event.preventDefault();
+  const el = document.getElementById(id);
+  if (el) el.scrollIntoView({ behavior: 'smooth' });
+}
+
+// REVEAL ON SCROLL
+const revealEls = document.querySelectorAll('.reveal');
+const revealObs = new IntersectionObserver((entries) => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('visible'), i * 50);
+      revealObs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.08 });
+revealEls.forEach(el => revealObs.observe(el));
+
+// LANGUAGE SYSTEM
+let currentLang = 'ka';
+
+function setLang(lang) {
+  currentLang = lang;
+  document.documentElement.setAttribute('data-lang', lang);
+
+  // Update toggle buttons
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.textContent.toLowerCase() === lang);
+  });
+
+  // Update all translatable elements
+  document.querySelectorAll('[data-ka]').forEach(el => {
+    const text = el.getAttribute('data-' + lang);
+    if (!text) return;
+    // Check if it contains HTML
+    if (text.includes('<')) {
+      el.innerHTML = text;
+    } else {
+      el.textContent = text;
+    }
+  });
+
+  // Update select options
+  document.querySelectorAll('select option[data-ka]').forEach(opt => {
+    const text = opt.getAttribute('data-' + lang);
+    if (text) opt.textContent = text;
+  });
+
+  // Update html lang attr
+  document.documentElement.lang = lang;
+}
+</script>
+</body>
+</html>
