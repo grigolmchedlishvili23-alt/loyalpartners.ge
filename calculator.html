@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Loyal Partners — ფინანსური კალკულატორი</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=DM+Sans:wght@400;500;600;700&family=Noto+Sans+Georgian:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root {
   --purple: #7674F5;
@@ -35,7 +35,7 @@
 html { scroll-behavior: smooth; }
 
 body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: 'Noto Sans Georgian', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   background: var(--bg);
   color: var(--text-body);
   font-size: 1rem;
@@ -54,7 +54,7 @@ input[type="number"] { cursor: text; }
 
 /* TYPOGRAPHY */
 h1, h2, h3, h4 {
-  font-family: 'DM Sans', 'Inter', sans-serif;
+  font-family: 'DM Sans', 'Noto Sans Georgian', 'Inter', sans-serif;
   line-height: 1.1;
   letter-spacing: -0.03em;
   color: var(--black);
@@ -74,7 +74,7 @@ a { text-decoration: none; color: inherit; }
 /* SECTION TAG */
 .tag {
   display: inline-flex; align-items: center; gap: 0.5rem;
-  font-family: 'DM Sans', sans-serif; font-size: 0.72rem; font-weight: 600;
+  font-family: 'DM Sans', 'Noto Sans Georgian', sans-serif; font-size: 0.72rem; font-weight: 600;
   letter-spacing: 0.12em; text-transform: uppercase; color: var(--purple);
   margin-bottom: 1rem;
   padding: 0.4rem 0.9rem;
@@ -104,7 +104,7 @@ a { text-decoration: none; color: inherit; }
 .btn {
   display: inline-flex; align-items: center; gap: 0.6rem;
   padding: 0.9rem 1.85rem;
-  font-family: 'DM Sans', sans-serif; font-size: 0.875rem; font-weight: 600;
+  font-family: 'DM Sans', 'Noto Sans Georgian', sans-serif; font-size: 0.875rem; font-weight: 600;
   letter-spacing: 0.02em; border: none; border-radius: var(--radius-btn);
   transition: all 0.3s ease; cursor: pointer;
 }
@@ -152,7 +152,7 @@ nav.scrolled {
 }
 .lang-btn {
   padding: 0.4rem 0.7rem;
-  font-family: 'DM Sans', sans-serif; font-size: 0.7rem; font-weight: 600;
+  font-family: 'DM Sans', 'Noto Sans Georgian', sans-serif; font-size: 0.7rem; font-weight: 600;
   color: var(--muted); background: transparent; border: none;
   cursor: pointer; transition: all 0.2s; letter-spacing: 0.05em;
 }
@@ -229,7 +229,7 @@ nav.scrolled {
 }
 .calc-tab {
   padding: 0.75rem 1.5rem;
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'DM Sans', 'Noto Sans Georgian', sans-serif;
   font-size: 0.875rem;
   font-weight: 600;
   border: 1.5px solid var(--border);
@@ -278,7 +278,7 @@ nav.scrolled {
 }
 .form-label {
   display: block;
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'DM Sans', 'Noto Sans Georgian', sans-serif;
   font-size: 0.8rem;
   font-weight: 600;
   color: var(--text);
@@ -317,7 +317,7 @@ nav.scrolled {
 .input-currency {
   position: absolute;
   right: 1.25rem;
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'DM Sans', 'Noto Sans Georgian', sans-serif;
   font-size: 0.8rem;
   font-weight: 700;
   color: var(--muted);
@@ -343,7 +343,7 @@ nav.scrolled {
   display: block;
   padding: 0.75rem 1rem;
   text-align: center;
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'DM Sans', 'Noto Sans Georgian', sans-serif;
   font-size: 0.85rem;
   font-weight: 600;
   border: 1.5px solid var(--border);
@@ -366,7 +366,7 @@ nav.scrolled {
 .calc-btn {
   width: 100%;
   padding: 1rem;
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'DM Sans', 'Noto Sans Georgian', sans-serif;
   font-size: 0.95rem;
   font-weight: 700;
   background: var(--purple);
@@ -407,7 +407,7 @@ nav.scrolled {
   color: var(--text-body);
 }
 .result-value {
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'DM Sans', 'Noto Sans Georgian', sans-serif;
   font-size: 1rem;
   font-weight: 700;
   color: var(--text);
@@ -604,12 +604,12 @@ footer {
     <div class="calc-panel" id="panel-income">
       <div class="calc-card reveal visible">
         <h3 data-ka="საშემოსავლო გადასახადის კალკულატორი" data-en="Income Tax Calculator">საშემოსავლო გადასახადის კალკულატორი</h3>
-        <p class="calc-desc" data-ka="საქართველოს საშემოსავლო გადასახადის განაკვეთი — 20%" data-en="Georgian income tax rate — 20%">საქართველოს საშემოსავლო გადასახადის განაკვეთი — 20%</p>
+        <p class="calc-desc" data-ka="შეიყვანეთ ხელზე ასაღები თანხა და გამოთვალეთ საშემოსავლო გადასახადი და საპენსიო შენატანი." data-en="Enter your take-home pay to calculate income tax and pension contribution.">შეიყვანეთ ხელზე ასაღები თანხა და გამოთვალეთ საშემოსავლო გადასახადი და საპენსიო შენატანი.</p>
 
         <div class="form-group">
-          <label class="form-label" data-ka="ხელფასი (ბრუტო)" data-en="Gross Salary">ხელფასი (ბრუტო)</label>
+          <label class="form-label" data-ka="ხელზე ასაღები თანხა (ნეტო)" data-en="Take-Home Pay (Net)">ხელზე ასაღები თანხა (ნეტო)</label>
           <div class="input-wrap">
-            <input type="number" id="income-gross" placeholder="0.00" min="0" step="0.01" oninput="calculateIncome()">
+            <input type="number" id="income-amount" placeholder="0.00" min="0" step="0.01" oninput="calculateIncome()">
             <span class="input-currency">GEL</span>
           </div>
         </div>
@@ -622,11 +622,15 @@ footer {
             <span class="result-value" id="income-gross-val">0.00 GEL</span>
           </div>
           <div class="result-row">
+            <span class="result-label" data-ka="საპენსიო შენატანი (2%)" data-en="Pension Contribution (2%)">საპენსიო შენატანი (2%)</span>
+            <span class="result-value" id="income-pension">0.00 GEL</span>
+          </div>
+          <div class="result-row">
             <span class="result-label" data-ka="საშემოსავლო გადასახადი (20%)" data-en="Income Tax (20%)">საშემოსავლო გადასახადი (20%)</span>
             <span class="result-value" id="income-tax">0.00 GEL</span>
           </div>
           <div class="result-row total">
-            <span class="result-label" data-ka="ნეტო ხელფასი" data-en="Net Salary">ნეტო ხელფასი</span>
+            <span class="result-label" data-ka="ხელზე ასაღები თანხა" data-en="Net Take-Home Pay">ხელზე ასაღები თანხა</span>
             <span class="result-value" id="income-net">0.00 GEL</span>
           </div>
         </div>
@@ -846,23 +850,29 @@ function calculateVAT() {
   document.getElementById('vat-total').textContent = formatNum(total) + ' GEL';
 }
 
-// INCOME TAX CALCULATOR
+// INCOME TAX CALCULATOR (Net → Gross reverse calculation)
+// Given net (take-home), calculate:
+// income_tax = net / 4
+// gross = net / 0.784
+// pension = (gross - net) / 4 * 2  (i.e. half of the difference allocated to pension)
 function calculateIncome() {
-  const gross = parseFloat(document.getElementById('income-gross').value) || 0;
+  const net = parseFloat(document.getElementById('income-amount').value) || 0;
   const results = document.getElementById('income-results');
 
-  if (gross <= 0) {
+  if (net <= 0) {
     results.classList.add('hidden');
     return;
   }
 
   results.classList.remove('hidden');
 
-  const tax = gross * 0.20;
-  const net = gross - tax;
+  const gross = net / 0.784;
+  const incomeTax = net / 4;
+  const pension = (gross - net) / 4 * 2;
 
   document.getElementById('income-gross-val').textContent = formatNum(gross) + ' GEL';
-  document.getElementById('income-tax').textContent = formatNum(tax) + ' GEL';
+  document.getElementById('income-pension').textContent = formatNum(pension) + ' GEL';
+  document.getElementById('income-tax').textContent = formatNum(incomeTax) + ' GEL';
   document.getElementById('income-net').textContent = formatNum(net) + ' GEL';
 }
 
