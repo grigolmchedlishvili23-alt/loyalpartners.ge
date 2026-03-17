@@ -1,0 +1,16 @@
+const fs = require('fs');
+
+const filePath = './loyalpartners.ge.html';
+let content = fs.readFileSync(filePath, 'utf8');
+
+// Remove pension tab button
+content = content.replace(/<button class="calc-tab" onclick="switchTab\('pension'\)".*?საპენსიო კალკულატორი<\/button>/s, '');
+
+// Remove pension calculator panel
+content = content.replace(/<!-- PENSION CALCULATOR -->[\s\S]*?<!-- CTA BANNER -->/m, '<!-- CTA BANNER -->');
+
+// Update tabs array in JavaScript
+content = content.replace("const tabs = ['vat', 'income', 'pension']", "const tabs = ['vat', 'income']");
+
+fs.writeFileSync(filePath, content, 'utf8');
+console.log('✓ Pension calculator removed');
