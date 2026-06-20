@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Loyal Partners - Financial Solution</title>
+<title>Loyal Partners — Financial Solution</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=DM+Sans:wght@400;500;600;700&family=Noto+Sans+Georgian:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -231,6 +231,14 @@ nav.scrolled .logo-img { height: 38px; }
 .metric-num { font-family: 'DM Sans', sans-serif; font-size: 1.9rem; font-weight: 700; color: var(--purple); line-height: 1; }
 .metric-label { font-size: 0.67rem; letter-spacing: 0.04em; color: var(--muted); text-transform: uppercase; margin-top: 0.3rem; font-weight: 600; }
 
+/* LIFT EFFECT */
+.shake-fx {
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+}
+.shake-fx:hover {
+  transform: translateY(-5px) !important;
+}
+
 /* TEAM CARD HOVER PULSE */
 .team-card { position: relative; }
 @keyframes pulseSq {
@@ -456,7 +464,7 @@ nav.scrolled .logo-img { height: 38px; }
 .svc-card:hover .svc-icon { background: var(--purple); color: #fff; }
 .svc-icon svg { width: 22px; height: 22px; }
 .svc-idx { font-size: 0.7rem; font-weight: 700; color: var(--muted); letter-spacing: 0.05em; }
-.svc-title { font-size: 1.1rem; margin-bottom: 0.6rem; transition: color 0.3s; }
+.svc-title { font-size: 1.1rem; margin-bottom: 0.6rem; transition: color 0.3s; color: var(--purple); }
 .svc-desc { font-size: 0.88rem; line-height: 1.7; color: var(--text-body); max-width: none; }
 .svc-features { margin-top: 1.25rem; list-style: none; display: flex; flex-direction: column; gap: 0.45rem; }
 .svc-features li { font-size: 0.8rem; color: var(--text-body); display: flex; align-items: center; gap: 0.6rem; }
@@ -747,17 +755,17 @@ footer { background: #111; color: rgba(255,255,255,0.6); padding: 4.5rem 0 2rem;
 
 .reveal {
   opacity: 0;
-  transform: translateY(28px);
-  transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1), transform 0.7s cubic-bezier(0.16,1,0.3,1);
+  transform: translateY(16px);
+  transition: opacity 0.45s cubic-bezier(0.16,1,0.3,1), transform 0.45s cubic-bezier(0.16,1,0.3,1);
 }
 .reveal.visible { opacity: 1; transform: translateY(0); }
 
 /* stagger delays for children */
-.reveal:nth-child(2) { transition-delay: 0.08s; }
-.reveal:nth-child(3) { transition-delay: 0.16s; }
-.reveal:nth-child(4) { transition-delay: 0.24s; }
-.reveal:nth-child(5) { transition-delay: 0.32s; }
-.reveal:nth-child(6) { transition-delay: 0.4s; }
+.reveal:nth-child(2) { transition-delay: 0.05s; }
+.reveal:nth-child(3) { transition-delay: 0.1s; }
+.reveal:nth-child(4) { transition-delay: 0.15s; }
+.reveal:nth-child(5) { transition-delay: 0.2s; }
+.reveal:nth-child(6) { transition-delay: 0.25s; }
 
 /* process line animation */
 @keyframes processLine {
@@ -769,7 +777,7 @@ footer { background: #111; color: rgba(255,255,255,0.6); padding: 4.5rem 0 2rem;
   transform-origin: left;
 }
 
-/* metric counter — smooth number change */
+/* metric counter - smooth number change */
 .metric-num, .num-val {
   font-variant-numeric: tabular-nums;
 }
@@ -899,7 +907,7 @@ function navScroll(id) {
         </div>
         <h1 class="hero-title" id="heroTitle">
           <span class="ht-line" id="ht1">ბიზნესის განვითარება</span>
-          <span class="ht-line" id="ht2">სრული ფინანსური</span>
+          <span class="ht-line" id="ht2">ფინანსური</span>
           <span class="ht-line" id="ht3"><span class="purple">სიცხადით იწყება</span></span>
         </h1>
         <p class="hero-desc" id="heroDesc" style="opacity:1; display:flex; flex-wrap:wrap; align-items:baseline; gap:0.25em;">
@@ -944,7 +952,7 @@ function navScroll(id) {
     <div class="trust-bar-inner">
       <div class="trust-badge">
         <div class="trust-badge-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="2" x2="12" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/></svg>
         </div>
         <span>IFRS</span>
       </div>
@@ -956,15 +964,9 @@ function navScroll(id) {
       </div>
       <div class="trust-badge">
         <div class="trust-badge-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
         </div>
         <span>ISA</span>
-      </div>
-      <div class="trust-badge">
-        <div class="trust-badge-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
-        </div>
-        <span data-ka="საერთაშორისო სტანდარტები" data-en="International Standards">საერთაშორისო სტანდარტები</span>
       </div>
     </div>
   </div>
@@ -976,91 +978,96 @@ function navScroll(id) {
     <div class="section-header reveal">
       <div class="tag"><span data-ka="სერვისები" data-en="Services">სერვისები</span></div>
       <h2 data-ka="ერთი სივრცე<br>ყველა საჭიროება." data-en="One Space.<br>Every Need.">ერთი სივრცე<br>ყველა საჭიროება</h2>
-      <p data-ka="ბუღალტრიდან CFO-მდე - გემსახურება კომპეტენტური გუნდი, რომელიც შენს ბიზნესს იცნობს და ჩვენ ვიღებთ პასუხისმგებლობას." data-en="From accounting to CFO - a competent team that knows your business, and we take full responsibility.">ბუღალტრიდან CFO-მდე - გემსახურება კომპეტენტური გუნდი, რომელიც შენს ბიზნესს იცნობს და ჩვენ ვიღებთ პასუხისმგებლობას</p>
+      <p data-ka="ბუღალტრული აღრიცხვიდან სტრატეგიულ ფინანსურ მართვამდე — თქვენს გვერდით დგას პროფესიონალებით დაკომპლექტებული, თანამედროვე ტექნოლოგიებზე დაფუძნებული ფინანსური დეპარტამენტი." data-en="From accounting to CFO — a competent team that knows your business, and we take full responsibility.">ბუღალტრული აღრიცხვიდან სტრატეგიულ ფინანსურ მართვამდე — თქვენს გვერდით დგას პროფესიონალებით დაკომპლექტებული, თანამედროვე ტექნოლოგიებზე დაფუძნებული ფინანსური დეპარტამენტი</p>
     </div>
     <div class="services-grid">
       <div class="svc-card reveal" data-num="01">
         <div class="svc-top">
-          <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
+          <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3M12 17h.01"/></svg></div>
           <span class="svc-idx">01</span>
         </div>
-        <h3 class="svc-title" data-ka="Outsourced CFO" data-en="Outsourced CFO">Outsourced CFO</h3>
-        <p class="svc-desc" data-ka="გინდა იცოდე სად მიდის ფული და რატომ? CFO გაძლევს ამ სიცხადეს - ყოველდღიური ხარჯის გარეშე სტრატეგიული გადაწყვეტილებები ახლა ფაქტებზე დაყრდნობით." data-en="Want to know where the money goes and why? Our CFO gives you that clarity - without the full-time cost. Strategic decisions, now based on facts.">გინდა იცოდე სად მიდის ფული და რატომ? CFO გაძლევს ამ სიცხადეს - ყოველდღიური ხარჯის გარეშე სტრატეგიული გადაწყვეტილებები ახლა ფაქტებზე დაყრდნობით</p>
+        <h3 class="svc-title" data-ka="საგადასახადო მომსახურება" data-en="Tax Services">საგადასახადო მომსახურება</h3>
+        <p class="svc-desc" data-ka="სწორი საგადასახადო სტრატეგია ამცირებს რისკებს და აძლიერებს ბიზნესს. ჩვენი გუნდი უზრუნველყოფს საგადასახადო კონსულტაციას, შესაბამისობის სრულ კონტროლს, დეკლარაციებისა და ანგარიშგების მომზადებას, საგადასახადო დაგეგმვასა და სტრუქტურირებას, ასევე კლიენტის ინტერესების პროფესიონალურ წარმომადგენლობას სახელმწიფო უწყებებსა და საგადასახადო დავების პროცესში." data-en="The right tax strategy reduces risks and strengthens your business."><strong>სწორი საგადასახადო სტრატეგია ამცირებს რისკებს და აძლიერებს ბიზნესს.</strong><br><span style="display:block;margin-top:0.5rem;">ჩვენი გუნდი უზრუნველყოფს საგადასახადო კონსულტაციას, შესაბამისობის სრულ კონტროლს, დეკლარაციებისა და ანგარიშგების მომზადებას, საგადასახადო დაგეგმვასა და სტრუქტურირებას, ასევე კლიენტის ინტერესების პროფესიონალურ წარმომადგენლობას სახელმწიფო უწყებებსა და საგადასახადო დავების პროცესში</span></p>
         <ul class="svc-features">
-          <li data-ka="ფინანსური სტრატეგია" data-en="Financial Strategy">ფინანსური სტრატეგია</li>
-          <li data-ka="Cash Flow მენეჯმენტი" data-en="Cash Flow Management">Cash Flow მენეჯმენტი</li>
-          <li data-ka="ინვესტორთა ანგარიშგება" data-en="Investor Reporting">ინვესტორთა ანგარიშგება</li>
-          <li data-ka="KPI სისტემები" data-en="KPI Systems">KPI სისტემები</li>
+          <li data-ka="საგადასახადო კონსულტაცია" data-en="Tax Consulting">საგადასახადო კონსულტაცია</li>
+          <li data-ka="საგადასახადო მოდელის დაგეგმვა და დანერგვა" data-en="Tax Model Planning">საგადასახადო მოდელის დაგეგმვა და დანერგვა</li>
+          <li data-ka="საგადასახადო აუდიტი" data-en="Tax Audit">საგადასახადო აუდიტი</li>
+          <li data-ka="საგადასახადო დავების მართვა" data-en="Tax Dispute Management">საგადასახადო დავების მართვა</li>
         </ul>
       </div>
       <div class="svc-card reveal" data-num="02">
         <div class="svc-top">
-          <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4M7 7h10M7 11h6"/></svg></div>
+          <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></div>
           <span class="svc-idx">02</span>
         </div>
         <h3 class="svc-title" data-ka="ბუღალტრული აღრიცხვა" data-en="Accounting">ბუღალტრული აღრიცხვა</h3>
-        <p class="svc-desc" data-ka="შენი ბუღალტერია ზუსტი, კანონთან შესაბამისი და ყოველთვის განახლებული ჩვენი გუნდი ვიღებთ სრულ პასუხისმგებლობას - შენ კი მშვიდად ეწევი ბიზნესს." data-en="Your accounting - accurate, compliant, and always up to date. Our team takes full responsibility, so you can run your business in peace.">შენი ბუღალტერია ზუსტი, კანონთან შესაბამისი და ყოველთვის განახლებული ჩვენი გუნდი ვიღებთ სრულ პასუხისმგებლობას - შენ კი მშვიდად ეწევი ბიზნესს</p>
+        <p class="svc-desc" data-ka="ჩვენ ვმართავთ ციფრებს — თქვენ მართავთ ბიზნესს. ზუსტი აღრიცხვა, კანონმდებლობასთან სრული შესაბამისობა და თანამედროვე ტექნოლოგიებზე დაფუძნებული პროცესები." data-en="Your accounting — accurate, compliant, and always up to date. Our team takes full responsibility, so you can run your business in peace."><strong>ჩვენ ვმართავთ ციფრებს — თქვენ მართავთ ბიზნესს.</strong><br><span style="display:block;margin-top:0.5rem;">ზუსტი აღრიცხვა, კანონმდებლობასთან სრული შესაბამისობა და თანამედროვე ტექნოლოგიებზე დაფუძნებული პროცესები</span></p>
         <ul class="svc-features">
-          <li data-ka="IFRS სტანდარტები" data-en="IFRS Standards">IFRS სტანდარტები</li>
-          <li data-ka="ყოველთვიური ანგარიშები" data-en="Monthly Reports">ყოველთვიური ანგარიშები</li>
-          <li data-ka="პირველადი დოკუმენტაცია" data-en="Primary Documentation">პირველადი დოკუმენტაცია</li>
-          <li data-ka="ERP ინტეგრაცია" data-en="ERP Integration">ERP ინტეგრაცია</li>
+          <li data-ka="IFRS და IFRS for SMEs სტანდარტები" data-en="IFRS Standards">IFRS და IFRS for SMEs სტანდარტები</li>
+          <li data-ka="საგადასახადო ვალდებულებების მონიტორინგი" data-en="Tax Compliance Monitoring">საგადასახადო ვალდებულებების მონიტორინგი</li>
+          <li data-ka="ERP სისტემებთან ინტეგრაცია" data-en="ERP Integration">ERP სისტემებთან ინტეგრაცია</li>
+          <li data-ka="ყოველთვიური ფინანსური ანგარიშგება" data-en="Monthly Financial Reporting">ყოველთვიური ფინანსური ანგარიშგება</li>
+          <li data-ka="პირველადი დოკუმენტაციის დამუშავება-დაარქივება" data-en="Document Processing">პირველადი დოკუმენტაციის დამუშავება-დაარქივება</li>
+          <li data-ka="პროფესიული პასუხისმგებლობის დაზღვევა" data-en="Professional Liability Insurance">პროფესიული პასუხისმგებლობის დაზღვევა</li>
         </ul>
       </div>
       <div class="svc-card reveal" data-num="03">
         <div class="svc-top">
-          <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg></div>
+          <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
           <span class="svc-idx">03</span>
         </div>
-        <h3 class="svc-title" data-ka="აუდიტი" data-en="Audit">აუდიტი</h3>
-        <p class="svc-desc" data-ka="დამოუკიდებელი შეფასება, რომელსაც ბანკები და ინვესტორები ენდობიან ვამოწმებთ იმას, რაც ყველაზე მნიშვნელოვანია - ისე, რომ შედეგი გამოსადეგი იყოს." data-en="Independent assessment trusted by banks and investors. We examine what matters most - delivering results you can act on.">დამოუკიდებელი შეფასება, რომელსაც ბანკები და ინვესტორები ენდობიან ვამოწმებთ იმას, რაც ყველაზე მნიშვნელოვანია - ისე, რომ შედეგი გამოსადეგი იყოს</p>
+        <h3 class="svc-title" data-ka="ფინანსური მენეჯმენტი" data-en="Financial Management">ფინანსური მენეჯმენტი</h3>
+        <p class="svc-desc" data-ka="სწორი ფინანსური გადაწყვეტილებები იწყება სწორი ანალიზით. ჩვენი გუნდი უზრუნველყოფს ფინანსური სტრატეგიის შემუშავებას, Cash Flow-ის დაგეგმვასა და კონტროლს, ბიუჯეტირებასა და ფინანსურ პროგნოზირებას, KPI სისტემების შექმნა-მონიტორინგს და ფინანსური რისკების ანალიზს." data-en="Want to know where the money goes and why? Our CFO gives you that clarity — without the full-time cost. Strategic decisions, now based on facts."><strong>სწორი ფინანსური გადაწყვეტილებები იწყება ანალიზით.</strong><br><span style="display:block;margin-top:0.5rem;">ჩვენი გუნდი უზრუნველყოფს ფინანსური სტრატეგიის შემუშავებას, Cash Flow-ის დაგეგმვასა და კონტროლს, ბიუჯეტირებასა და ფინანსურ პროგნოზირებას, KPI სისტემების შექმნა-მონიტორინგს და ფინანსური რისკების ანალიზს</span></p>
         <ul class="svc-features">
-          <li data-ka="სტატუტური აუდიტი" data-en="Statutory Audit">სტატუტური აუდიტი</li>
-          <li data-ka="Due Diligence" data-en="Due Diligence">Due Diligence</li>
-          <li data-ka="შიდა კონტროლი" data-en="Internal Control">შიდა კონტროლი</li>
-          <li data-ka="საგადასახადო აუდიტი" data-en="Tax Audit">საგადასახადო აუდიტი</li>
+          <li data-ka="ფინანსური სტრატეგიის შემუშავება" data-en="Financial Strategy">ფინანსური სტრატეგიის შემუშავება</li>
+          <li data-ka="Cash Flow-ის დაგეგმვა და კონტროლი" data-en="Cash Flow Planning">Cash Flow-ის დაგეგმვა და კონტროლი</li>
+          <li data-ka="ბიუჯეტირება და პროგნოზირება" data-en="Budgeting & Forecasting">ბიუჯეტირება და პროგნოზირება</li>
+          <li data-ka="KPI სისტემების შექმნა-მონიტორინგი" data-en="KPI Systems">KPI სისტემების შექმნა-მონიტორინგი</li>
+          <li data-ka="ფინანსური ანგარიშგების მომზადება" data-en="Financial Reporting">ფინანსური ანგარიშგების მომზადება</li>
+          <li data-ka="ფინანსური რისკების ანალიზი" data-en="Risk Analysis">ფინანსური რისკების ანალიზი</li>
         </ul>
       </div>
       <div class="svc-card reveal" data-num="04">
         <div class="svc-top">
-          <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3M12 17h.01"/></svg></div>
+          <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg></div>
           <span class="svc-idx">04</span>
         </div>
-        <h3 class="svc-title" data-ka="საგადასახადო კონსულტაცია" data-en="Tax Consulting">საგადასახადო კონსულტაცია</h3>
-        <p class="svc-desc" data-ka="საგადასახადო ჯარიმის შიში კი არ გჭირდება - სწორი სტრუქტურა გჭირდება ვაშენებთ ლეგალურ, ოპტიმალურ გადასახადის გეგმას შენი ბიზნესისთვის." data-en="You don't need the fear of tax penalties - you need the right structure. We build a legal, optimal tax plan tailored to your business.">საგადასახადო ჯარიმის შიში კი არ გჭირდება - სწორი სტრუქტურა გჭირდება ვაშენებთ ლეგალურ, ოპტიმალურ გადასახადის გეგმას შენი ბიზნესისთვის</p>
+        <h3 class="svc-title" data-ka="ფინანსური აუდიტი" data-en="Financial Audit">ფინანსური აუდიტი</h3>
+        <p class="svc-desc" data-ka="დამოუკიდებელი შეფასება, რომელიც ზრდის ნდობას და ამყარებს სწორი ბიზნეს გადაწყვეტილებების საფუძველს." data-en="Independent assessment that builds trust and strengthens business decisions."><strong>დამოუკიდებელი შეფასება, რომელიც ზრდის ნდობას და ამყარებს სწორი ბიზნეს გადაწყვეტილებების საფუძველს.</strong><br><span style="display:block;margin-top:0.5rem;">ჩვენი გუნდი აწარმოებს საერთაშორისო სტანდარტებზე დაფუძნებულ ფინანსურ აუდიტს, ამოწმებს ფინანსური ანგარიშგების სიზუსტესა და მოქმედ კანონმდებლობასთან შესაბამისობას, აფასებს შიდა კონტროლის ეფექტიანობას და ეხმარება კომპანიებს რისკების იდენტიფიცირებასა და გამჭვირვალობის გაზრდაში</span></p>
         <ul class="svc-features">
-          <li data-ka="სტრუქტურის ოპტიმიზაცია" data-en="Structure Optimization">სტრუქტურის ოპტიმიზაცია</li>
-          <li data-ka="საგადასახადო კომპლიანსი" data-en="Tax Compliance">საგადასახადო კომპლიანსი</li>
-          <li data-ka="გასაჩივრება" data-en="Tax Appeals">გასაჩივრება</li>
-          <li data-ka="Transfer Pricing" data-en="Transfer Pricing">Transfer Pricing</li>
+          <li data-ka="სტატუტური ფინანსური აუდიტი" data-en="Statutory Financial Audit">სტატუტური ფინანსური აუდიტი</li>
+          <li data-ka="ფინანსური ანგარიშგების აუდიტი" data-en="Financial Reporting Audit">ფინანსური ანგარიშგების აუდიტი</li>
+          <li data-ka="შიდა კონტროლის სისტემების შეფასება" data-en="Internal Control Assessment">შიდა კონტროლის სისტემების შეფასება</li>
+          <li data-ka="შიდა აუდიტი" data-en="Internal Audit">შიდა აუდიტი</li>
         </ul>
       </div>
       <div class="svc-card reveal" data-num="05">
         <div class="svc-top">
-          <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+          <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
           <span class="svc-idx">05</span>
         </div>
-        <h3 class="svc-title" data-ka="ფინანსური მოდელირება" data-en="Financial Modeling">ფინანსური მოდელირება</h3>
-        <p class="svc-desc" data-ka="სამომავლო გადაწყვეტილებები ვარაუდებზე კი არ უნდა დაეფუძნოს - ციფრებზე ვაშენებთ მოდელებს, რომლებიც გეხმარება სწორი არჩევანის გაკეთებაში." data-en="Future decisions shouldn't be based on guesses - but on numbers. We build models that help you make the right choice.">სამომავლო გადაწყვეტილებები ვარაუდებზე კი არ უნდა დაეფუძნოს - ციფრებზე ვაშენებთ მოდელებს, რომლებიც გეხმარება სწორი არჩევანის გაკეთებაში</p>
+        <h3 class="svc-title" data-ka="კომპანიის რეგისტრაცია" data-en="Company Registration">კომპანიის რეგისტრაცია</h3>
+        <p class="svc-desc"><strong>დააფუძნეთ ბიზნესი სწრაფად, უსაფრთხოდ და ზედმეტი ბიუროკრატიის გარეშე.</strong><br><span style="display:block;margin-top:0.5rem;">ჩვენ უზრუნველვყოფთ კომპანიის რეგისტრაციის სრულ ციკლს — დოკუმენტების მომზადებიდან სახელმწიფო ორგანოებთან კომუნიკაციამდე</span></p>
         <ul class="svc-features">
-          <li data-ka="ბიზნეს გეგმები" data-en="Business Plans">ბიზნეს გეგმები</li>
-          <li data-ka="სცენარების ანალიზი" data-en="Scenario Analysis">სცენარების ანალიზი</li>
-          <li data-ka="M&A ტრანზაქციები" data-en="M&A Transactions">M&amp;A ტრანზაქციები</li>
-          <li data-ka="Valuation" data-en="Valuation">Valuation</li>
+          <li>იურიდიული ფორმის შერჩევა</li>
+          <li>სადამფუძნებლო დოკუმენტების მომზადება</li>
+          <li>იურიდიული მისამართის რეგისტრაცია</li>
+          <li>დღგ-ის (VAT) და სხვა სპეციალური სტატუსების რეგისტრაცია</li>
+          <li>შემოსავლების სამსახურთან დაკავშირებული პროცედურების მართვა</li>
         </ul>
       </div>
       <div class="svc-card reveal" data-num="06">
         <div class="svc-top">
-          <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></div>
+          <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/><rect x="2" y="2" width="20" height="20" rx="2"/></svg></div>
           <span class="svc-idx">06</span>
         </div>
-        <h3 class="svc-title" data-ka="ფინანსური ანგარიშგება" data-en="Financial Reporting">ფინანსური ანგარიშგება</h3>
-        <p class="svc-desc" data-ka="ბანკი, ინვესტორი, მარეგულირებელი - ყველას სჭირდება ენა, რომელსაც ენდობა ჩვენ ვთარგმნით შენი ბიზნესის შედეგებს ისე, რომ კარი გაიღოს." data-en="Banks, investors, regulators - they all need a language they trust. We translate your business results so doors open.">ბანკი, ინვესტორი, მარეგულირებელი - ყველას სჭირდება ენა, რომელსაც ენდობა ჩვენ ვთარგმნით შენი ბიზნესის შედეგებს ისე, რომ კარი გაიღოს</p>
+        <h3 class="svc-title" data-ka="მონაცემთა ანალიტიკა" data-en="Data Analytics">მონაცემთა ანალიტიკა</h3>
+        <p class="svc-desc"><strong>მიიღეთ სწორი გადაწყვეტილებები მონაცემებზე დაყრდნობით.</strong><br><span style="display:block;margin-top:0.5rem;">ჩვენი გუნდი SQL-ისა და თანამედროვე ანალიტიკური ინსტრუმენტების გამოყენებით ამუშავებს და აანალიზებს თქვენს მონაცემებს, რათა მიიღოთ ზუსტი ანგარიშები, დაინახოთ ტენდენციები და გააუმჯობესოთ ბიზნეს პროცესები</span></p>
         <ul class="svc-features">
-          <li data-ka="IFRS / GAAP" data-en="IFRS / GAAP">IFRS / GAAP</li>
-          <li data-ka="კვარტალური ანგარიშები" data-en="Quarterly Reports">კვარტალური ანგარიშები</li>
-          <li data-ka="კონსოლიდაცია" data-en="Consolidation">კონსოლიდაცია</li>
-          <li data-ka="ESG რეპორტინგი" data-en="ESG Reporting">ESG რეპორტინგი</li>
+          <li>SQL მონაცემთა ანალიზი</li>
+          <li>ავტომატიზებული რეპორტინგი</li>
+          <li>Dashboard-ებისა და ვიზუალიზაციის შექმნა</li>
+          <li>პროცესების ავტომატიზაცია</li>
         </ul>
       </div>
     </div>
@@ -1096,38 +1103,18 @@ function navScroll(id) {
         </div>
       </div>
       <div class="reveal">
-        <div class="tag"><span data-ka="ჩვენ შესახებ" data-en="ჩვენ შესახებ">ჩვენ შესახებ</span></div>
+        <div class="tag"><span data-ka="ჩვენს შესახებ" data-en="About Us">ჩვენს შესახებ</span></div>
         <h2 style="display:flex; flex-direction:row; gap:0.4em; flex-wrap:wrap; align-items:baseline;">
-          <span id="aw1" style="opacity:0; transform:translateY(20px); transition:opacity 0.6s ease, transform 0.6s ease; display:inline-block;">ეთიკა</span>
+          <span id="aw1" style="opacity:0; transform:translateY(20px); transition:opacity 0.6s ease, transform 0.6s ease; display:inline-block;">სიზუსტე</span>
           <span id="aw2" style="opacity:0; transform:translateY(20px); transition:opacity 0.6s ease, transform 0.6s ease; display:inline-block;">ინოვაცია</span>
-          <span id="aw3" style="opacity:0; transform:translateY(20px); transition:opacity 0.6s ease, transform 0.6s ease; display:inline-block;" class="purple">ლოიალობა</span>
+          <span id="aw3" style="opacity:0; transform:translateY(20px); transition:opacity 0.6s ease, transform 0.6s ease; display:inline-block;" class="purple">პასუხისმგებლობა</span>
         </h2>
         <div class="accent-line"></div>
-        <p style="margin-bottom:0.75rem;" data-ka="2017 წლიდან ვეხმარებით ქართულ ბიზნესებს - არ ვართ უბრალოდ ბუღალტრული კომპანია ვართ პარტნიორი, რომელიც პასუხისმგებლობას იღებს, ვადებს იცავს და ყოველთვის ხელმისაწვდომია." data-en="Since 2017 we've been helping Georgian businesses - we're not just an accounting firm. We're a partner that takes responsibility, meets deadlines, and is always reachable.">2017 წლიდან ვეხმარებით ქართულ ბიზნესებს - არ ვართ უბრალოდ ბუღალტრული კომპანია ვართ პარტნიორი, რომელიც პასუხისმგებლობას იღებს, ვადებს იცავს და ყოველთვის ხელმისაწვდომია</p>
-        <p data-ka="ჩვენი 130+ მომხმარებელი სტარტაპებიდან mid-market კომპანიებამდე - 95% მომხმარებელი კმაყოფილია ჩვენი სერვისით ეს ციფრი ბევრს ამბობს." data-en="Our 130+ clients range from startups to mid-market companies - 95% of our users are satisfied with our service. That number says it all.">ჩვენი 130+ მომხმარებელი სტარტაპებიდან mid-market კომპანიებამდე - 95% მომხმარებელი კმაყოფილია ჩვენი სერვისით ეს ციფრი ბევრს ამბობს</p>
-        <ul class="values-list">
-          <li class="val-item">
-            <div class="val-check"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="2 6 5 9 10 3"/></svg></div>
-            <div>
-              <h4 data-ka="სრული გამჭვირვალობა" data-en="Full Transparency">სრული გამჭვირვალობა</h4>
-              <p data-ka="მუდმივად იცი შენი ფინანსური მდგომარეობა არავითარი სიურპრიზი, მხოლოდ სიცხადე." data-en="You always know your financial position. No surprises, only clarity.">მუდმივად იცი შენი ფინანსური მდგომარეობა არავითარი სიურპრიზი, მხოლოდ სიცხადე</p>
-            </div>
-          </li>
-          <li class="val-item">
-            <div class="val-check"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="2 6 5 9 10 3"/></svg></div>
-            <div>
-              <h4 data-ka="გუნდის სიძლიერე" data-en="Team Strength">გუნდის სიძლიერე</h4>
-              <p data-ka="ერთ ბუღალტერზე დამოკიდებულება - წარსულშია გემსახურება სხვადასხვა მიმართულებით კომპეტენტური გუნდი." data-en="Dependence on one accountant is a thing of the past. A competent team in every direction serves you.">ერთ ბუღალტერზე დამოკიდებულება - წარსულშია გემსახურება სხვადასხვა მიმართულებით კომპეტენტური გუნდი</p>
-            </div>
-          </li>
-          <li class="val-item">
-            <div class="val-check"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="2 6 5 9 10 3"/></svg></div>
-            <div>
-              <h4 data-ka="პასუხისმგებლობა ჩვენზეა" data-en="Responsibility Is Ours">პასუხისმგებლობა ჩვენზეა</h4>
-              <p data-ka="საგადასახადო, სამართლებრივი, ოპერაციული - ვიღებთ პასუხისმგებლობას შენ მშვიდად იძინებ." data-en="Tax, legal, operational - we take the responsibility. You sleep in peace.">საგადასახადო, სამართლებრივი, ოპერაციული - ვიღებთ პასუხისმგებლობას შენ მშვიდად იძინებ</p>
-            </div>
-          </li>
-        </ul>
+        <p style="margin-bottom:0.75rem; font-weight:600;">მაღალტექნოლოგიური, კვალიფიციური პროფესიონალებით დაკომპლექტებული ფინანსური დეპარტამენტი.</p>
+        <p style="margin-bottom:0.75rem;">2017 წლიდან ვეხმარებით ქართულ და საერთაშორისო ბიზნესებს ფინანსური პროცესების ეფექტიან მართვაში. ვაერთიანებთ გამოცდილებას, თანამედროვე ტექნოლოგიებსა და მონაცემებზე დაფუძნებულ მიდგომებს, რათა ფინანსური ოპერაციები იყოს სწრაფი, ზუსტი და გამჭვირვალე.</p>
+        <p style="margin-bottom:0.75rem;">დღეს 130-ზე მეტ მომხმარებელს ვემსახურებით — სტარტაპებიდან მზარდ და საშუალო ზომის კომპანიებამდე. მომხმარებელთა 95%-ზე მეტი კმაყოფილია ჩვენი მომსახურებით, რაც ჩვენი ხარისხისა და საიმედოობის საუკეთესო დასტურია.</p>
+        <p style="margin-bottom:1.25rem;">ჩვენი სამუშაო პროცესები დაფუძნებულია ინოვაციებზე: შიდა Ticketing სისტემა, SLA-ის მონიტორინგი, დავალებების რეალურ დროში კონტროლი და SQL-ზე დაფუძნებული ავტომატიზაციები უზრუნველყოფს ეფექტიანობასა და მაღალ სტანდარტს.</p>
+
       </div>
     </div>
   </div>
@@ -1142,45 +1129,45 @@ function navScroll(id) {
     </div>
     <div class="why-grid">
       <div class="why-item reveal">
-        <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4M7 7h10M7 11h6"/></svg></div>
+        <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
         <div>
-          <h3 data-ka="იცი, სად მიდის ფული" data-en="Know Where the Money Goes">იცი, სად მიდის ფული</h3>
-          <p data-ka="მენეჯერული აღრიცხვა, კონკრეტული ინდიკატორები - გადაწყვეტილება ციფრებზე, არა ინტუიციაზე." data-en="Management accounting, concrete indicators - decisions based on numbers, not intuition.">მენეჯერული აღრიცხვა, კონკრეტული ინდიკატორები - გადაწყვეტილება ციფრებზე, არა ინტუიციაზე</p>
+          <h3>ტექნოლოგიებზე დაფუძნებული პროცესები</h3>
+          <p>SQL ავტომატიზაცია, შიდა Ticketing სისტემა და რეალურ დროში დავალებების მონიტორინგი</p>
         </div>
       </div>
       <div class="why-item reveal">
-        <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+        <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg></div>
         <div>
-          <h3 data-ka="გუნდი, არა ერთი ბუღალტერი" data-en="A Team, Not One Accountant">გუნდი, არა ერთი ბუღალტერი</h3>
-          <p data-ka="ერთი ადამიანი ყველაფერს ვერ იცნობს ჩვენი გუნდი საგადასახადო, საბუღალტრო და ფინანსური ექსპერტიზის მატარებელია." data-en="One person can't know everything. Our team carries tax, accounting, and financial expertise.">ერთი ადამიანი ყველაფერს ვერ იცნობს ჩვენი გუნდი საგადასახადო, საბუღალტრო და ფინანსური ექსპერტიზის მატარებელია</p>
+          <h3>კვალიფიციური ფინანსური გუნდი</h3>
+          <p>ACCA, IFRS და საგადასახადო პრაქტიკის გამოცდილების მქონე სპეციალისტები</p>
+        </div>
+      </div>
+      <div class="why-item reveal">
+        <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/><path d="M9 12l2 2 4-4"/></svg></div>
+        <div>
+          <h3>SLA და ვადების მკაცრი კონტროლი</h3>
+          <p>ყველა დავალება სრულდება განსაზღვრული სტანდარტებისა და ვადების დაცვით</p>
+        </div>
+      </div>
+      <div class="why-item reveal">
+        <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4M7 7h10M7 11h6"/></svg></div>
+        <div>
+          <h3>სრული გამჭვირვალობა</h3>
+          <p>მომხმარებლისთვის თითოეული პროცესისა და დავალების სტატუსზე მუდმივი ხილვადობა</p>
+        </div>
+      </div>
+      <div class="why-item reveal">
+        <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="2" x2="12" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/></svg></div>
+        <div>
+          <h3>სიზუსტე და შესაბამისობა</h3>
+          <p>ფინანსური და საგადასახადო ოპერაციები მოქმედი კანონმდებლობისა და საუკეთესო პრაქტიკის შესაბამისად</p>
         </div>
       </div>
       <div class="why-item reveal">
         <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
         <div>
-          <h3 data-ka="პასუხისმგებლობა დაზღვეულია" data-en="Liability Is Insured">პასუხისმგებლობა დაზღვეულია</h3>
-          <p data-ka="ჩვენ ვიღებთ საგადასახადო და სამართლებრივ პასუხისმგებლობას შენი სტრესი - ჩვენი პრობლემა." data-en="We take on tax and legal responsibility. Your stress becomes our problem to solve.">ჩვენ ვიღებთ საგადასახადო და სამართლებრივ პასუხისმგებლობას შენი სტრესი - ჩვენი პრობლემა</p>
-        </div>
-      </div>
-      <div class="why-item reveal">
-        <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
-        <div>
-          <h3 data-ka="1 საათში - ყოველთვის" data-en="1 Hour - Always">1 საათში - ყოველთვის</h3>
-          <p data-ka="ნებისმიერ შეკითხვაზე 1 საათში ვუბრუნდებით ხელმისაწვდომობა კი არ არის პრივილეგია - ეს სტანდარტია." data-en="We respond to any question within 1 hour. Accessibility is not a privilege - it's a standard.">ნებისმიერ შეკითხვაზე 1 საათში ვუბრუნდებით ხელმისაწვდომობა კი არ არის პრივილეგია - ეს სტანდარტია</p>
-        </div>
-      </div>
-      <div class="why-item reveal">
-        <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
-        <div>
-          <h3 data-ka="შენ ეწევი ბიზნესს" data-en="You Focus on Business">შენ ეწევი ბიზნესს</h3>
-          <p data-ka="ბუღალტერიაზე დახარჯული ყოველი საათი - წაგებული ბიზნეს-საათია ჩვენ ვიღებთ ამ ტვირთს." data-en="Every hour spent on accounting is a lost business hour. We take that burden away.">ბუღალტერიაზე დახარჯული ყოველი საათი - წაგებული ბიზნეს-საათია ჩვენ ვიღებთ ამ ტვირთს</p>
-        </div>
-      </div>
-      <div class="why-item reveal">
-        <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg></div>
-        <div>
-          <h3 data-ka="ACCA & IFRS - საერთაშორისო დონე" data-en="ACCA & IFRS - International Level">ACCA & IFRS - საერთაშორისო დონე</h3>
-          <p data-ka="საერთაშორისო ბაზრები, ინვესტორები, ბანკები - ყველა ენდობა იმ სტანდარტს, რომელიც ჩვენ ვიყენებთ." data-en="International markets, investors, banks - they all trust the standard we apply.">საერთაშორისო ბაზრები, ინვესტორები, ბანკები - ყველა ენდობა იმ სტანდარტს, რომელიც ჩვენ ვიყენებთ</p>
+          <h3>პროფესიული პასუხისმგებლობის დაზღვევა</h3>
+          <p>ჩვენი შეცდომის შემთხვევაში რისკი ჩვენს მხარეს არის — პროფესიული დაზღვევა თქვენს ბიზნესს იცავს</p>
         </div>
       </div>
     </div>
@@ -1194,7 +1181,7 @@ function navScroll(id) {
       <div class="num-card reveal">
         <span class="num-val">130<span class="green">+</span></span>
         <h3 class="num-title" data-ka="მომხმარებელი" data-en="Clients">მომხმარებელი</h3>
-        <p class="num-desc" data-ka="სტარტაპიდან mid-market კომპანიებამდე - ყველა ზომა." data-en="From startups to mid-market companies - every size.">სტარტაპიდან mid-market კომპანიებამდე - ყველა ზომა</p>
+        <p class="num-desc" data-ka="სტარტაპიდან mid-market კომპანიებამდე — ყველა ზომა." data-en="From startups to mid-market companies — every size.">სტარტაპიდან mid-market კომპანიებამდე — ყველა ზომა</p>
       </div>
       <div class="num-card reveal">
         <span class="num-val">8<span class="green">+</span></span>
@@ -1204,12 +1191,12 @@ function navScroll(id) {
       <div class="num-card reveal">
         <span class="num-val">92<span class="green">%</span></span>
         <h3 class="num-title" data-ka="მომხმარებლის კმაყოფილება" data-en="User Satisfaction">მომხმარებლის კმაყოფილება</h3>
-        <p class="num-desc" data-ka="ჩვენი მომხმარებლები კმაყოფილები არიან - შედეგის გამო." data-en="Our clients stay with us - because of results.">ჩვენი მომხმარებლები კმაყოფილები არიან - შედეგის გამო</p>
+        <p class="num-desc" data-ka="ჩვენი მომხმარებლები კმაყოფილები არიან — შედეგის გამო." data-en="Our clients stay with us — because of results.">ჩვენი მომხმარებლები კმაყოფილები არიან — შედეგის გამო</p>
       </div>
       <div class="num-card reveal">
         <span class="num-val">1<span class="green">H</span></span>
         <h3 class="num-title" data-ka="SLA" data-en="SLA">SLA</h3>
-        <p class="num-desc" data-ka="ნებისმიერ შეკითხვაზე 1 საათში ვუბრუნდებით." data-en="Any query addressed within 1 hour - guaranteed.">ნებისმიერ შეკითხვაზე 1 საათში ვუბრუნდებით</p>
+        <p class="num-desc" data-ka="ნებისმიერ შეკითხვაზე 1 საათში ვუბრუნდებით." data-en="Any query addressed within 1 hour — guaranteed.">ნებისმიერ შეკითხვაზე 1 საათში ვუბრუნდებით</p>
       </div>
     </div>
   </div>
@@ -1368,33 +1355,33 @@ function navScroll(id) {
 <section id="process" class="section">
   <div class="container">
     <div class="section-header reveal">
-      <div class="tag"><span data-ka="მუშაობის პროცესი" data-en="Process">მუშაობის პროცესი</span></div>
-      <h2 data-ka="4 ნაბიჯი<br><span class='purple'>წარმატებამდე</span>" data-en="4 Steps to<br><span class='purple'>Success</span>">4 ნაბიჯი<br><span class="purple">- შედეგამდე</span></h2>
+      <div class="tag"><span data-ka="თანამშრომლობის პროცესი" data-en="Collaboration Process">თანამშრომლობის პროცესი</span></div>
+      <h2 data-ka="4 ნაბიჯი<br><span class='purple'>შედეგამდე</span>" data-en="4 Steps to<br><span class='purple'>Results</span>">4 ნაბიჯი<br><span class="purple">შედეგამდე</span></h2>
     </div>
     <div class="process-steps">
       <div class="step reveal">
         <div class="step-num-circle">01</div>
         <div class="step-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
-        <h3 data-ka="პირველი შეხვედრა" data-en="Initial Meeting">პირველი შეხვედრა</h3>
-        <p data-ka="უფასო კონსულტაცია - ვიგებთ შენს სიტუაციას, გამოწვევებს და მიზნებს არ გყიდი - გისმენ." data-en="Free consultation - we learn your situation, challenges, and goals. We don't sell - we listen.">უფასო კონსულტაცია - ვიგებთ შენს სიტუაციას, გამოწვევებს და მიზნებს არ გყიდი - გისმენ</p>
+        <h3>გაცნობითი შეხვედრა</h3>
+        <p>ვაცნობიერებთ თქვენი ბიზნესის სპეციფიკას, საჭიროებებსა და მიზნებს, რათა სწორად განვსაზღვროთ თანამშრომლობის ფორმატი</p>
       </div>
       <div class="step reveal">
         <div class="step-num-circle">02</div>
         <div class="step-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
-        <h3 data-ka="ანალიზი და გეგმა" data-en="Analysis & Plan">ანალიზი და გეგმა</h3>
-        <p data-ka="ვაკეთებთ ღრმა ანალიზს, ვამზადებთ შენზე მორგებულ სერვის-პაკეტს გასაგები ფასი, გასაგები შედეგი." data-en="We do a deep analysis and prepare a service package tailored to you. Clear price, clear outcome.">ვაკეთებთ ღრმა ანალიზს, ვამზადებთ შენზე მორგებულ სერვის-პაკეტს გასაგები ფასი, გასაგები შედეგი</p>
+        <h3>ანალიზი და ინდივიდუალური შეთავაზება</h3>
+        <p>ვაფასებთ არსებულ პროცესებს და გიმზადებთ თქვენზე მორგებულ მომსახურების გეგმას, სამუშაო მოცულობასა და გამჭვირვალე ფასს</p>
       </div>
       <div class="step reveal">
         <div class="step-num-circle">03</div>
         <div class="step-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
-        <h3 data-ka="გადაბარება - მარტივად" data-en="Handover - Smoothly">გადაბარება - მარტივად</h3>
-        <p data-ka="გადაბარების პროცესს ჩვენ ვმართავთ შენ კი ჩვეულ საქმეს ეწევი - გაჩერება არ არის." data-en="We manage the handover process. You keep doing business as usual - no interruptions.">გადაბარების პროცესს ჩვენ ვმართავთ შენ კი ჩვეულ საქმეს ეწევი - გაჩერება არ არის</p>
+        <h3>პროცესების გადმობარება და დანერგვა</h3>
+        <p>ვაორგანიზებთ დოკუმენტაციის, მონაცემებისა და მიმდინარე პროცესების შეუფერხებელ გადმობარებას, რათა თქვენი საქმიანობა არ შეფერხდეს</p>
       </div>
       <div class="step reveal">
         <div class="step-num-circle">04</div>
         <div class="step-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
-        <h3 data-ka="მუდმივი პარტნიორობა" data-en="Ongoing Partnership">მუდმივი პარტნიორობა</h3>
-        <p data-ka="ყოველთვიური ანგარიშები, სტრატეგიული რჩევა, მუდმივი ხელმისაწვდომობა ვიზრდებით ერთად." data-en="Monthly reports, strategic advice, constant availability. We grow together.">ყოველთვიური ანგარიშები, სტრატეგიული რჩევა, მუდმივი ხელმისაწვდომობა ვიზრდებით ერთად</p>
+        <h3>უწყვეტი მხარდაჭერა და განვითარება</h3>
+        <p>ვუზრუნველყოფთ ყოველდღიურ კომუნიკაციას, დროულ შესრულებას, რეგულარულ რეპორტინგსა და მუდმივ მხარდაჭერას, რათა თქვენი ფინანსური პროცესები იყოს ეფექტური, კონტროლირებადი და განვითარებაზე ორიენტირებული</p>
       </div>
     </div>
   </div>
@@ -1440,7 +1427,7 @@ function navScroll(id) {
       </div>
       <div class="contact-card reveal">
         <h3 data-ka="მოგვწერეთ" data-en="Contact Us">მოგვწერეთ</h3>
-        <p data-ka="დაგვიკავშირდით - გაგვიზიარეთ თქვენი საჭიროება და მომენტალურად მიიღეთ თქვენს საჭიროებაზე მორგებული შეთავაზება" data-en="Get in touch - share your needs and instantly receive a tailored proposal">დაგვიკავშირდით - გაგვიზიარეთ თქვენი საჭიროება და მომენტალურად მიიღეთ თქვენს საჭიროებაზე მორგებული შეთავაზება</p>
+        <p data-ka="დაგვიკავშირდით — გაგვიზიარეთ თქვენი საჭიროება და მომენტალურად მიიღეთ თქვენს საჭიროებაზე მორგებული შეთავაზება" data-en="Get in touch — share your needs and instantly receive a tailored proposal">დაგვიკავშირდით — გაგვიზიარეთ თქვენი საჭიროება და მომენტალურად მიიღეთ თქვენს საჭიროებაზე მორგებული შეთავაზება</p>
         <a href="mailto:Support@loyalpartners.ge" class="btn btn-green" style="width:100%;justify-content:center;margin-bottom:0.75rem;">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
           Support@loyalpartners.ge
@@ -1462,7 +1449,7 @@ function navScroll(id) {
         <div class="logo footer-logo" style="pointer-events:none;">
           <img src="data:image/png;base64,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" alt="Loyal Partners" class="logo-img" style="cursor:pointer;" onclick="window.location.reload()"></span>
         </div>
-        <p data-ka="2017 წლიდან ვართ ქართული ბიზნესის სანდო ფინანსური პარტნიორი ვიღებთ პასუხისმგებლობას - შენ ეწევი ბიზნესს." data-en="Since 2017, a trusted financial partner for Georgian business. We take responsibility - you run your business.">2017 წლიდან ვართ ქართული ბიზნესის სანდო ფინანსური პარტნიორი ვიღებთ პასუხისმგებლობას - შენ ეწევი ბიზნესს</p>
+        <p data-ka="2017 წლიდან ვართ ქართული ბიზნესის სანდო ფინანსური პარტნიორი ვიღებთ პასუხისმგებლობას — შენ ეწევი ბიზნესს." data-en="Since 2017, a trusted financial partner for Georgian business. We take responsibility — you run your business.">2017 წლიდან ვართ ქართული ბიზნესის სანდო ფინანსური პარტნიორი ვიღებთ პასუხისმგებლობას — შენ ეწევი ბიზნესს</p>
       </div>
       <div class="footer-col">
         <h4 data-ka="სერვისები" data-en="Services">სერვისები</h4>
@@ -1548,7 +1535,7 @@ function navScroll(id) {
         midCursor.style.animation = 'navCursorBlink 1s step-end infinite';
       }
     }, gap * 2 + 400);
-    // hd4 — typewriter სტილით
+    // hd4 - typewriter სტილით
     setTimeout(() => {
       if (midCursor) { midCursor.style.animation = 'none'; midCursor.style.visibility = 'hidden'; }
       const endCursor = document.getElementById('endcursor');
@@ -1570,7 +1557,7 @@ function navScroll(id) {
   }, 4200);
 })();
 
-// ABOUT TITLE SEQUENCE — repeats every time section enters viewport
+// ABOUT TITLE SEQUENCE - repeats every time section enters viewport
 (function(){
   const els = [
     document.getElementById('aw1'),
@@ -1701,13 +1688,13 @@ function updateActiveNav() {
   });
 }
 
-// SMOOTH SCROLL — handled by navScroll() in head
+// SMOOTH SCROLL - handled by navScroll() in head
 
 // ═══════════════════════════════════════════
 // PROFESSIONAL ANIMATION SYSTEM
 // ═══════════════════════════════════════════
 
-// 1. STAGGERED REVEAL — სექციის შიგნით ელემენტები cascade-ით ჩნდება
+// 1. STAGGERED REVEAL - სექციის შიგნით ელემენტები cascade-ით ჩნდება
 const revealEls = document.querySelectorAll('.reveal');
 const revealObs = new IntersectionObserver((entries) => {
   entries.forEach(e => {
@@ -1716,14 +1703,14 @@ const revealObs = new IntersectionObserver((entries) => {
       const parent = e.target.parentElement;
       const siblings = parent ? [...parent.querySelectorAll('.reveal')] : [e.target];
       const idx = siblings.indexOf(e.target);
-      setTimeout(() => e.target.classList.add('visible'), idx * 80);
+      setTimeout(() => e.target.classList.add('visible'), idx * 45);
       revealObs.unobserve(e.target);
     }
   });
-}, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+}, { threshold: 0.03, rootMargin: '0px 0px -20px 0px' });
 revealEls.forEach(el => revealObs.observe(el));
 
-// 2. COUNTER ANIMATION — რიცხვები ითვლება
+// 2. COUNTER ANIMATION - რიცხვები ითვლება
 function animateCounter(el, target, suffix) {
   let start = 0;
   const duration = 1800;
@@ -1796,7 +1783,7 @@ document.querySelectorAll('.metric-num').forEach(el => {
   obs.observe(el);
 });
 
-// 3. MAGNETIC BUTTONS — ღილაკები კურსორს იზიდავს
+// 3. MAGNETIC BUTTONS - ღილაკები კურსორს იზიდავს
 document.querySelectorAll('.btn-purple').forEach(btn => {
   btn.addEventListener('mousemove', (e) => {
     const rect = btn.getBoundingClientRect();
@@ -1811,7 +1798,7 @@ document.querySelectorAll('.btn-purple').forEach(btn => {
   });
 });
 
-// 4. SMOOTH SECTION INDICATOR — scroll-ზე active dot უფრო smooth
+// 4. SMOOTH SECTION INDICATOR - scroll-ზე active dot უფრო smooth
 let ticking = false;
 window.addEventListener('scroll', () => {
   if (!ticking) {
@@ -1829,7 +1816,73 @@ window.addEventListener('scroll', () => {
   }
 });
 
-// 5. SERVICE CARDS — hover-ზე subtle lift + border glow
+// LIFT EFFECT - CSS handles hover, just add class
+(function(){
+  const selectors = ['.svc-card','.team-card','.why-card','.num-card','.process-step','.testi-card','.btn-purple','.contact-item'];
+  selectors.forEach(sel => {
+    document.querySelectorAll(sel).forEach(el => el.classList.add('shake-fx'));
+  });
+})();
+
+// HAPTIC FEEDBACK (mobile only)
+(function(){
+  if (!navigator.vibrate) return;
+  // Service cards
+  document.querySelectorAll('.svc-card').forEach(card => {
+    card.addEventListener('mouseenter', () => navigator.vibrate(8));
+    card.addEventListener('touchstart', () => navigator.vibrate(8), {passive: true});
+  });
+  // Team cards
+  document.querySelectorAll('.team-card').forEach(card => {
+    card.addEventListener('mouseenter', () => navigator.vibrate(6));
+    card.addEventListener('touchstart', () => navigator.vibrate(6), {passive: true});
+  });
+})();
+
+// SERVICE CARD TYPEWRITER
+(function(){
+  function runTypewriter(el) {
+    const tw = el.querySelector('.svc-typewriter');
+    const cursor = el.querySelector('.svc-tw-cursor');
+    const rest = el.querySelector('.svc-rest');
+    const features = el.querySelector('.svc-features');
+    if (!tw || tw.dataset.done) return;
+    tw.dataset.done = '1';
+    const text = tw.getAttribute('data-text');
+    let i = 0;
+    // hide features initially
+    if (features) { features.style.opacity = '0'; features.style.transition = 'opacity 0.6s ease'; }
+    cursor.style.visibility = 'visible';
+    function type() {
+      if (i < text.length) {
+        tw.textContent += text[i];
+        i++;
+        setTimeout(type, text[i] === ' ' ? 180 : 55);
+      } else {
+        // step 2: show desc
+        setTimeout(() => {
+          if (rest) rest.style.opacity = '1';
+          // step 3: show features
+          setTimeout(() => {
+            if (features) features.style.opacity = '1';
+            cursor.style.visibility = 'hidden';
+          }, 700);
+        }, 300);
+      }
+    }
+    type();
+  }
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { runTypewriter(e.target); obs.unobserve(e.target); }
+    });
+  }, { threshold: 0.4 });
+  document.querySelectorAll('.svc-typewriter').forEach(tw => {
+    obs.observe(tw.closest('.svc-card'));
+  });
+})();
+
+// 5. SERVICE CARDS - hover-ზე subtle lift + border glow
 document.querySelectorAll('.svc-card').forEach(card => {
   card.addEventListener('mouseenter', () => {
     card.style.transition = 'transform 0.35s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.35s ease, border-color 0.35s ease';
@@ -1845,9 +1898,9 @@ document.querySelectorAll('.svc-card').forEach(card => {
 });
 
 // 6. SMOOTH SCROLL
-// 6. SMOOTH SCROLL — handled by inline onclick navScroll()
+// 6. SMOOTH SCROLL - handled by inline onclick navScroll()
 
-// 7. PROCESS STEPS — connector line ხაზი ანიმირდება scroll-ზე
+// 7. PROCESS STEPS - connector line ხაზი ანიმირდება scroll-ზე
 const processLine = document.querySelector('.process-steps::before');
 const processSection = document.getElementById('process');
 if (processSection) {
